@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="activity"
+            type="com.boog24.activity.ContactDetailActivity" />
+        <variable
+            name="userid"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/headerLayoutALA"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:onClick="onClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dimen_16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/back_arrow"/>
+
+                <TextView
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:id="@+id/textHeaderALA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:text="@string/contact_details"
+                    android:textSize="@dimen/dimen_16dp"/>
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:visibility="gone"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dimen_16dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/logo" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_below="@id/headerLayoutALA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/black"
+                android:paddingTop="@dimen/dimen_10dp"
+                app:hintTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_below="@id/tvLogin"
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/dimen_14dp"
+                    android:textSize="@dimen/dimen_15sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/proximanova_regular" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/black"
+                android:paddingTop="@dimen/dimen_10dp"
+                app:hintTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_below="@id/tvLogin"
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/last_name"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/dimen_14dp"
+                    android:textSize="@dimen/dimen_15sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/proximanova_regular" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/black"
+                android:paddingTop="@dimen/dimen_10dp"
+                app:hintTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_below="@id/tvLogin"
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email_address"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/dimen_14dp"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/dimen_15sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/proximanova_regular" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/black"
+                android:paddingTop="@dimen/dimen_10dp"
+                app:hintTextAppearance="@style/TextInputLayoutHintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_below="@id/tvLogin"
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_number"
+                    android:textColorHint="@color/black"
+                    android:paddingBottom="@dimen/dimen_14dp"
+                    android:inputType="phone"
+                    android:textSize="@dimen/dimen_15sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/proximanova_regular" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/alldone"/>
+
+
+                <TextView
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_25dp"
+                    android:textColor="@color/grayish"
+                    android:text="@string/payment_in_the_salon"
+                    android:textSize="@dimen/dimen_15dp"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:fontFamily="@font/proximanova_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:textColor="@color/grayish"
+                android:text="@string/your_appointment"
+                android:textSize="@dimen/dimen_15dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:scrollbarStyle="insideInset" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@color/gray_c9"
+                android:alpha="0.5"
+                android:layout_below="@+id/rlRating"
+                android:layout_marginBottom="@dimen/dimen_18dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#5F5F5F"
+                android:paddingTop="@dimen/dimen_8dp"
+                android:paddingBottom="@dimen/dimen_8dp"
+                android:paddingLeft="@dimen/dimen_8dp"
+                android:paddingRight="@dimen/dimen_8dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/total_amount"
+                    android:textSize="@dimen/dimen_15dp"/>
+
+
+                <TextView
+                    android:id="@+id/tvTotalAmount"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:text="€ 180"
+                    android:textSize="@dimen/dimen_14dp"/>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvContinue"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:background="@drawable/rounded_bg_orange"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen_14dp"
+                android:paddingBottom="@dimen/dimen_14dp"
+                android:layout_marginBottom="@dimen/dimen_15dp"
+                android:text="@string/book"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_14dp"
+                android:fontFamily="@font/proxima_nova_bold"/>
+
+        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+
+</layout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <!--DragLayout requires layout_gravity of all child Views to be centered-->
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drag_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:bototmExtraIndicatorHeight="20dp"
+        app:bottomDragVisibleHeight="150dp">
+
+
+        <com.soundbuzzs.custom.AspectRatioCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </com.soundbuzzs.custom.AspectRatioCardView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</FrameLayout>

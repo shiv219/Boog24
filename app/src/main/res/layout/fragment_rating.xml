@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:vFont="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="activity"
+            type="com.boog24.fragment.salondetail.RatingFragment"/>
+        <variable
+            name="userid"
+            type="String" />
+    </data>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        android:background="@color/white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:scrollbarStyle="insideInset" />
+
+
+        <Button
+            android:layout_below="@id/recyclerview"
+            android:id="@+id/btnAdd"
+            android:onClick="onClick"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dp"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:textColor="@color/white"
+            android:text="@string/add_feedback"
+            android:textSize="@dimen/dimen_14sp"
+            android:paddingRight="@dimen/dimen_50dp"
+            android:paddingLeft="@dimen/dimen_50dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/rounded_bg_orange"/>
+
+
+    </RelativeLayout>
+
+</layout>

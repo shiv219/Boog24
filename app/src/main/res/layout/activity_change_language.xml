@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="activity"
+            type="com.boog24.activity.ChangeLanguageActivity" />
+        <variable
+            name="userid"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/headerLayoutALA"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:onClick="onClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dimen_16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/back_arrow"/>
+
+                <TextView
+                    android:id="@+id/textHeaderALA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:text="@string/change_language"
+                    android:textSize="@dimen/dimen_16dp"/>
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:visibility="gone"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dimen_16dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/logo" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_language"
+                android:textSize="@dimen/dimen_24sp"
+                android:textColor="@color/blue"
+                android:fontFamily="@font/proxima_nova_extrabold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvLogin"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum is simply dummy text of the printing."
+                android:textSize="@dimen/dimen_14sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/proximanova_regular"
+                android:gravity="center"/>
+
+
+            <RelativeLayout
+                android:onClick="onClick"
+                android:id="@+id/rltEng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25dp"
+                android:layout_marginRight="@dimen/dimen_25dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:background="@drawable/rounded_border_green"
+                android:padding="@dimen/dimen_8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_eng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/english"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dimen_12dp"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    />
+
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="@dimen/dimen_12dp"
+                    android:src="@drawable/engflag"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rltGerman"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25dp"
+                android:layout_marginRight="@dimen/dimen_25dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:padding="@dimen/dimen_8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_ger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/german"
+                    android:layout_marginLeft="@dimen/dimen_12dp"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    />
+
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="@dimen/dimen_12dp"
+                    android:src="@drawable/german_flag"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25dp"
+                android:layout_marginRight="@dimen/dimen_25dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:background="@drawable/card_rounded_shadow"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/proxima_nova_extrabold"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingTop="@dimen/dimen_16dp"
+                android:paddingBottom="@dimen/dimen_16dp"
+                android:text="@string/change"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_18sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

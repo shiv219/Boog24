@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/dimen_8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/RatingBar"
+        android:theme="@style/RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:clickable="false"
+        android:isIndicator="true"
+        android:rating="2"
+        android:stepSize="0.1" />
+
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#4B4E4E"
+        android:text="I felt very comfortable before and during the massage. It is definitely worth booking an hour to get fully involved in the massage and to relax."
+        android:fontFamily="@font/proximanova_regular"
+        android:textSize="@dimen/dimen_14dp"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:paddingTop="@dimen/dimen_0dp"
+        android:paddingBottom="@dimen/dimen_6dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1C1C1C"
+            android:text="Heike"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:textSize="@dimen/dimen_14dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:paddingTop="@dimen/dimen_0dp"
+            android:paddingBottom="@dimen/dimen_6dp"/>
+
+
+
+        <TextView
+            android:layout_marginLeft="@dimen/dimen_8dp"
+            android:id="@+id/tvtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1C1C1C"
+            android:text="• a month ago"
+            android:alpha="0.46"
+            android:fontFamily="@font/proximanova_regular"
+            android:textSize="@dimen/dimen_14dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:paddingTop="@dimen/dimen_0dp"
+            android:paddingBottom="@dimen/dimen_6dp"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.4"
+        android:background="@color/gray_c9"/>
+
+
+</LinearLayout>

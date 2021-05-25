@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/lyt"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/rounded_bg_gray9c"
+    android:padding="@dimen/dimen_10dp"
+    android:layout_weight="1"
+    android:layout_margin="@dimen/dimen_8dp"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimen_4dp"
+        android:paddingRight="@dimen/dimen_4dp"
+        android:paddingTop="@dimen/dimen_2dp"
+        android:paddingBottom="@dimen/dimen_2dp"
+        android:text="06:00 AM"
+        android:textColor="@color/black"
+        android:fontFamily="@font/proximanova_regular"
+        android:textSize="@dimen/dimen_12dp"/>
+
+</LinearLayout>

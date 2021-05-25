@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:vFont="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/splash"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="@dimen/dimen_200dp"
+            android:layout_height="@dimen/dimen_120dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cosmetics"
+            android:textSize="@dimen/dimen_24sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:fontFamily="@font/proxima_nova_extrabold"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_gravity="right|end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:src="@drawable/cosmetics" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

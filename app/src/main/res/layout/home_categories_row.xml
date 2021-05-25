@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#EAFFFF"
+    android:padding="@dimen/dimen_12dp"
+    android:layout_margin="@dimen/dimen_4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/dimen_50dp"
+        android:layout_height="@dimen/dimen_50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/user"/>
+
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_below="@id/tvhello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#686C6C"
+        android:layout_marginTop="@dimen/dimen_12dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:fontFamily="@font/proxima_nova_bold"
+        android:text="HairDresser"
+        android:textSize="@dimen/dimen_14dp"/>
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/dimen_4dp"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_8dp">
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        app:riv_corner_radius="@dimen/dimen_12dp"
+        android:id="@+id/imgSalon"
+        android:layout_width="@dimen/dimen_120dp"
+        android:layout_height="@dimen/dimen_120dp"
+        android:layout_gravity="center"
+        android:baselineAligned="false"
+        android:src="@drawable/user" />
+
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvhello"
+        android:layout_gravity="left"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:fontFamily="@font/proxima_nova_bold"
+        android:gravity="center"
+        android:text="Hair Cut"
+        android:textColor="#172121"
+        android:textSize="@dimen/dimen_14dp" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/RatingBar"
+            android:theme="@style/RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:rating="2"
+            android:stepSize="0.1" />
+
+
+        <TextView
+            android:id="@+id/tvTotalRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:gravity="center"
+            android:text="(34)"
+            android:textColor="#172121"
+            android:textSize="@dimen/dimen_14dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_18dp"
+            android:layout_height="@dimen/dimen_18dp"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:src="@drawable/pin" />
+
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/proximanova_regular"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Mohrenstrasse 37 10117.."
+            android:textColor="#4B4E4E"
+            android:textSize="@dimen/dimen_12dp" />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

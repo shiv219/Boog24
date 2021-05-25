@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "494255599532",
+    "firebase_url": "https://booq24.firebaseio.com",
+    "project_id": "booq24",
+    "storage_bucket": "booq24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494255599532:android:bda3b0c5c79c8d4164d409",
+        "android_client_info": {
+          "package_name": "com.boog24"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494255599532-eof9b2tsi730aov2irmgdoerupu0s7q4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaO6OJ8fKGzbWrCYbP8DrCazio0pi6okY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494255599532-eof9b2tsi730aov2irmgdoerupu0s7q4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

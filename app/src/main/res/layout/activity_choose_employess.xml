@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="activity"
+            type="com.boog24.activity.ChooseEmployeesActivity" />
+        <variable
+            name="userid"
+            type="String" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dimen_12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/headerLayoutALA"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:onClick="onClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dimen_16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/back_arrow"/>
+
+                <TextView
+                    android:fontFamily="@font/proximanova_regular"
+                    android:id="@+id/textHeaderALA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:text="@string/categories"
+                    android:textSize="@dimen/dimen_16dp"/>
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:visibility="gone"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dimen_16dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/logo" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@id/headerLayoutALA"
+            android:layout_marginLeft="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:fontFamily="@font/proxima_nova_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grayish"
+                android:text="@string/choose_employees_optional"
+                android:textSize="@dimen/dimen_14dp"/>
+
+
+            <EditText
+                android:id="@+id/etEmployee"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@drawable/rounded_bg_gray9c"
+                android:clickable="false"
+                android:drawableLeft="@drawable/person"
+                android:focusable="false"
+                android:drawablePadding="@dimen/dimen_15dp"
+                android:onClick="onClick"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:hint="@string/next_available_employee"
+                android:inputType="text"
+                android:paddingLeft="@dimen/dimen_25dp"
+                android:paddingRight="@dimen/dimen_25dp"
+                android:textColor="@color/grayish"
+                android:textColorHint="@color/grayish"
+                android:textSize="@dimen/dimen_14sp" />
+
+            <Spinner
+                android:theme="@style/CustomSpinnerTheme"
+                android:visibility="invisible"
+                android:id="@+id/ProSpinner"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+
+
+            <EditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@drawable/rounded_bg_gray9c"
+                android:clickable="false"
+                android:drawableLeft="@drawable/calendar"
+                android:focusable="false"
+                android:drawablePadding="@dimen/dimen_15dp"
+                android:onClick="onClick"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:hint="@string/choose_date_and_time"
+                android:inputType="text"
+                android:paddingLeft="@dimen/dimen_25dp"
+                android:paddingRight="@dimen/dimen_25dp"
+                android:textColor="@color/grayish"
+                android:textColorHint="@color/grayish"
+                android:textSize="@dimen/dimen_14sp" />
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewTimeSLot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/time_slot_row"
+                tools:itemCount="8"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:scrollbarStyle="insideInset" />
+
+            <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:scrollbarStyle="insideInset" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@color/gray_c9"
+                android:alpha="0.5"
+                android:layout_below="@+id/rlRating"
+                android:layout_marginBottom="@dimen/dimen_18dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grayish"
+                    android:text="@string/total_amount"
+                    android:textSize="@dimen/dimen_15dp"/>
+
+
+                <TextView
+                    android:id="@+id/tvTotalAmount"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grayish"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:text="€ 180"
+                    android:textSize="@dimen/dimen_14dp"/>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_36dp"
+                android:layout_marginBottom="@dimen/dimen_12dp"
+                android:background="@drawable/rounded_bg_orange"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingTop="@dimen/dimen_14dp"
+                android:paddingBottom="@dimen/dimen_14dp"
+                android:text="@string/continues"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_14dp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

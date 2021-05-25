@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:vFont="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rlRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingRight="@dimen/dimen_10dp"
+        android:paddingLeft="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_6dp"
+        android:paddingBottom="@dimen/dimen_6dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dimen_0dp">
+
+        <LinearLayout
+            android:id="@+id/llIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:gravity="center"
+            android:layout_centerVertical="true">
+            <ImageView
+                android:id="@+id/ivImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pin"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/llIcon">
+
+            <TextView
+                android:id="@+id/ctvArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kreditkarte fd rg dg g fdgdfbjhb hjh hj jh hj jh h jh hjgvbd fdvfd vkhdv dfhv dfv  dsfds sdfs sdfs  dfs sdfdfk vdfkv dfkv dfkv"
+                android:inputType="text"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textSize="@dimen/dimen_14dp"
+                android:textColor="@color/gray_c9"
+                android:layout_marginBottom="@dimen/dimen_2dp"/>
+            <TextView
+                android:id="@+id/ctvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#727272"
+                android:textSize="@dimen/dimen_12dp"
+                android:text=""
+                android:layout_alignParentBottom="true"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_c9"
+                android:layout_marginTop="@dimen/dimen_6dp" />
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>

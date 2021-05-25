@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="activity"
+            type="com.boog24.activity.SearchLocationActivity" />
+        <variable
+            name="userid"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/llt">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="22dp"
+                android:layout_height="@dimen/dimen_22dp"
+                android:src="@drawable/back_arrow"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/dimen_12dp"
+                android:layout_marginRight="@dimen/dimen_12dp"
+                android:adjustViewBounds="true"/>
+
+
+        <EditText
+            android:id="@+id/cetPickup"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_pickup_location"
+            android:inputType="text"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColorHint="@color/gray86"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:ems="3"
+            android:layout_toLeftOf="@id/ic_close"
+            android:padding="@dimen/dimen_12dp"
+            android:background="@color/white"
+            android:textSize="@dimen/dimen_14dp"
+            android:textColor="@android:color/black"/>
+
+
+        <ImageView
+            android:id="@+id/ic_close"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_16dp"
+            android:src="@drawable/ic_close"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/dimen_12dp"
+            android:adjustViewBounds="true"/>
+
+        </LinearLayout>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_below="@id/llt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbarStyle="insideInset"/>
+
+        <LinearLayout
+            android:id="@+id/lytCurrent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_22dp"
+            android:layout_marginRight="@dimen/dimen_12dp"
+            android:layout_below="@id/recyclerView">
+
+
+            <ImageView
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@drawable/gpson"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dimen_12dp"
+                android:adjustViewBounds="true"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:maxLength="25"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:text="@string/current_location"
+                    android:textSize="@dimen/dimen_16dp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray86"
+                    android:gravity="center"
+                    android:maxLength="25"
+                    android:fontFamily="@font/proximanova_regular"
+                    android:text="@string/using_gps"
+                    android:textSize="@dimen/dimen_14dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_150dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:src="@drawable/massage"
+        android:scaleType="centerCrop"
+        app:riv_border_width="0dp"
+        app:riv_corner_radius="@dimen/dimen_10dp" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exclusive"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/dimen_4dp"
+        android:paddingLeft="@dimen/dimen_10dp"
+        android:fontFamily="@font/proxima_nova_bold"
+        android:paddingBottom="@dimen/dimen_3dp"
+        android:paddingRight="@dimen/dimen_16dp"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="activity"
+            type="com.boog24.activity.ConfirmAppointmentActivity" />
+        <variable
+            name="userid"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/headerLayoutALA"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:onClick="onClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dimen_16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/back_arrow"/>
+
+                <TextView
+                    android:fontFamily="@font/proximanova_regular"
+                    android:id="@+id/textHeaderALA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:text="@string/categories"
+                    android:textSize="@dimen/dimen_16dp"/>
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:visibility="gone"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dimen_16dp"
+                    android:layout_centerVertical="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/logo" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@id/headerLayoutALA"
+            android:layout_marginLeft="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_34dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/confirmed"/>
+
+                <TextView
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:text="@string/appointment_confirmed"
+                    android:textSize="@dimen/dimen_18dp"/>
+
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@drawable/rounded_bg_gray9c"
+            android:padding="@dimen/dimen_12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:fontFamily="@font/proximanova_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grayish"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:text="@string/booking_id"
+                android:textSize="@dimen/dimen_20dp"/>
+
+
+
+            <TextView
+                android:id="@+id/tvId"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:text="#B2432"
+                android:textSize="@dimen/dimen_22dp"/>
+
+        </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#4B4E4E"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:text="Black Beauty Salon"
+                android:textSize="@dimen/dimen_20dp"/>
+
+
+            <LinearLayout
+                android:id="@+id/llt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/lltsee">
+
+                <ImageView
+                    android:id="@+id/ivAddress"
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/pin" />
+
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4B4E4E"
+                    android:layout_gravity="center"
+                    android:alpha="0.98"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:fontFamily="@font/proximanova_regular"
+                    android:text="Leipziger Str. 106-111 | Mitte, 10117 Berlin, Germany."
+                    android:textSize="@dimen/dimen_12dp"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4B4E4E"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:text="@string/date_and_time"
+                    android:textSize="@dimen/dimen_15dp"/>
+
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4B4E4E"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:text="23 JAN 2020 - 12:00 AM"
+                    android:textSize="@dimen/dimen_15dp"/>
+
+
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:scrollbarStyle="insideInset" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@color/gray_c9"
+                android:alpha="0.5"
+                android:layout_below="@+id/rlRating"
+                android:layout_marginBottom="@dimen/dimen_18dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4B4E4E"
+                    android:text="@string/total_amount"
+                    android:textSize="@dimen/dimen_15dp"/>
+
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:fontFamily="@font/proxima_nova_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4B4E4E"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:text="€ 180"
+                    android:textSize="@dimen/dimen_14dp"/>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@color/gray_c9"
+                android:alpha="0.5"
+                android:layout_below="@+id/rlRating"
+                android:layout_marginBottom="@dimen/dimen_18dp"/>
+            <TextView
+                android:id="@+id/tvContinue"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_36dp"
+                android:background="@drawable/rounded_bg_orange"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen_14dp"
+                android:paddingBottom="@dimen/dimen_14dp"
+                android:text="@string/continues"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_14dp"
+                android:fontFamily="@font/proxima_nova_bold"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>
