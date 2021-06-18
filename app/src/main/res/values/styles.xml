@@ -90,4 +90,96 @@
         </item>
     </style>
 
+    <style name="Font.Book.Extra.SuperSmall" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
+
+    </style>
+
+    <style name="Font.Book.Extra.Small" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_13</item>
+
+    </style>
+
+    <style name="Font.Book.Small" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+
+    </style>
+
+    <style name="Font.Book.Medium" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="Font.Book.Large" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+
+    </style>
+
+    <style name="Font.Heavy.Extra.Small" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proxima_nova_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_13</item>
+
+    </style>
+
+    <style name="Font.Heavy.Small" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proxima_nova_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+
+    </style>
+
+    <style name="Font.Heavy.Medium" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proxima_nova_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+
+    </style>
+
+    <style name="Font.Heavy.Large" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proxima_nova_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+
+    </style>
+
+    <style name="Font.Medium.Extra.Small" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_13</item>
+
+    </style>
+
+    <style name="Font.Medium.Small" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+
+    </style>
+
+    <style name="Font.Medium.Medium" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+
+    </style>
+
+    <style name="Font.Medium.Large" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/proximanova_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+
+    </style>
+
+
 </resources>

@@ -1,28 +1,26 @@
 package com.boog24.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+
 import com.boog24.R;
 import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivityChangeLanguageBinding;
-import com.boog24.databinding.ActivitySelectLanguageBinding;
 import com.boog24.extra.BaseActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Locale;
 
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-
 public class ChangeLanguageActivity  extends BaseActivity {
 
     ActivityChangeLanguageBinding binding;
-    String selected="en";
+    String selected = "de";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

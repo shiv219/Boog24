@@ -95,6 +95,40 @@
                 android:fontFamily="@font/proximanova_regular"
                 android:gravity="center"/>
 
+            <RelativeLayout
+                android:id="@+id/rltGerman"
+                android:onClick="onClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_25dp"
+                android:layout_marginRight="@dimen/dimen_25dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:padding="@dimen/dimen_8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_ger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/german"
+                    android:layout_marginLeft="@dimen/dimen_12dp"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/proxima_nova_bold" />
+
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="@dimen/dimen_12dp"
+                    android:src="@drawable/german_flag"
+                    />
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:onClick="onClick"
@@ -118,8 +152,7 @@
                     android:layout_marginLeft="@dimen/dimen_12dp"
                     android:textSize="@dimen/dimen_14sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/proxima_nova_bold"
-                    />
+                    android:fontFamily="@font/proxima_nova_bold" />
 
 
                 <ImageView
@@ -132,43 +165,6 @@
 
             </RelativeLayout>
 
-
-            <RelativeLayout
-                android:id="@+id/rltGerman"
-                android:onClick="onClick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_25dp"
-                android:layout_marginRight="@dimen/dimen_25dp"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:padding="@dimen/dimen_8dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_ger"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="@string/german"
-                    android:layout_marginLeft="@dimen/dimen_12dp"
-                    android:textSize="@dimen/dimen_14sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/proxima_nova_bold"
-                    />
-
-
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_width="@dimen/dimen_35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginRight="@dimen/dimen_12dp"
-                    android:src="@drawable/german_flag"
-                    />
-
-
-
-            </RelativeLayout>
 
             <Button
                 style="?android:attr/borderlessButtonStyle"

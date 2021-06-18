@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
@@ -53,7 +52,7 @@ public class SplaceActivity extends BaseActivity {
             }
         });
         if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("")) {
-            Prefs.putString(Constants.SharedPreferences_Langauge, "en");
+            Prefs.putString(Constants.SharedPreferences_Langauge, "de");
         }
 
         Log.e("TAG", "onCreate LANGUAGE : " + Prefs.getString(Constants.SharedPreferences_Langauge, ""));

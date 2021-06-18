@@ -18,9 +18,9 @@ public class Constants {
     public static final String PROFILE_DATA = "profile_data";
     public static String DEVICE_ID = "";
 
-
     public static final String SharedPreferences_Id = "id";
-    public static final String SharedPreferences_FirstName= "firstName";
+    public static final String SharedPreferences_country_code = "country_code";
+    public static final String SharedPreferences_FirstName = "firstName";
     public static final String SharedPreferences_Gender= "gender";
     public static final String SharedPreferences_LastName= "lastName";
     public static final String SharedPreferences_Langauge= "langaugae";

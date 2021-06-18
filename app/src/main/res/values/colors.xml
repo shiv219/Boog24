@@ -12,6 +12,8 @@
     <color name="gray_c9">#C9C9C9</color>
     <color name="gray86">#868686</color>
     <color name="grayish">#4B4E4E</color>
+    <color name="gray">#F2F2F2</color>
+    <color name="black_alpha_12">#1F000000</color>
 
     <color name="line">#dddddd</color>
     <color name="green">#40b313</color>

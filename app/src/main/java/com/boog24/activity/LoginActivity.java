@@ -7,6 +7,9 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+
 import com.boog24.R;
 import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivityLoginBinding;
@@ -19,12 +22,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 
 public class LoginActivity extends BaseActivity implements ICommonView {
 
@@ -140,10 +137,12 @@ public class LoginActivity extends BaseActivity implements ICommonView {
             Prefs.putString(Constants.SharedPreferences_latitude, response.getUserDetail().getLatitude());
             Prefs.putString(Constants.SharedPreferences_longitude, response.getUserDetail().getLongitude());
             Prefs.putString(Constants.SharedPreferences_profileimage, response.getUserDetail().getProfileimage());
+            Prefs.putString(Constants.SharedPreferences_country_code, response.getUserDetail().getCountryCode());
+
             Prefs.putString(Constants.SharedPreferences_notification_status, response.getUserDetail().getUser_notification_status());
 
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+            finish();
         }else{
             windowPopUp(this,response.getMessage());
         }

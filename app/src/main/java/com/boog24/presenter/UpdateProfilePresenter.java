@@ -15,16 +15,17 @@ import retrofit2.Response;
 
 public class UpdateProfilePresenter extends BasePresenter<IUpdateProfileView> {
 
-    public void userSignin(final Activity activity, String firstname,String lastname,String phone, String gender) {
+    public void userSignin(final Activity activity, String firstname, String lastname, String phone, String gender, String countryCode) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()
                 .getApiService()
-                .updateProfile(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey,""),Prefs.getString(Constants.SharedPreferences_Langauge,""),firstname,lastname,phone, gender)
+                .updateProfile(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey, ""), Prefs.getString(Constants.SharedPreferences_Langauge, ""), firstname, lastname, phone, gender, countryCode)
                 .enqueue(new Callback<Result>() {
                     @Override
                     public void onResponse(Call<Result> call, Response<Result> response) {
                         getView().enableLoadingBar(activity, false, null);
                         getView().onGetDetail(response.body());
+                        Prefs.putString(Constants.SharedPreferences_country_code, countryCode);
                     }
 
                     @Override

@@ -141,7 +141,7 @@
     <string name="pls_select_time">Wählen sie bitte eine Uhrzeit</string>
     <string name="next_available_employee">Next Available Employee</string>
     <string name="zipcode">Zip Code </string>
-    <string name="book">Buchen</string>
+    <string name="book">Verbindlich buchen</string>
     <string name="more">More</string>
     <string name="pls_enter_validate_password">Please Enter 1 Capital,1 number and 1 specific character</string>
     <string name="pls_enter_correctpassword">Please Enter Correct Password</string>
@@ -163,5 +163,14 @@
     <string name="delete">Löschen</string>
     <string name="cancel_delete_account">zurück</string>
     <string name="authentication">Authentifizierung</string>
+
+    <string name="sort_by">Sortieren nach</string>
+    <string name="high_rated">Hoch bewertet</string>
+    <string name="new_listings">Neue Einträge</string>
+    <string name="most_viewed">Am häufigsten gesehen</string>
+    <string name="most_rated">Am meisten bewertet</string>
+    <string name="opening_hours">Öffnungszeiten</string>
+    <string name="select_country">Land auswählen</string>
+    <string name="country">Land</string>
 
 </resources>

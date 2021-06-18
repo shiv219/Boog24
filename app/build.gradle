@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions' // and here
 
 android {
     compileSdkVersion 29
@@ -21,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+//    buildFeatures{
+//        dataBinding = true
+//    }
     dataBinding {
         enabled = true
     }
@@ -53,7 +57,7 @@ dependencies {
 
     implementation 'com.android.support:design:29.0.0'
     // for save prefs
-    implementation 'com.pixplicity.easyprefs:library:1.8.1@aar'
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
 
     // for card View
     implementation 'androidx.cardview:cardview:1.0.0'

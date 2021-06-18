@@ -9,6 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.PagerAdapter;
+
 import com.boog24.MyApplication;
 import com.boog24.R;
 import com.boog24.adapter.ImgePagerAdapter;
@@ -22,13 +29,12 @@ import com.boog24.fragment.salondetail.SalonInfoFragment;
 import com.boog24.modals.CommonOffset;
 import com.boog24.modals.getSaloonDetail.Result;
 import com.boog24.modals.getSaloonDetail.SalonService;
+import com.boog24.modals.getSaloonDetail.SaloonData;
 import com.boog24.presenter.AddWishlistPresenter;
 import com.boog24.presenter.GetCommonDataPresenter;
-import com.boog24.presenter.GetWishlistPresenter;
 import com.boog24.presenter.GetSaloonDetailPresenter;
 import com.boog24.view.IAddWishlistView;
 import com.boog24.view.ICommonView;
-import com.boog24.view.IGetWishlistView;
 import com.boog24.view.IGetSaloonDetailView;
 import com.google.android.material.tabs.TabLayout;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -39,27 +45,22 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Locale;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.PagerAdapter;
+import java.util.List;
 
 public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetailView, IAddWishlistView, ICommonView {
 
     ActivitySalonDetailBinding binding;
     String salonId;
     GetSaloonDetailPresenter getSaloonDetailPresenter;
-    String salonName,about;
-    JSONArray jsonArray=new JSONArray();
+    String salonName, about;
+    JSONArray jsonArray = new JSONArray();
     AddWishlistPresenter addWishlistPresenter;
     GetCommonDataPresenter getCommonDataPresenter;
-  public  ArrayList<SalonService> arrayList=new ArrayList<>();
-  SalonService salonService=new SalonService();
-    String latitude="",longitude="";
+    public ArrayList<SalonService> arrayList = new ArrayList<>();
+    private List timeSlots = new ArrayList<SaloonData.SalonTimeSlot>();
+    SalonService salonService = new SalonService();
+    String latitude = "", longitude = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +69,14 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
 
 
         MyApplication.getInstance().getSession().setData("");
-        getSaloonDetailPresenter=new GetSaloonDetailPresenter();
+        getSaloonDetailPresenter = new GetSaloonDetailPresenter();
         getSaloonDetailPresenter.setView(this);
 
-        addWishlistPresenter=new AddWishlistPresenter();
+        addWishlistPresenter = new AddWishlistPresenter();
         addWishlistPresenter.setView(this);
 
 
-        getCommonDataPresenter=new GetCommonDataPresenter();
+        getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
 
         salonId = getIntent().getStringExtra("salonId");
@@ -108,11 +109,10 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
             @Override
             public void onClick(View view) {
 
-                if (Prefs.getString(Constants.SharedPreferences_loginKey,"").equalsIgnoreCase(""))
-                {
-                    windowPopUpForLogin(SalonDetailActivity.this,getResources().getString(R.string.pls_login_first));
+                if (Prefs.getString(Constants.SharedPreferences_loginKey, "").equalsIgnoreCase("")) {
+                    windowPopUpForLogin(SalonDetailActivity.this, getResources().getString(R.string.pls_login_first));
 
-                }else {
+                } else {
                     if (binding.ivHeart.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.heart_active).getConstantState())
                         binding.ivHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart));
                     else
@@ -173,14 +173,13 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
         });
 
 
-
         binding.tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 switch (position) {
                     case 0:
-                        setFragment(new SalonInfoFragment(salonName,about));
+                        setFragment(new SalonInfoFragment(salonName, about, timeSlots));
                         break;
                     case 1:
                         setFragment(new RatingFragment(salonId));
@@ -200,6 +199,7 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
         });
 
     }
+
     public void setFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -216,39 +216,40 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
 
     @Override
     public void onGetDetail(Result response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
 
 
-            salonName=response.getSaloonData().getShopname();
-            about=response.getSaloonData().getSaloonInfo();
+            salonName = response.getSaloonData().getShopname();
+            about = response.getSaloonData().getSaloonInfo();
+            timeSlots = response.getSaloonData().getSalonTimeSlotList();
 
-            if (response.getSaloonData().getWishlistStatus().equalsIgnoreCase("1")){
+            if (response.getSaloonData().getWishlistStatus().equalsIgnoreCase("1")) {
                 binding.ivHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart_active));
-            }else{
+            } else {
                 binding.ivHeart.setImageDrawable(getResources().getDrawable(R.drawable.heart));
             }
 
-            setFragment(new SalonInfoFragment(salonName,about));
+            setFragment(new SalonInfoFragment(salonName, about, timeSlots));
             binding.tabs.getTabAt(0).select();
 
             binding.tvName.setText(response.getSaloonData().getShopname());
             binding.tvAddress.setText(response.getSaloonData().getShopAddress());
             binding.ratingBar.setRating((int) Float.parseFloat(response.getSaloonData().getSaloonRatings()));
             binding.tvRating.setText(response.getSaloonData().getSaloonRatings());
-            binding.tvTotal.setText("("+response.getSaloonData().getSaloonRatingsUsers()+")");
+            binding.tvTotal.setText("(" + response.getSaloonData().getSaloonRatingsUsers() + ")");
 
-            latitude=  response.getSaloonData().getLatitude();
-            longitude=response.getSaloonData().getLongitude();
-            PagerAdapter pagerAdapter = new ImgePagerAdapter(this,response.getSaloonData().getSalonImages(),"detail");
+            latitude = response.getSaloonData().getLatitude();
+            longitude = response.getSaloonData().getLongitude();
+            PagerAdapter pagerAdapter = new ImgePagerAdapter(this, response.getSaloonData().getSalonImages(), "detail");
             binding.viewPager.setAdapter(pagerAdapter);
             binding.indicr.setupWithViewPager(binding.viewPager, true);
 
 
-            arrayList=new ArrayList<>();
+            arrayList = new ArrayList<>();
             arrayList.addAll(response.getSaloonData().getSalonServices());
 
 
-            if (arrayList.size()>0) {
+            if (arrayList.size() > 0) {
 
                 if (!MyApplication.getInstance().getSession().getData().isEmpty()) {
 
@@ -296,17 +297,16 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
             }
 
 
-
-            Log.e("TAG", "onGetDetail: "+arrayList.toString() );
-            SalonDetailHeaderAdapter headerAdapter = new SalonDetailHeaderAdapter(this,arrayList);
+            Log.e("TAG", "onGetDetail: " + arrayList.toString());
+            SalonDetailHeaderAdapter headerAdapter = new SalonDetailHeaderAdapter(this, arrayList);
             binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             binding.recyclerView.setAdapter(headerAdapter);
             binding.recyclerView.setNestedScrollingEnabled(true);
 
 
-        }else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Failure")
@@ -334,7 +334,7 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
     protected void onResume() {
         super.onResume();
         if (NetworkAlertUtility.isConnectingToInternet(SalonDetailActivity.this)) {
-            getSaloonDetailPresenter.userSignin(SalonDetailActivity.this,salonId);
+            getSaloonDetailPresenter.userSignin(SalonDetailActivity.this, salonId);
         } else {
             NetworkAlertUtility.showNetworkFailureAlert(SalonDetailActivity.this);
         }
@@ -345,7 +345,7 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
 //            binding.recyclerView.setAdapter(headerAdapter);
 //            binding.recyclerView.setNestedScrollingEnabled(true);
 
-        }
+    }
 
 
     @Override
@@ -354,7 +354,7 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
 //        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
 //            getSupportFragmentManager().popBackStack();
 //        } else {
-            finish();
+        finish();
 //        }
     }
 
@@ -364,20 +364,18 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
     }
 
 
-
     @Override
     public void onAddedWishlist(com.boog24.modals.addWishlist.Result response) {
-        windowPopUp(this,response.getMessage());
+        windowPopUp(this, response.getMessage());
     }
 
     @Override
     public void onGetDetail(CommonOffset response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
 
-        }
-            else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Failure")

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 
 import com.boog24.R;
 import com.boog24.custom.Constants;
@@ -15,18 +17,25 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Locale;
 
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-
 public class SelectLanguageActivity extends BaseActivity {
 
     ActivitySelectLanguageBinding binding;
-    String selected="en";
+    String selected = "de";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_language);
         binding.setActivity(this);
+
+        selected = Prefs.getString(Constants.SharedPreferences_Langauge, "");
+
+        if (selected.equalsIgnoreCase("en")) {
+            binding.rltGerman.setBackgroundColor(getResources().getColor(R.color.white));
+            binding.rltEng.setBackground(getResources().getDrawable(R.drawable.rounded_border_green));
+        } else {
+            binding.rltEng.setBackgroundColor(getResources().getColor(R.color.white));
+            binding.rltGerman.setBackground(getResources().getDrawable(R.drawable.rounded_border_green));
+        }
     }
 
 

@@ -2,7 +2,6 @@ package com.boog24.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,9 +17,19 @@ import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.boog24.R;
 import com.boog24.adapter.PlacesAutoCompleteAdapter;
@@ -32,10 +41,8 @@ import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
 import com.boog24.modals.getSaloons.Result;
 import com.boog24.presenter.AddWishlistPresenter;
-import com.boog24.presenter.GetWishlistPresenter;
 import com.boog24.presenter.GetSaloonsPresenter;
 import com.boog24.view.IAddWishlistView;
-import com.boog24.view.IGetWishlistView;
 import com.boog24.view.IGetSaloonsView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -53,20 +60,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-public class SalonListingActivity extends BaseActivity implements IGetSaloonsView, IAddWishlistView,PlacesAutoCompleteAdapter.ClickListener {
+public class SalonListingActivity extends BaseActivity implements IGetSaloonsView, IAddWishlistView, PlacesAutoCompleteAdapter.ClickListener {
     private PlacesAutoCompleteAdapter mAutoCompleteAdapter;
     ActivitySalonListingBinding binding;
     GetSaloonsPresenter getSaloonsPresenter;
     private LatLng pickupLocation;
-    String category_id,subcategoryId;
+    String category_id, subcategoryId = "";
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
     AddWishlistPresenter addWishlistPresenter;
@@ -76,36 +75,37 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
     String lat;
     String lng;
     GPSTracker gps;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_salon_listing);
         binding.setActivity(this);
 
-        getSaloonsPresenter =new GetSaloonsPresenter();
+        getSaloonsPresenter = new GetSaloonsPresenter();
         getSaloonsPresenter.setView(this);
 
-        addWishlistPresenter=new AddWishlistPresenter();
+        addWishlistPresenter = new AddWishlistPresenter();
         addWishlistPresenter.setView(this);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        category_id=getIntent().getStringExtra("id");
+        category_id = getIntent().getStringExtra("id");
 //        Prefs.putString(Constants.SharedPreferences_latitude, "23.54634");
 //        Prefs.putString(Constants.SharedPreferences_longitude, "75.45345");
-        if (getIntent().hasExtra("sub_category_id")){
+        if (getIntent().hasExtra("sub_category_id")) {
 
-            subcategoryId=getIntent().getStringExtra("sub_category_id");
+            subcategoryId = getIntent().getStringExtra("sub_category_id");
             if (NetworkAlertUtility.isConnectingToInternet(SalonListingActivity.this)) {
-                getSaloonsPresenter.getSallons(SalonListingActivity.this, getIntent().getStringExtra("id"),getIntent().getStringExtra("sub_category_id"),"");
+                getSaloonsPresenter.getSallons(SalonListingActivity.this, getIntent().getStringExtra("id"), getIntent().getStringExtra("sub_category_id"), "", "");
             } else {
                 NetworkAlertUtility.showNetworkFailureAlert(SalonListingActivity.this);
             }
-        }else {
+        } else {
 
-            subcategoryId="";
+            subcategoryId = "";
             if (NetworkAlertUtility.isConnectingToInternet(SalonListingActivity.this)) {
-                getSaloonsPresenter.getSallons(SalonListingActivity.this, getIntent().getStringExtra("id"),"","");
+                getSaloonsPresenter.getSallons(SalonListingActivity.this, getIntent().getStringExtra("id"), "", "", "");
             } else {
                 NetworkAlertUtility.showNetworkFailureAlert(SalonListingActivity.this);
             }
@@ -120,27 +120,37 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
         mAutoCompleteAdapter.setClickListener(this);
         binding.recyclerView.setAdapter(mAutoCompleteAdapter);
         mAutoCompleteAdapter.notifyDataSetChanged();
+//        registerForContextMenu(binding.tvSort);
 
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.add(0, v.getId(), 0, "Yellow");
+        menu.add(0, v.getId(), 0, "Gray");
+        menu.add(0, v.getId(), 0, "Cyan");
     }
 
     @Override
     public void onGetDetail(Result response) {
 
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
             binding.recyclerview.setVisibility(View.VISIBLE);
-            binding.tvTotalSaloons.setText(getResources().getString(R.string.salons)+" ("+response.getTotalSaloons()+")");
+            binding.tvTotalSaloons.setText(getResources().getString(R.string.salons) + " (" + response.getTotalSaloons() + ")");
 
-            SalonListingAdapter salonListingAdapter = new SalonListingAdapter(this,SalonListingActivity.this,response.getSaloonData());
+            SalonListingAdapter salonListingAdapter = new SalonListingAdapter(this, SalonListingActivity.this, response.getSaloonData());
             binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
             binding.recyclerview.setAdapter(salonListingAdapter);
 
-        }else if (response.getStatus()==400){
+        } else if (response.getStatus() == 400) {
 
-            binding.tvTotalSaloons.setText(getResources().getString(R.string.salons)+" (0)");
+            binding.tvTotalSaloons.setText(getResources().getString(R.string.salons) + " (0)");
             binding.recyclerview.setVisibility(View.GONE);
-        }else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Failure")
@@ -153,10 +163,80 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
                     }).show().setCanceledOnTouchOutside(false);
         }
     }
+     /*fun showPopupMenu(
+            mBinding: ListItemCompetitionVideosBinding,
+            view:ImageView,
+            layoutId: Int,
+            data: AppliedCompetitionData
+        ) {
+            //creating a popup menu
+            val popup = PopupMenu(mBinding.root.context, view)
+            //inflating menu from xml resource
+            popup.inflate(layoutId)
+            //adding click listener
+            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.addFeedback -> {
+                    }
+                    R.id.viewFeedback -> {
+
+                    }
+                }
+                false
+            })
+            //displaying the popup
+            popup.show()
+        }*/
+
+    public void showPopupMenu() {
+        PopupMenu popupMenu = new PopupMenu(this, binding.tvSort);
+
+        popupMenu.inflate(R.menu.menu_sort_by);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.mostRated:
+                        getSortedList("mostrated");
+                        break;
+                    case R.id.mostViewed:
+                        getSortedList("mostviewed");
+
+                        break;
+
+                    case R.id.newListings:
+                        getSortedList("newlistings");
+
+                        break;
+                    case R.id.highRated:
+                        getSortedList("highrated");
+
+                        break;
+
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+
+    }
+
+    private void getSortedList(String sortBy) {
+        if (NetworkAlertUtility.isConnectingToInternet(SalonListingActivity.this)) {
+            getSaloonsPresenter.getSallons(SalonListingActivity.this, getIntent().getStringExtra("id"), getIntent().getStringExtra("sub_category_id"), "", sortBy);
+        } else {
+            NetworkAlertUtility.showNetworkFailureAlert(SalonListingActivity.this);
+        }
+    }
 
     public void onClick(View view) {
         switch (view.getId()) {
 
+            case R.id.tvSort:
+
+                showPopupMenu();
+                break;
             case R.id.back:
 //                InputMethodManager inputMethodManager =
 //                        (InputMethodManager) getSystemService(
@@ -172,11 +252,11 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
 //                    Prefs.putString(Constants.SharedPreferences_longitude, String.valueOf(pickupLocation.longitude));
 
                     if (NetworkAlertUtility.isConnectingToInternet(SalonListingActivity.this)) {
-                        getSaloonsPresenter.getSallons(SalonListingActivity.this, category_id, subcategoryId,binding.cetPickup.getText().toString());
+                        getSaloonsPresenter.getSallons(SalonListingActivity.this, category_id, subcategoryId, binding.cetPickup.getText().toString(), "");
                     } else {
                         NetworkAlertUtility.showNetworkFailureAlert(SalonListingActivity.this);
                     }
-                }else{
+                } else {
                     Toast.makeText(this, getResources().getString(R.string.pls_enter_something), Toast.LENGTH_SHORT).show();
                 }
 
@@ -184,11 +264,11 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
 
             case R.id.imgLocation:
                 if (!checkPermissions()) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                        PERMISSION_ID
-                );
-        }
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                            PERMISSION_ID
+                    );
+                }
                 break;
 
             case R.id.tvMap:
@@ -200,9 +280,9 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
                     try {
                         gps = new GPSTracker(SalonListingActivity.this);
                         // Check if GPS enabled
-                        if(gps.canGetLocation()) {
+                        if (gps.canGetLocation()) {
                             Intent intent = new Intent(SalonListingActivity.this, MapViewActivity.class);
-                            intent.putExtra("id",getIntent().getStringExtra("id"));
+                            intent.putExtra("id", getIntent().getStringExtra("id"));
                             startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
                         } else {
                             // Can't get location.
@@ -210,7 +290,7 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
                             // Ask user to enable GPS/network in settings.
                             gps.showSettingsAlert();
                         }
-                    } catch(SecurityException e) {
+                    } catch (SecurityException e) {
                         e.printStackTrace();
                     }
                 }
@@ -237,6 +317,7 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
 
         }
     }
+
     private boolean checkPermissions() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -302,7 +383,7 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
         }
     }
 
-    private void getLastLocation(){
+    private void getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
                 mFusedLocationClient.getLastLocation().addOnCompleteListener(
@@ -328,15 +409,15 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
                                         String country = addresses.get(0).getCountryName();
                                         String postalCode = addresses.get(0).getPostalCode();
                                         String knownName = addresses.get(0).getFeatureName();
-                                        Prefs.putString(Constants.SharedPreferences_Address,address);
+                                        Prefs.putString(Constants.SharedPreferences_Address, address);
                                         Prefs.putString(Constants.SharedPreferences_latitude, String.valueOf(location.getLatitude()));
                                         Prefs.putString(Constants.SharedPreferences_longitude, String.valueOf(location.getLongitude()));
-                                        Log.e("TAG", "onComplete: CURRENT ADDRESS"+address );
+                                        Log.e("TAG", "onComplete: CURRENT ADDRESS" + address);
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
 
-                                    Log.e("TAG", "onComplete: "+location.getLatitude() );
+                                    Log.e("TAG", "onComplete: " + location.getLatitude());
 //                                    latTextView.setText(location.getLatitude()+"");
 //                                    lonTextView.setText(location.getLongitude()+"");
                                 }
@@ -354,8 +435,9 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
             );
         }
     }
+
     @SuppressLint("MissingPermission")
-    private void requestNewLocationData(){
+    private void requestNewLocationData() {
 
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -375,15 +457,14 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            Log.e("TAG", "onLocationResult: "+mLastLocation.getLatitude() );
+            Log.e("TAG", "onLocationResult: " + mLastLocation.getLatitude());
 //            latTextView.setText(mLastLocation.getLatitude()+"");
 //            lonTextView.setText(mLastLocation.getLongitude()+"");
         }
     };
 
 
-
-    public void addToWishlist(String id){
+    public void addToWishlist(String id) {
 
         if (NetworkAlertUtility.isConnectingToInternet(SalonListingActivity.this)) {
             addWishlistPresenter.addWishlist(SalonListingActivity.this, id);
@@ -396,12 +477,11 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
     @Override
     public void onAddedWishlist(com.boog24.modals.addWishlist.Result response) {
 
-        if (response.getStatus()==200){
-            windowPopUp(this,response.getMessage());
-        }
-        else if (response.getStatus() == 406) {
+        if (response.getStatus() == 200) {
+            windowPopUp(this, response.getMessage());
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Failure")

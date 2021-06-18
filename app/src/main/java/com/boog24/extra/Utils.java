@@ -20,6 +20,9 @@ import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.text.Normalizer;
@@ -31,25 +34,29 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 public class Utils {
 
-    public static void Forheader(Activity paramActivity) {}
+    public static void Forheader(Activity paramActivity) {
+    }
 
 
-
-    public static String convertDatemember(String paramString)
-    {
-        try
-        {
-            Date localDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(paramString);
-            String str = new SimpleDateFormat("dd MMM yyyy").format(localDate);
+    public static String convertDateTime(String paramString) {
+        try {
+            Date localDate = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(paramString);
+            String str = new SimpleDateFormat("dd-MM-yyyy   hh:mm").format(localDate);
             return str;
+        } catch (Exception localException) {
+            localException.printStackTrace();
         }
-        catch (Exception localException)
-        {
+        return "";
+    }
+
+    public static String convertDate(String paramString) {
+        try {
+            Date localDate = new SimpleDateFormat("yyyy-MM-dd").parse(paramString);
+            String str = new SimpleDateFormat("dd-MM-yyyy").format(localDate);
+            return str;
+        } catch (Exception localException) {
             localException.printStackTrace();
         }
         return "";

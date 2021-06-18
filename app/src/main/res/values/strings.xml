@@ -161,4 +161,12 @@
     <string name="delete">Delete</string>
     <string name="cancel_delete_account">Cancel</string>
     <string name="authentication">Authentication</string>
+    <string name="sort_by">Sort by</string>
+    <string name="high_rated">High Rated</string>
+    <string name="new_listings">New Listings</string>
+    <string name="most_viewed">Most Viewed</string>
+    <string name="most_rated">Most Rated</string>
+    <string name="opening_hours">Opening Hours</string>
+    <string name="select_country">Select Country</string>
+    <string name="country">Country</string>
 </resources>

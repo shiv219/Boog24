@@ -85,7 +85,6 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         binding.tvMyBooking.setOnClickListener(this);
         binding.tvWishlist.setOnClickListener(this);
         binding.tvLanguage.setOnClickListener(this);
-        binding.tvAbout.setOnClickListener(this);
         binding.tvContact.setOnClickListener(this);
         binding.btnLogout.setOnClickListener(this);
         binding.tvRecommend.setOnClickListener(this);

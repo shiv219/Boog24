@@ -23,11 +23,12 @@ import retrofit2.Response;
 
 public class GetCommonDataPresenter extends BasePresenter<ICommonView> {
 
-    public void userSignin(final Activity activity,String deviceid, String emailid, String password) {
+
+    public void userSignin(final Activity activity, String deviceid, String emailid, String password) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()
                 .getApiService()
-                .userSignin(Constants.ACCESS_TOKEN,Prefs.getString(Constants.SharedPreferences_Langauge,""),emailid,password,deviceid,Prefs.getString(Constants.SharedPreferences_FCMID,""), Constants.DEVICE_TYPE)
+                .userSignin(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_Langauge, ""), emailid, password, deviceid, Prefs.getString(Constants.SharedPreferences_FCMID, ""), Constants.DEVICE_TYPE)
                 .enqueue(new Callback<CommonOffset>() {
                     @Override
                     public void onResponse(Call<CommonOffset> call, Response<CommonOffset> response) {
@@ -47,11 +48,12 @@ public class GetCommonDataPresenter extends BasePresenter<ICommonView> {
                     }
                 });
     }
-    public void userSignup(final Activity activity,String emailid, String fname, String lname, String phone, String password, String confirmpassword, String gender) {
+
+    public void userSignup(final Activity activity, String emailid, String fname, String lname, String phone, String password, String confirmpassword, String gender, String countryCode) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()
                 .getApiService()
-                .userSignup(Constants.ACCESS_TOKEN,Prefs.getString(Constants.SharedPreferences_Langauge,""),emailid,fname,lname,phone,password,confirmpassword, gender)
+                .userSignup(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_Langauge, ""), emailid, fname, lname, phone, password, confirmpassword, gender, countryCode)
                 .enqueue(new Callback<CommonOffset>() {
                     @Override
                     public void onResponse(Call<CommonOffset> call, Response<CommonOffset> response) {

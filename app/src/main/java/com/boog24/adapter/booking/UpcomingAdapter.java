@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.boog24.R;
 import com.boog24.activity.BookingDetailActivity;
+import com.boog24.extra.Utils;
 import com.boog24.modals.myBookings.DataList;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.ViewHolder> {
 
@@ -53,8 +53,8 @@ public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.ViewHo
 
         Glide.with(context).load(dataList.get(position).getSalonImage()).into(holder.ivSubCatItem);
         holder.tvTitle.setText(dataList.get(position).getSalonName());
-        holder.tvAddress.setText(dataList.get(position).getAppointmentDate());
-        holder.tvRating.setText("Worker Name :"+dataList.get(position).getWorkerName());
+        holder.tvAddress.setText(Utils.convertDate(dataList.get(position).getAppointmentDate()));
+        holder.tvRating.setText("Worker Name :" + dataList.get(position).getWorkerName());
 //        holder.tvTotalRating.setText("("+saloonData.get(position).getSaloonRatingsUsers()+")");
 //        holder.ratingBar.setRating((int) Float.parseFloat(saloonData.get(position).getSaloonRatings()));
 

@@ -14,11 +14,11 @@ import retrofit2.Response;
 
 public class GetSaloonsPresenter extends BasePresenter<IGetSaloonsView> {
 
-    public void getSallons(final Activity activity,String category_id,String subcategoryid,String searchString) {
+    public void getSallons(final Activity activity, String category_id, String subcategoryid, String searchString, String sortBy) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()
                 .getApiService()
-                .getSaloons(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey,""),Prefs.getString(Constants.SharedPreferences_Langauge,""),"other",category_id,subcategoryid,Prefs.getString(Constants.SharedPreferences_latitude,""),Prefs.getString(Constants.SharedPreferences_longitude,""),searchString)
+                .getSaloons(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey, ""), Prefs.getString(Constants.SharedPreferences_Langauge, ""), "other", category_id, subcategoryid, Prefs.getString(Constants.SharedPreferences_latitude, ""), Prefs.getString(Constants.SharedPreferences_longitude, ""), searchString, sortBy)
                 .enqueue(new Callback<com.boog24.modals.getSaloons.Result>() {
                     @Override
                     public void onResponse(Call<com.boog24.modals.getSaloons.Result> call, Response<com.boog24.modals.getSaloons.Result> response) {
@@ -39,11 +39,11 @@ public class GetSaloonsPresenter extends BasePresenter<IGetSaloonsView> {
                 });
     }
 
-    public void getSallonsByLat(final Activity activity,String lat,String longitude,String category_id) {
+    public void getSallonsByLat(final Activity activity, String lat, String longitude, String category_id, String sortBy) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()
                 .getApiService()
-                .getSaloons(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey,""),Prefs.getString(Constants.SharedPreferences_Langauge,""),"other",category_id,"",lat,longitude,"")
+                .getSaloons(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey, ""), Prefs.getString(Constants.SharedPreferences_Langauge, ""), "other", category_id, "", lat, longitude, "", sortBy)
                 .enqueue(new Callback<com.boog24.modals.getSaloons.Result>() {
                     @Override
                     public void onResponse(Call<com.boog24.modals.getSaloons.Result> call, Response<com.boog24.modals.getSaloons.Result> response) {

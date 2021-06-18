@@ -48,6 +48,20 @@ public class UserDetail {
     @Expose
     private String user_notification_status;
 
+
+    @SerializedName("country_code")
+    @Expose
+    private String countryCode;
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+
     public String getId() {
         return id;
     }

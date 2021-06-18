@@ -35,7 +35,8 @@ public interface ApiService {
                                   @Part("phone_number") String phone_number,
                                   @Part("password") String password,
                                   @Part("confirm_password") String confirm_password,
-                                  @Part("gender") String gender
+                                  @Part("gender") String gender,
+                                  @Part("country_code") String countryCode
     );
 
     @Multipart
@@ -83,7 +84,8 @@ public interface ApiService {
                                                          @Part("sub_category_id") String sub_category_id,
                                                          @Part("latitude") String latitude,
                                                          @Part("longitude") String longitude,
-                                                         @Part("search_string") String search_string
+                                                         @Part("search_string") String search_string,
+                                                         @Part("sort_by") String sort_by
 
     );
 
@@ -137,7 +139,8 @@ public interface ApiService {
                                                                @Part("firstname") String firstname,
                                                                @Part("lastname") String lastname,
                                                                @Part("phone_number") String phone_number,
-                                                               @Part("gender") String gender
+                                                               @Part("gender") String gender,
+                                                               @Part("country_code") String countryCode
 
     );
 

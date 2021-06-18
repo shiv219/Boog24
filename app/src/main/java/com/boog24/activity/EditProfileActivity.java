@@ -2,7 +2,6 @@ package com.boog24.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
+
 import com.boog24.R;
 import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivityEditProfileBinding;
@@ -20,18 +23,15 @@ import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
 import com.boog24.modals.updateProfile.Result;
 import com.boog24.presenter.UpdateProfilePresenter;
+import com.boog24.util.countryCode.CountryCodeDialog;
 import com.boog24.view.IUpdateProfileView;
 import com.pixplicity.easyprefs.library.Prefs;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
 
 public class EditProfileActivity extends BaseActivity implements IUpdateProfileView {
 
     ActivityEditProfileBinding binding;
     UpdateProfilePresenter updateProfilePresenter;
+    private int countryPosition = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class EditProfileActivity extends BaseActivity implements IUpdateProfileV
                     gender = "M";
                 }
                 if (NetworkAlertUtility.isConnectingToInternet(EditProfileActivity.this)) {
-                    updateProfilePresenter.userSignin(EditProfileActivity.this, binding.etFirstName.getText().toString().trim(),binding.etLastName.getText().toString(),binding.etPhone.getText().toString(),gender);
+                    updateProfilePresenter.userSignin(EditProfileActivity.this, binding.etFirstName.getText().toString().trim(), binding.etLastName.getText().toString(), binding.etPhone.getText().toString(), gender, binding.etCountry.getText().toString());
                 } else {
                     NetworkAlertUtility.showNetworkFailureAlert(EditProfileActivity.this);
                 }
@@ -71,7 +71,8 @@ public class EditProfileActivity extends BaseActivity implements IUpdateProfileV
         binding.etFirstName.setText(Prefs.getString(Constants.SharedPreferences_FirstName,""));
         binding.etLastName.setText(Prefs.getString(Constants.SharedPreferences_LastName,""));
         binding.etEmail.setText(Prefs.getString(Constants.SharedPreferences_Email,""));
-        binding.etPhone.setText(Prefs.getString(Constants.SharedPreferences_Mobile,""));
+        binding.etPhone.setText(Prefs.getString(Constants.SharedPreferences_Mobile, ""));
+        binding.etCountry.setText(Prefs.getString(Constants.SharedPreferences_country_code, ""));
         if(Prefs.getString(Constants.SharedPreferences_Gender, "").equals("F")){
             binding.tvGender.setText(getResources().getString(R.string.female));
         }else{
@@ -105,6 +106,13 @@ public class EditProfileActivity extends BaseActivity implements IUpdateProfileV
                 });
                 alertDialog.show();
             }
+        });
+        binding.etCountry.setOnClickListener(view -> {
+            new CountryCodeDialog(countryPosition, (position, countryCode) -> {
+                countryPosition = position;
+                binding.etCountry.setText(countryCode);
+
+            }).show(getSupportFragmentManager(), CountryCodeDialog.TAG);
         });
 
     }

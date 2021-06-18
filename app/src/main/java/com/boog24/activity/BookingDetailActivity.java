@@ -14,29 +14,26 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.boog24.MyApplication;
-import com.boog24.R;
-import com.boog24.adapter.EmployeeServicesAdapter;
-import com.boog24.adapter.booking.UpcomingAdapter;
-import com.boog24.databinding.ActivityBookingDetailBinding;
-import com.boog24.extra.BaseActivity;
-import com.boog24.extra.NetworkAlertUtility;
-import com.boog24.modals.CommonOffset;
-import com.boog24.modals.getSaloonDetail.SalonService;
-import com.boog24.modals.myBookings.Result;
-import com.boog24.presenter.BookingDetailFragmentPresenter;
-import com.boog24.presenter.GetCommonDataPresenter;
-import com.boog24.presenter.GetMyBookingsPresenter;
-import com.boog24.view.IBookingView;
-import com.boog24.view.ICommonView;
-import com.boog24.view.IMyBookingsView;
-import com.bumptech.glide.Glide;
-import com.pixplicity.easyprefs.library.Prefs;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.boog24.MyApplication;
+import com.boog24.R;
+import com.boog24.adapter.EmployeeServicesAdapter;
+import com.boog24.databinding.ActivityBookingDetailBinding;
+import com.boog24.extra.BaseActivity;
+import com.boog24.extra.NetworkAlertUtility;
+import com.boog24.extra.Utils;
+import com.boog24.modals.CommonOffset;
+import com.boog24.modals.getSaloonDetail.SalonService;
+import com.boog24.presenter.BookingDetailFragmentPresenter;
+import com.boog24.presenter.GetCommonDataPresenter;
+import com.boog24.view.IBookingView;
+import com.boog24.view.ICommonView;
+import com.bumptech.glide.Glide;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -123,7 +120,7 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
         if (response.getStatus()==200){
             Glide.with(this).load(response.getBookingDetails().getSalonImage()).into(binding.image);
             binding.tvName.setText(response.getBookingDetails().getSalonName());
-            binding.tvDate.setText(response.getBookingDetails().getAppointmentDate());
+            binding.tvDate.setText(Utils.convertDateTime(response.getBookingDetails().getAppointmentDate()));
             binding.tvAddress.setText(response.getBookingDetails().getSalon_address());
             binding.tvAmount.setText("€"+response.getBookingDetails().getTotalAmount());
             binding.tvWorkerName.setText("Worker Name :"+response.getBookingDetails().getWorkerName());

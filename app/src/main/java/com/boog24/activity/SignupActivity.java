@@ -12,26 +12,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
+
 import com.boog24.R;
 import com.boog24.databinding.ActivitySignupBinding;
 import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
 import com.boog24.modals.CommonOffset;
 import com.boog24.presenter.GetCommonDataPresenter;
+import com.boog24.util.DialogUtils;
+import com.boog24.util.countryCode.CountryCodeDialog;
 import com.boog24.view.ICommonView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
-
-public class SignupActivity  extends BaseActivity implements ICommonView {
+public class SignupActivity extends BaseActivity implements ICommonView {
 
     ActivitySignupBinding binding;
     GetCommonDataPresenter getCommonDataPresenter;
     private String gender_value = "M";
+    Boolean dialogShown = false;
+    private int countryPosition = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,57 +43,57 @@ public class SignupActivity  extends BaseActivity implements ICommonView {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         binding.setActivity(this);
 
-        getCommonDataPresenter=new GetCommonDataPresenter();
+        getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (binding.etFirstName.getText().toString().equalsIgnoreCase("")){
+        binding.etPassword.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!dialogShown) {
+                DialogUtils.showMszDialog(SignupActivity.this, getResources().getString(R.string.pls_enter_validate_password));
+                dialogShown = true;
+            }
+        });
 
-                    binding.etFirstName.setError(getResources().getString(R.string.pls_enter_firstname));
-                    binding.etFirstName.requestFocus();
-                } else if (binding.etLastName.getText().toString().equalsIgnoreCase("")){
 
-                    binding.etLastName.setError(getResources().getString(R.string.pls_enter_lastname));
-                    binding.etLastName.requestFocus();
-                }
-               else if (binding.etEmail.getText().toString().equalsIgnoreCase("")){
+        binding.btnLogin.setOnClickListener(view -> {
+            if (binding.etFirstName.getText().toString().equalsIgnoreCase("")) {
 
-                    binding.etEmail.setError(getResources().getString(R.string.pls_enter_email));
-                    binding.etEmail.requestFocus();
-                } else if (binding.etPhone.getText().toString().equalsIgnoreCase("")){
+                binding.etFirstName.setError(getResources().getString(R.string.pls_enter_firstname));
+                binding.etFirstName.requestFocus();
+            } else if (binding.etLastName.getText().toString().equalsIgnoreCase("")) {
 
-                    binding.etPhone.setError(getResources().getString(R.string.pls_enter_phone));
-                    binding.etPhone.requestFocus();
-                }else if (binding.etPassword.getText().toString().equalsIgnoreCase("")){
-                    binding.etPassword.setError(getResources().getString(R.string.pls_enter_password));
-                    binding.etPassword.requestFocus();
-                }else if (!isValidPassword(binding.etPassword.getText().toString().trim())){
-                    binding.etPassword.setError(getResources().getString(R.string.pls_enter_validate_password));
-                    binding.etPassword.requestFocus();
-                }
-               else if (binding.etconfirmPassword.getText().toString().equalsIgnoreCase("")){
+                binding.etLastName.setError(getResources().getString(R.string.pls_enter_lastname));
+                binding.etLastName.requestFocus();
+            } else if (binding.etEmail.getText().toString().equalsIgnoreCase("")) {
 
-                    binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_confrmpass));
-                    binding.etconfirmPassword.requestFocus();
-                }else if (!isValidPassword(binding.etconfirmPassword.getText().toString().trim())){
-                    binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_validate_password));
-                    binding.etconfirmPassword.requestFocus();
-                }else if (!binding.etPassword.getText().toString().equalsIgnoreCase(binding.etconfirmPassword.getText().toString())){
-                    binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_correctpassword));
-                    binding.etconfirmPassword.requestFocus();
-                }
+                binding.etEmail.setError(getResources().getString(R.string.pls_enter_email));
+                binding.etEmail.requestFocus();
+            } else if (binding.etPhone.getText().toString().equalsIgnoreCase("")) {
 
-               else if (!binding.checkbox.isChecked()){
-                   windowPopUp(SignupActivity.this,getResources().getString(R.string.pls_accept_terms));
-                }
-                    else{
-                    if (NetworkAlertUtility.isConnectingToInternet(SignupActivity.this)) {
-                        getCommonDataPresenter.userSignup(SignupActivity.this, binding.etEmail.getText().toString().trim(),binding.etFirstName.getText().toString().trim(),binding.etLastName.getText().toString().trim(),binding.etPhone.getText().toString().trim(),binding.etPassword.getText().toString(),binding.etconfirmPassword.getText().toString(), gender_value);
-                    } else {
-                        NetworkAlertUtility.showNetworkFailureAlert(SignupActivity.this);
-                    }
+                binding.etPhone.setError(getResources().getString(R.string.pls_enter_phone));
+                binding.etPhone.requestFocus();
+            } else if (binding.etPassword.getText().toString().equalsIgnoreCase("")) {
+                binding.etPassword.setError(getResources().getString(R.string.pls_enter_password));
+                binding.etPassword.requestFocus();
+            } else if (!isValidPassword(binding.etPassword.getText().toString().trim())) {
+                binding.etPassword.setError(getResources().getString(R.string.pls_enter_validate_password));
+                binding.etPassword.requestFocus();
+            } else if (binding.etconfirmPassword.getText().toString().equalsIgnoreCase("")) {
+
+                binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_confrmpass));
+                binding.etconfirmPassword.requestFocus();
+            } else if (!isValidPassword(binding.etconfirmPassword.getText().toString().trim())) {
+                binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_validate_password));
+                binding.etconfirmPassword.requestFocus();
+            } else if (!binding.etPassword.getText().toString().equalsIgnoreCase(binding.etconfirmPassword.getText().toString())) {
+                binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_correctpassword));
+                binding.etconfirmPassword.requestFocus();
+            } else if (!binding.checkbox.isChecked()) {
+                windowPopUp(SignupActivity.this, getResources().getString(R.string.pls_accept_terms));
+            } else {
+                if (NetworkAlertUtility.isConnectingToInternet(SignupActivity.this)) {
+                    getCommonDataPresenter.userSignup(SignupActivity.this, binding.etEmail.getText().toString().trim(), binding.etFirstName.getText().toString().trim(), binding.etLastName.getText().toString().trim(), binding.etPhone.getText().toString().trim(), binding.etPassword.getText().toString(), binding.etconfirmPassword.getText().toString(), gender_value, binding.etCountry.getText().toString());
+                } else {
+                    NetworkAlertUtility.showNetworkFailureAlert(SignupActivity.this);
                 }
             }
         });
@@ -131,8 +135,14 @@ public class SignupActivity  extends BaseActivity implements ICommonView {
                 alertDialog.show();
             }
         });
-    }
+        binding.tilCountry.setOnClickListener(view -> {
+            new CountryCodeDialog(countryPosition, (position, countryCode) -> {
+                countryPosition = position;
+                binding.etCountry.setText(countryCode);
 
+            }).show(getSupportFragmentManager(), CountryCodeDialog.TAG);
+        });
+    }
 
     public boolean isValidPassword(final String password) {
 
@@ -150,7 +160,7 @@ public class SignupActivity  extends BaseActivity implements ICommonView {
 
     @Override
     public void onGetDetail(CommonOffset response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
             final Dialog myDialog = new Dialog(this);
             myDialog.setContentView(R.layout.alert_label_editor);
             //  myDialog.setCanceledOnTouchOutside(false);
@@ -170,8 +180,8 @@ public class SignupActivity  extends BaseActivity implements ICommonView {
 
             myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             myDialog.show();
-        }else{
-            windowPopUp(this,response.getMessage());
+        } else {
+            windowPopUp(this, response.getMessage());
         }
     }
 
@@ -179,4 +189,6 @@ public class SignupActivity  extends BaseActivity implements ICommonView {
     public Context getContext() {
         return null;
     }
+
 }
+

@@ -16,7 +16,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.boog24.R;
 import com.boog24.adapter.PlacesAutoCompleteAdapter;
@@ -42,11 +46,6 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class MapViewActivity extends BaseActivity implements OnMapReadyCallback , IGetSaloonsView,PlacesAutoCompleteAdapter.ClickListener {
     LocationManager locationManager;
@@ -152,7 +151,7 @@ public class MapViewActivity extends BaseActivity implements OnMapReadyCallback 
 //                    binding.cetPickup.setText(getCompleteAddressString(lat,lng));
                     if (NetworkAlertUtility.isConnectingToInternet(MapViewActivity.this)) {
 //            getSaloonsPresenter.getSallons(MapViewActivity.this, getIntent().getStringExtra("id"),"");
-                        getSaloonsPresenter.getSallonsByLat(MapViewActivity.this, String.valueOf(lat),String.valueOf(lng),getIntent().getStringExtra("id"));
+                        getSaloonsPresenter.getSallonsByLat(MapViewActivity.this, String.valueOf(lat), String.valueOf(lng), getIntent().getStringExtra("id"), "");
                     } else {
                         NetworkAlertUtility.showNetworkFailureAlert(MapViewActivity.this);
                     }
@@ -416,7 +415,7 @@ public class MapViewActivity extends BaseActivity implements OnMapReadyCallback 
             if (NetworkAlertUtility.isConnectingToInternet(MapViewActivity.this)) {
 //            getSaloonsPresenter.getSallons(MapViewActivity.this, getIntent().getStringExtra("id"),"");
                 binding.recyclerView.setVisibility(View.GONE);
-                getSaloonsPresenter.getSallonsByLat(MapViewActivity.this, String.valueOf(lat),String.valueOf(lng),"");
+                getSaloonsPresenter.getSallonsByLat(MapViewActivity.this, String.valueOf(lat), String.valueOf(lng), "", "");
             } else {
                 NetworkAlertUtility.showNetworkFailureAlert(MapViewActivity.this);
             }

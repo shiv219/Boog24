@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mostRated"
+        android:title="@string/most_rated" />
+
+    <item
+        android:id="@+id/mostViewed"
+        android:title="@string/most_viewed" />
+
+
+    <item
+        android:id="@+id/newListings"
+        android:title="@string/new_listings" />
+
+    <item
+        android:id="@+id/highRated"
+        android:title="@string/high_rated" />
+
+</menu>
+
