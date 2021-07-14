@@ -122,14 +122,16 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
             binding.tvName.setText(response.getBookingDetails().getSalonName());
             binding.tvDate.setText(Utils.convertDateTime(response.getBookingDetails().getAppointmentDate()));
             binding.tvAddress.setText(response.getBookingDetails().getSalon_address());
-            binding.tvAmount.setText("€"+response.getBookingDetails().getTotalAmount());
-            binding.tvWorkerName.setText("Worker Name :"+response.getBookingDetails().getWorkerName());
-
-            EmployeeServicesAdapter headerAdapter = new EmployeeServicesAdapter(this,response.getBookingDetails().getSalonServices(),"booking");
+            binding.tvAmount.setText("€" + response.getBookingDetails().getTotalAmount());
+            binding.tvWorkerName.setText("Worker Name :" + response.getBookingDetails().getWorkerName());
+            if (response.getBookingDetails().isFeedbackAdded()) {
+                binding.tvAdd.setVisibility(View.GONE);
+            }
+            EmployeeServicesAdapter headerAdapter = new EmployeeServicesAdapter(this, response.getBookingDetails().getSalonServices(), "booking");
             binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             binding.recyclerview.setAdapter(headerAdapter);
             binding.recyclerview.setNestedScrollingEnabled(true);
-            for(int i=0; i<response.getBookingDetails().getSalonServices().size(); i++){
+            for (int i = 0; i < response.getBookingDetails().getSalonServices().size(); i++) {
                 jsonArray = new JSONArray();
                 try {
                     JSONObject jsonObject = new JSONObject();

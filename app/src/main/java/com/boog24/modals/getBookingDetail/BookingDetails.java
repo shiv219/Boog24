@@ -1,8 +1,9 @@
 package com.boog24.modals.getBookingDetail;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class BookingDetails {
 
@@ -41,23 +42,31 @@ private String salonName;
 
     @SerializedName("worker_id")
 @Expose
-private String workerId;
+    private String workerId;
     @SerializedName("salon_address")
     @Expose
     private String salon_address;
-@SerializedName("worker_name")
-@Expose
-private String workerName;
-@SerializedName("salon_image")
-@Expose
-private String salonImage;
-@SerializedName("salon_services")
-@Expose
-private List<SalonService> salonServices = null;
+    @SerializedName("worker_name")
+    @Expose
+    private String workerName;
+    @SerializedName("salon_image")
+    @Expose
+    private String salonImage;
 
-public String getOrderId() {
-return orderId;
-}
+    @SerializedName("isFeedbackAdded")
+    @Expose
+    private boolean isFeedbackAdded;
+    @SerializedName("salon_services")
+    @Expose
+    private List<SalonService> salonServices = null;
+
+    public boolean isFeedbackAdded() {
+        return isFeedbackAdded;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
 
 public void setOrderId(String orderId) {
 this.orderId = orderId;

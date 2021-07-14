@@ -52,7 +52,7 @@ public class SplaceActivity extends BaseActivity {
             }
         });
         if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("")) {
-            Prefs.putString(Constants.SharedPreferences_Langauge, "de");
+            Prefs.putString(Constants.SharedPreferences_Langauge, "gr");
         }
 
         Log.e("TAG", "onCreate LANGUAGE : " + Prefs.getString(Constants.SharedPreferences_Langauge, ""));

@@ -55,7 +55,7 @@ public class ChangeLanguageActivity  extends BaseActivity {
                 else
                 Prefs.putString(Constants.SharedPreferences_Langauge,"gr");
 
-                setLocale(selected);
+                setLocale(selected.equals("en") ? selected : "de");
 //                Intent i = new Intent(SelectLanguageActivity.this, Splas.class);
 //                startActivity(i);
 //                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

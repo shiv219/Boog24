@@ -43,7 +43,7 @@ public class SelectLanguageActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.btnNext:
-                setLocale(selected);
+                setLocale(selected.equals("en") ? selected : "de");
                 if (selected.equalsIgnoreCase("en"))
                     Prefs.putString(Constants.SharedPreferences_Langauge,"en");
                 else
