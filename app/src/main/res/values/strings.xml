@@ -31,10 +31,12 @@
     <string name="email_address">Email Address</string>
     <string name="email_addressstar">Email Address*</string>
     <string name="password">Password</string>
+    <string name="password_asstrik">Password*</string>
     <string name="submit">Submit</string>
     <string name="last_name">Last Name*</string>
     <string name="first_name">First Name*</string>
     <string name="phone_number">Phone Number</string>
+    <string name="phone_number_asstrik">Phone Number*</string>
     <string name="you_accept_our">Yes, I accept the</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="agree_to_receive_email_for_offer">Agree to receive email for offer</string>
@@ -71,12 +73,12 @@
     <string name="categories">Categories</string>
     <string name="pls_enter_location">Please Enter Location</string>
     <string name="continues">Continue</string>
-    <string name="contact_details">Contact details</string>
+    <string name="contact_details">Booking overview</string>
     <string name="remove">Remove</string>
     <string name="select">Select</string>
     <string name="change">Change</string>
     <string name="cancel_booking">Cancel Booking</string>
-    <string name="appointment_confirmed">Appointment Confirmed</string>
+    <string name="appointment_confirmed">Thank you, your booking has been submitted successfully</string>
     <string name="booking_id">Booking Id</string>
     <string name="date_and_time">Date and Time</string>
     <string name="total_amount">Total Amount</string>
@@ -105,7 +107,7 @@
     <string name="map">Map</string>
     <string name="current_location">Current Location</string>
     <string name="using_gps">Using GPS</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password">Confirm Password*</string>
     <string name="my_booking">My Booking</string>
     <string name="select_address">Select Address</string>
     <string name="top_rated_hair">Top Rated hair</string>
@@ -120,6 +122,7 @@
     <string name="about_the_salon">About the salon</string>
     <string name="salon_name">Salon Name*</string>
     <string name="did_you_speak">Did you speak to the salon?*</string>
+    <string name="did_you_informed">Have you informed the salon about booq24?*</string>
     <string name="type_of_business">Branch of Business*</string>
     <string name="street">Street</string>
     <string name="salon_phone">Salon phone number</string>
@@ -130,13 +133,13 @@
     <string name="cancel">Cancel</string>
     <string name="show_map">Show Map</string>
     <string name="pls_enter_salon_name">Please Enter Salon Name</string>
-    <string name="pls_select_you_have_speak">Please Select you have speak or not ?</string>
+    <string name="pls_select_you_have_speak">Please let us know if you have spoken to the salon about booq24?</string>
     <string name="pls_select_business">Please Select branch of Business</string>
     <string name="pls_enter_street">Please Enter Street</string>
     <string name="pls_enter_salon_phone">Please Enter Salon Phone Number</string>
-    <string name="pls_enter_city">Please Select City</string>
-    <string name="pls_enter_first_name">Please Enter First Name</string>
-    <string name="pls_enter_last_name">Please Enter Last Name</string>
+    <string name="pls_enter_city">Please Enter City</string>
+    <string name="pls_enter_first_name">Please enter your first name</string>
+    <string name="pls_enter_last_name">Please enter your last name</string>
     <string name="pls_select_time">Please Select Time</string>
     <string name="next_available_employee">Next Available Employee</string>
     <string name="zipcode">Zip Code</string>
@@ -168,5 +171,11 @@
     <string name="most_rated">Most Rated</string>
     <string name="opening_hours">Opening Hours</string>
     <string name="select_country">Select Country</string>
-    <string name="country">Country</string>
+    <string name="country">Country*</string>
+    <string name="name_of_contact_person">Name Of Contact Person*</string>
+    <string name="pls_enter_contact_person">Please enter contact person</string>
+    <string name="closed">Closed</string>
+    <string name="please_give_rating_first">Please select at least one star for your rating</string>
+    <string name="salon_may_confirm_your_request"><font color='#616161'>*</font>If you do not receive a booking confirmation immediately, the Salon may need to confirm your request.</string>
+    <string name="pls_select_country">Please select country</string>
 </resources>

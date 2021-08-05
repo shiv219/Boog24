@@ -34,6 +34,17 @@ class TimeSlotsAdapter(private val timeSlots: List<SaloonData.SalonTimeSlot>) : 
         fun bind(salonTimeSlot: SaloonData.SalonTimeSlot) {
 
             item.tvDay.text = salonTimeSlot.day
+            if (salonTimeSlot.timeSlots.size == 0) {
+                val lparams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                val tv = TextView(item.root.context)
+                lparams.topMargin = 8
+                tv.layoutParams = lparams
+                tv.text = item.root.context.getString(R.string.closed)
+                tv.setTextColor(item.root.context.resources.getColor(R.color.black))
+                item.llTime.addView(tv)
+
+            }
             salonTimeSlot.timeSlots.forEach {
                 val lparams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)

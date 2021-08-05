@@ -281,18 +281,15 @@
                 android:layout_marginBottom="@dimen/dimen_18dp"/>
             <TextView
                 android:id="@+id/tvContinue"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_36dp"
-                android:background="@drawable/rounded_bg_orange"
-                android:gravity="center"
                 android:paddingTop="@dimen/dimen_14dp"
                 android:paddingBottom="@dimen/dimen_14dp"
-                android:text="@string/continues"
-                android:textColor="@color/white"
+                android:text="@string/salon_may_confirm_your_request"
+                android:textColor="@color/quantum_grey700"
                 android:textSize="@dimen/dimen_14dp"
-                android:fontFamily="@font/proxima_nova_bold"/>
+                android:fontFamily="@font/proxima_nova_bold" />
 
         </LinearLayout>
 

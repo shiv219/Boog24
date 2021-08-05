@@ -287,11 +287,14 @@ public class GetCommonDataPresenter extends BasePresenter<ICommonView> {
                 });
     }
 
-    public void getRecommendSalon(final Activity activity,String user_email,String first_name,String last_name,String contact_number,String shopname,String street,String city_id,String speak,String category_id ,String zipcode) {
+    public void getRecommendSalon(final Activity activity, String user_email, String first_name, String last_name, String contact_number,
+                                  String shopname, String street, String cityName, String speak, String category_id, String zipcode, String contactPerson) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()
                 .getApiService()
-                .recommend_salon(Constants.ACCESS_TOKEN,Prefs.getString(Constants.SharedPreferences_Langauge,""),user_email,first_name,last_name,contact_number,shopname,street,city_id,speak,category_id,Prefs.getString(Constants.SharedPreferences_userId,""),zipcode)
+                .recommend_salon(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_Langauge, ""),
+                        user_email, first_name, last_name, contact_number, shopname, street, cityName, speak, category_id,
+                        Prefs.getString(Constants.SharedPreferences_userId, ""), zipcode, contactPerson)
                 .enqueue(new Callback<CommonOffset>() {
                     @Override
                     public void onResponse(Call<CommonOffset> call, Response<CommonOffset> response) {

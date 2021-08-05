@@ -34,8 +34,8 @@ public class LoginActivity extends BaseActivity implements ICommonView {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setActivity(this);
-
-        getCommonDataPresenter=new GetCommonDataPresenter();
+        getFCM();
+        getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
 
         if (Prefs.getString(Constants.SharedPreferences_Langauge,"").equalsIgnoreCase("")){
@@ -98,24 +98,25 @@ public class LoginActivity extends BaseActivity implements ICommonView {
     }
 
 
-
-
-
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (Prefs.getString(Constants.SharedPreferences_Langauge,"").equalsIgnoreCase("")){
-            Prefs.putString(Constants.SharedPreferences_Langauge,"en");
+        if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("")) {
+            Prefs.putString(Constants.SharedPreferences_Langauge, "en");
         }
 
+
+    }
+
+    public void getFCM() {
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
-                String  token = instanceIdResult.getToken();
-                Log.e("TAG", "onSuccess: "+token );
-                Prefs.putString(Constants.SharedPreferences_FCMID,token);
+                String token = instanceIdResult.getToken();
+                Log.e("TAG", "onSuccess: " + token);
+                Prefs.putString(Constants.SharedPreferences_FCMID, token);
             }
         });
 
@@ -144,7 +145,8 @@ public class LoginActivity extends BaseActivity implements ICommonView {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }else{
-            windowPopUp(this,response.getMessage());
+            getFCM();
+            windowPopUp(this, response.getMessage());
         }
     }
 

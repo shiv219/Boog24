@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,7 +37,9 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
-    public static void Forheader(Activity paramActivity) {
+
+    public static String getFormatedDouble(String amount) {
+        return new DecimalFormat("#.00").format(Double.parseDouble(amount));
     }
 
 
@@ -62,25 +65,23 @@ public class Utils {
         return "";
     }
 
-    public static void customLog(String paramString) {}
+    public static void customLog(String paramString) {
+    }
 
-    public static void customLogd(String paramString) {}
+    public static void customLogd(String paramString) {
+    }
 
-    public static void customToast(Context paramContext, String paramString)
-    {
+    public static void customToast(Context paramContext, String paramString) {
         Toast.makeText(paramContext, paramString, Toast.LENGTH_SHORT).show();
     }
 
-    public static int dpToPx(int paramInt, Context paramContext)
-    {
+    public static int dpToPx(int paramInt, Context paramContext) {
         DisplayMetrics localDisplayMetrics = paramContext.getResources().getDisplayMetrics();
         return Math.round(paramInt * (localDisplayMetrics.xdpi / 160.0F));
     }
 
 
-
-    public static String getFormatedDate(long paramLong, String paramString)
-    {
+    public static String getFormatedDate(long paramLong, String paramString) {
         SimpleDateFormat localSimpleDateFormat = new SimpleDateFormat(paramString);
         Calendar localCalendar = Calendar.getInstance();
         localCalendar.setTimeInMillis(paramLong);
@@ -88,37 +89,30 @@ public class Utils {
     }
 
 
-
-
-
-    public static void storeState(SharedPreferences paramSharedPreferences, String paramString, int paramInt)
-    {
+    public static void storeState(SharedPreferences paramSharedPreferences, String paramString, int paramInt) {
         SharedPreferences.Editor localEditor = paramSharedPreferences.edit();
         localEditor.putInt(paramString, paramInt);
         localEditor.commit();
     }
 
-    public static void storeStateOfString(SharedPreferences paramSharedPreferences, String paramString1, String paramString2)
-    {
+    public static void storeStateOfString(SharedPreferences paramSharedPreferences, String paramString1, String paramString2) {
         SharedPreferences.Editor localEditor = paramSharedPreferences.edit();
         localEditor.putString(paramString1, paramString2);
         localEditor.commit();
     }
 
-    public static String toSlug(String paramString)
-    {
+    public static String toSlug(String paramString) {
         return Pattern.compile("[^\\w-]").matcher(Normalizer.normalize(Pattern.compile("[\\s]").matcher(paramString).replaceAll("-"), Normalizer.Form.NFD)).replaceAll("").toLowerCase(Locale.ENGLISH);
     }
 
-    public static boolean validMail(String paramString)
-    {
+    public static boolean validMail(String paramString) {
         return Pattern.compile(".+@.+\\.[a-z]+").matcher(paramString).matches();
     }
 
     public static boolean isValidMobile(String phone) {
-        boolean check=false;
-        if(!Pattern.matches("[a-zA-Z]+", phone)) {
-            if(phone.length() < 6 || phone.length() > 13) {
+        boolean check = false;
+        if (!Pattern.matches("[a-zA-Z]+", phone)) {
+            if (phone.length() < 6 || phone.length() > 13) {
                 // if(phone.length() != 10) {
                 check = false;
 //                txtPhone.setError("Not Valid Number");
@@ -126,18 +120,18 @@ public class Utils {
                 check = true;
             }
         } else {
-            check=false;
+            check = false;
         }
         return check;
     }
 
 
-
-    public static Drawable DrawableChange(Activity ctx , int d , int color){
-        Drawable drawable1=ctx.getResources().getDrawable(d).mutate();
+    public static Drawable DrawableChange(Activity ctx, int d, int color) {
+        Drawable drawable1 = ctx.getResources().getDrawable(d).mutate();
         drawable1.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
         return drawable1;
     }
+
     public static boolean isEmailValid(String email) {
         boolean isValid = false;
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
@@ -147,22 +141,22 @@ public class Utils {
             isValid = true;
         return isValid;
     }
+
     public static boolean validateString(String str) {
         return stringNotNull(str) && stringNotEmpty(str);
     }
+
     private static boolean stringNotNull(String str) {
         return str != null;
     }
+
     private static boolean stringNotEmpty(String str) {
         return !str.isEmpty();
     }
 
     public static boolean isValidPassword(String password) {
-        return !(TextUtils.isEmpty(password) || password.length() < 6) ;
+        return !(TextUtils.isEmpty(password) || password.length() < 6);
     }
-
-
-
 
 
     //Utility
@@ -170,11 +164,9 @@ public class Utils {
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean checkPermission(final Context context)
-    {
+    public static boolean checkPermission(final Context context) {
         int currentAPIVersion = Build.VERSION.SDK_INT;
-        if(currentAPIVersion>= Build.VERSION_CODES.M)
-        {
+        if (currentAPIVersion >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -207,34 +199,33 @@ public class Utils {
         }
     }
 
-    public static String getStringBase64(String myUrl){
+    public static String getStringBase64(String myUrl) {
         String base64 = "";
         Bitmap bitmap;
         StrictMode.ThreadPolicy policy = null;
         String newUrlString = "";
-        try{
+        try {
             policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
             URL oldUrl = new URL(myUrl);
-            if(myUrl.contains("http://")){
-                newUrlString= oldUrl.toString().replace("http", "https");
-            }else{
-                newUrlString  =myUrl;
+            if (myUrl.contains("http://")) {
+                newUrlString = oldUrl.toString().replace("http", "https");
+            } else {
+                newUrlString = myUrl;
             }
             URL newUrl = new URL(newUrlString);
             bitmap = BitmapFactory.decodeStream(newUrl.openConnection().getInputStream());
-            System.out.println("bitmap>>>>>>>>> "+bitmap);
+            System.out.println("bitmap>>>>>>>>> " + bitmap);
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            byte[] byteArray = byteArrayOutputStream .toByteArray();
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
             base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return base64;
     }
-
 
 
     public static String parseDateToddMMyyyy(String time) {
@@ -259,7 +250,7 @@ public class Utils {
         int width = image.getWidth();
         int height = image.getHeight();
 
-        float bitmapRatio = (float)width / (float) height;
+        float bitmapRatio = (float) width / (float) height;
         if (bitmapRatio > 1) {
             width = maxSize;
             height = (int) (width / bitmapRatio);

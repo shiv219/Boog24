@@ -2,7 +2,6 @@ package com.boog24.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.boog24.MyApplication;
 import com.boog24.R;
 import com.boog24.adapter.EmployeeServicesAdapter;
@@ -19,7 +22,7 @@ import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivityContactDetailsBinding;
 import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
-import com.boog24.modals.bookingAppointment.Data;
+import com.boog24.extra.Utils;
 import com.boog24.modals.bookingAppointment.Result;
 import com.boog24.modals.bookingAppointment.SalonService;
 import com.boog24.presenter.GetBookingDetailPresenter;
@@ -31,11 +34,6 @@ import org.json.JSONException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class ContactDetailActivity extends BaseActivity implements IBookingDetailView {
     float amount=0;
@@ -151,7 +149,7 @@ public class ContactDetailActivity extends BaseActivity implements IBookingDetai
                         e.printStackTrace();
                     }
                 }
-                binding.tvTotalAmount.setText("€" + String.valueOf(amount));
+                binding.tvTotalAmount.setText("€" + Utils.getFormatedDouble(String.valueOf(amount)));
             } else {
 
                 binding.tvTotalAmount.setText("0");

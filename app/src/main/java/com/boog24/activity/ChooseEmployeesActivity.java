@@ -1,19 +1,20 @@
 package com.boog24.activity;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.boog24.MyApplication;
 import com.boog24.R;
@@ -23,12 +24,12 @@ import com.boog24.adapter.TimeSlotAdapter;
 import com.boog24.databinding.ActivityChooseEmployessBinding;
 import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
+import com.boog24.extra.Utils;
 import com.boog24.modals.CommonOffset;
 import com.boog24.modals.employeeList.EmployeeDatum;
 import com.boog24.modals.employeeList.Result;
 import com.boog24.modals.getSaloonDetail.SalonService;
 import com.boog24.presenter.GetCommonDataPresenter;
-import com.boog24.presenter.GetEmployeesListPresenter;
 import com.boog24.presenter.GetTimeSlotsPresenter;
 import com.boog24.view.ICommonView;
 import com.boog24.view.IGetEmployeeView;
@@ -44,12 +45,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class ChooseEmployeesActivity extends BaseActivity implements IGetEmployeeView, ICommonView , IGetTimeSlotsView {
     String salonId;
@@ -192,8 +187,7 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
                     amount= amount+Float.parseFloat(jsonArray.getJSONObject(i).getString("price"));
                 }
 
-
-                binding.tvTotalAmount.setText("€"+String.valueOf(amount));
+                binding.tvTotalAmount.setText("€" + Utils.getFormatedDouble(String.valueOf(amount)));
 
                 EmployeeServicesAdapter headerAdapter = new EmployeeServicesAdapter(this, jsonArray, "employee");
                 binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

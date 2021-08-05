@@ -31,12 +31,14 @@
     <string name="cosmetics">Kosmetik</string>
     <string name="massage">Massage</string>
     <string name="email_address">E-Mail Adresse</string>
-    <string name="email_addressstar">E-Mail Adresse</string>
+    <string name="email_addressstar">E-Mail Adresse*</string>
     <string name="password">Passwort</string>
+    <string name="password_asstrik">Passwort*</string>
     <string name="submit">Senden</string>
     <string name="last_name">Nachname* </string>
     <string name="first_name">Vorname* </string>
     <string name="phone_number">Telefonnummer </string>
+    <string name="phone_number_asstrik">Telefonnummer*</string>
     <string name="you_accept_our">Ja, ich akzeptiere das</string>
     <string name="terms_and_conditions">AGB</string>
     <string name="agree_to_receive_email_for_offer">Mit E-Mail Kontakt einverstanden </string>
@@ -73,12 +75,12 @@
     <string name="categories">Kategorien </string>
     <string name="pls_enter_location"> Bitte geben Sie einen Standort ein </string>
     <string name="continues">Weiter </string>
-    <string name="contact_details">Kontaktdaten</string>
+    <string name="contact_details">Buchungsübersicht</string>
     <string name="remove">Entfernen </string>
     <string name="select">Auswählen </string>
     <string name="change">Ändern </string>
     <string name="cancel_booking">Buchung stornieren </string>
-    <string name="appointment_confirmed">Termin bestätigt </string>
+    <string name="appointment_confirmed">Vielen Dank, deine Buchung wurde erfolgreich übermittelt</string>
     <string name="booking_id"> Buchungs-ID </string>
     <string name="date_and_time"> Datum und Uhrzeit </string>
     <string name="total_amount">Gesamtbetrag</string>
@@ -91,10 +93,10 @@
     <string name="go_to_home">Zur Startseite </string>
     <string name="select_employee"> Mitarbeiter wählen </string>
     <string name="pls_select_at_least_one_service">Bitte eine Behandlung wählen.</string>
-    <string name="start">Start</string>
+    <string name="start">Starten</string>
     <string name="salons">Salons </string>
     <string name="pls_accept_terms">Bitte akzeptieren Sie unsere Geschäftsbedingungen</string>
-    <string name="hour">Stunde</string>
+    <string name="hour">Std</string>
     <string name="your_gps">Ihr GPS scheint ausgeschaltet zu sein, möchten Sie es aktivieren? </string>
     <string name="yes">Ja </string>
     <string name="no">Nein </string>
@@ -107,19 +109,20 @@
     <string name="map">Karte</string>
     <string name="current_location">Derzeitiger Standort</string>
     <string name="using_gps">GPS verwenden </string>
-    <string name="confirm_password">Passwort bestätigen </string>
+    <string name="confirm_password">Passwort bestätigen*</string>
     <string name="select_address">Adresse auswählen </string>
     <string name="top_rated_hair"> Top-bewertete Salons </string>
     <string name="logout">Ausloggen</string>
     <string name="salon_info">Salon Info</string>
     <string name="rating_amp_review">Bewertungen </string>
-    <string name="minutes">Minuten</string>
+    <string name="minutes">Min</string>
     <string name="invalid_time">Die Buchungszeit sollte höher als 1 Stunde gegenüber der aktuellen Zeit sein</string>
     <string name="no_employee">Kein Mitarbeiter verfügbar</string>
     <string name="recommend_salon">Salon Empfehlen</string>
     <string name="about_the_salon">Über den Salon</string>
     <string name="salon_name">Salon Name*</string>
     <string name="did_you_speak">Hast du mit dem Salon gesprochen?*</string>
+    <string name="did_you_informed">Hast du den Salon über booq24 informiert?</string>
     <string name="type_of_business">Branche*</string>
     <string name="street">Straße</string>
     <string name="salon_phone">Telefonnummer Salon</string>
@@ -127,19 +130,19 @@
     <string name="about_you">Über dich</string>
     <string name="login">Login</string>
     <string name="pls_login_first">Bitte einloggen um diese Funktion nutzen zu können.</string>
-    <string name="cancel">Löschen</string>
+    <string name="cancel">Stornieren</string>
     <string name="show_map">Karte anzeigen</string>
     <string name="pls_enter_salon_name">Bitte den Namen des Salons angeben</string>
     <string name="pls_select_you_have_speak">Bitte lass uns wissen ob du mit dem Salon über booq24 gesprochen hast?</string>
     <string name="pls_select_business">Bitte das Geschäftsfeld wählen</string>
     <string name="pls_enter_street">Bitte betreten Sie die Straße</string>
     <string name="pls_enter_salon_phone">Bitte geben Sie die Telefonnummer des Salons ein</string>
-    <string name="pls_enter_city">Bitte wählen Sie Stadt</string>
+    <string name="pls_enter_city">Bitte die Stadt angeben</string>
     <string name="pls_enter_first_name">Bitte geben Sie den Vornamen ein</string>
     <string name="pls_enter_last_name">Bitte geben Sie den Nachnamen ein</string>
     <string name="pls_select_time">Bitte eine Uhrzeit wählen.</string>
     <string name="next_available_employee">Next Available Employee</string>
-    <string name="zipcode">Zip Code </string>
+    <string name="zipcode">Postleitzahl</string>
     <string name="book">Verbindlich buchen</string>
     <string name="more">Informieren</string>
     <string name="pls_enter_validate_password">Please Enter 1 Capital,1 number and 1 specific character</string>
@@ -148,7 +151,7 @@
     <string name="impessum">Impressum</string>
     <string name="agb">AGB</string>
     <string name="datenschutz">Datenschutz-und Cookie-Bestimmungen</string>
-    <string name="Notificationlist">Notification List</string>
+    <string name="Notificationlist">Benachrichtigungsliste</string>
     <string name="user_generated">Richtlinie über nutzergenerierte Inhalte</string>
     <string name="update_booking">Buchung aktualisieren</string>
     <string name="male">Männlich</string>
@@ -159,7 +162,7 @@
     <string name="delete_my_account">Mein Konto löschen</string>
     <string name="delete_account">Konto löschen</string>
     <string name="are_you_sure_delete_account">"Bist du sicher, dass du dein Konto löschen willst? Der Vorgang ist nicht widerrufbar!"</string>
-    <string name="delete">Löschen</string>
+    <string name="delete">Abbrechen</string>
     <string name="cancel_delete_account">zurück</string>
     <string name="authentication">Authentifizierung</string>
 
@@ -170,6 +173,14 @@
     <string name="most_rated">Am meisten bewertet</string>
     <string name="opening_hours">Öffnungszeiten</string>
     <string name="select_country">Land auswählen</string>
-    <string name="country">Land</string>
-    <string name="my_booking">My Meine Buchungen</string>
+    <string name="country">Land*</string>
+    <string name="my_booking">Meine Buchungen</string>
+
+    <string name="name_of_contact_person">Name der Kontaktperson*</string>
+    <string name="pls_enter_contact_person">Bitte Kontaktperson eintragen</string>
+    <string name="closed">Geschlossen</string>
+    <string name="please_give_rating_first">Bitte wähle mindestens einen Stern für deine Bewertung</string>
+    <string name="salon_may_confirm_your_request"><font color='#616161'>*</font>Solltest du nicht unverzüglich eine Buchungsbestätigung erhalten, wird deine Anfrage noch vom Salon bearbeitet.</string>
+
+
 </resources>

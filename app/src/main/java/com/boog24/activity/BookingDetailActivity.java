@@ -47,11 +47,12 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
     ActivityBookingDetailBinding binding;
     GetCommonDataPresenter getCommonDataPresenter;
     BookingDetailFragmentPresenter getMyBookingsPresenter;
-    String type="";
-    String  orderId,salonId;
-    String from;
-    public ArrayList<SalonService> arrayList=new ArrayList<>();
-    JSONArray jsonArray=new JSONArray();
+    String type = "";
+    String orderId, salonId;
+    String from, pre;
+    public ArrayList<SalonService> arrayList = new ArrayList<>();
+    JSONArray jsonArray = new JSONArray();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
         binding = DataBindingUtil.setContentView(this, R.layout.activity_booking_detail);
         binding.setActivity(this);
 
-        getCommonDataPresenter=new GetCommonDataPresenter();
+        getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
 
         getMyBookingsPresenter=new BookingDetailFragmentPresenter();
@@ -73,7 +74,7 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
         orderId=getIntent().getStringExtra("orderId");
         salonId=getIntent().getStringExtra("salonId");
         from = getIntent().getStringExtra("from");
-
+        pre = getIntent().getStringExtra("pre");
 
 
         if (type.equalsIgnoreCase("upcoming")){
@@ -88,14 +89,17 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
 //            binding.tvAdd.setText("Add feedback");
         }
 
-        if(from.equals("UPDATE")){
+        if (from.equals("UPDATE")) {
             binding.tvUpdateBooking.setVisibility(View.VISIBLE);
             binding.tvCancel.setVisibility(View.GONE);
-        }else{
+        } else {
             binding.tvUpdateBooking.setVisibility(View.GONE);
             binding.tvCancel.setVisibility(View.VISIBLE);
         }
+        if (pre != null) {
+            binding.tvCancel.setVisibility(View.GONE);
 
+        }
 
 
         binding.back.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +126,7 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
             binding.tvName.setText(response.getBookingDetails().getSalonName());
             binding.tvDate.setText(Utils.convertDateTime(response.getBookingDetails().getAppointmentDate()));
             binding.tvAddress.setText(response.getBookingDetails().getSalon_address());
-            binding.tvAmount.setText("€" + response.getBookingDetails().getTotalAmount());
+            binding.tvAmount.setText("€" + Utils.getFormatedDouble(response.getBookingDetails().getTotalAmount()));
             binding.tvWorkerName.setText("Worker Name :" + response.getBookingDetails().getWorkerName());
             if (response.getBookingDetails().isFeedbackAdded()) {
                 binding.tvAdd.setVisibility(View.GONE);
@@ -228,17 +232,23 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
                 myDialog.setContentView(R.layout.rating_dialog);
                 //  myDialog.setCanceledOnTouchOutside(false);
                 RatingBar ratingBar = myDialog.findViewById(R.id.ratingBar);
+                ratingBar.setStepSize(1);
                 EditText edtFeedback = myDialog.findViewById(R.id.edtFeedback);
                 Button btnAdd = myDialog.findViewById(R.id.btnAdd);
                 btnAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        myDialog.dismiss();
-                        if (NetworkAlertUtility.isConnectingToInternet(BookingDetailActivity.this)) {
-                            getCommonDataPresenter.addFeedBack(BookingDetailActivity.this,orderId,salonId, String.valueOf(ratingBar.getRating()),edtFeedback.getText().toString());
+                        if (ratingBar.getRating() > 0) {
+                            myDialog.dismiss();
+                            if (NetworkAlertUtility.isConnectingToInternet(BookingDetailActivity.this)) {
+                                getCommonDataPresenter.addFeedBack(BookingDetailActivity.this, orderId, salonId, String.valueOf(ratingBar.getRating()), edtFeedback.getText().toString());
+                            } else {
+                                NetworkAlertUtility.showNetworkFailureAlert(BookingDetailActivity.this);
+                            }
                         } else {
-                            NetworkAlertUtility.showNetworkFailureAlert(BookingDetailActivity.this);
+                            Toast.makeText(BookingDetailActivity.this, getString(R.string.please_give_rating_first), Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
 

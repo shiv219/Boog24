@@ -17,18 +17,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.boog24.R;
 import com.boog24.adapter.BusinessAdapter;
 import com.boog24.adapter.CityAdapter;
-import com.boog24.adapter.CustomerTypeAdapter;
-import com.boog24.adapter.SalonListingAdapter;
 import com.boog24.databinding.ActivityRecommendSalonBinding;
 import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
 import com.boog24.modals.CommonOffset;
-import com.boog24.modals.employeeList.EmployeeDatum;
 import com.boog24.modals.getCitiesList.CategoryDatum;
 import com.boog24.modals.getCitiesList.CityDatum;
 import com.boog24.modals.getCitiesList.Result;
@@ -46,7 +42,8 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
     ActivityRecommendSalonBinding binding;
     GetCityPresenter getCityPresenter;
     GetCommonDataPresenter getCommonDataPresenter;
-    String cityId="",categoryId="",speak="";
+    String cityId = "", categoryId = "", speak = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +54,7 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
         getCityPresenter.setView(this);
 
 
-        getCommonDataPresenter=new GetCommonDataPresenter();
+        getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
 
         if (NetworkAlertUtility.isConnectingToInternet(RecommendSalonActivity.this)) {
@@ -80,20 +77,20 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
         setCity();
 
 
-        binding.spinerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                CityDatum mSelected = (CityDatum) parent.getItemAtPosition(pos);
-                Log.i("Id:", mSelected.getCityName());
-                if (!mSelected.getCityId().equalsIgnoreCase("-1")) {
-                    cityId = mSelected.getCityId();
-                    binding.edtCity.setText(mSelected.getCityName());
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        binding.spinerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+//                CityDatum mSelected = (CityDatum) parent.getItemAtPosition(pos);
+//                Log.i("Id:", mSelected.getCityName());
+//                if (!mSelected.getCityId().equalsIgnoreCase("-1")) {
+//                    cityId = mSelected.getCityId();
+//                    binding.edtCity.setText(mSelected.getCityName());
+//                }
+//            }
+//
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         binding.spineerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -114,14 +111,13 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
         binding.spineerSpeak.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if (i==0){
+                if (i == 0) {
 
-               }
-                else if (i==1) {
+                } else if (i == 1) {
                     speak = "yes";
                     binding.edtSpeak.setText("Yes");
-                }else{
-                    speak="no";
+                } else {
+                    speak = "no";
                     binding.edtSpeak.setText("No");
                 }
 
@@ -145,26 +141,24 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
             case R.id.edtType:
                 binding.spineerType.performClick();
                 break;
-            case R.id.edtCity:
-                binding.spinerCity.performClick();
-                break;
             case R.id.btnSubmit:
 
-                if (binding.etSalonName.getText().toString().equalsIgnoreCase("")){
+                if (binding.etSalonName.getText().toString().equalsIgnoreCase("")) {
                     binding.etSalonName.setError(getString(R.string.pls_enter_salon_name));
                     binding.etSalonName.requestFocus();
                     return;
                 }
-
-
-                if (speak.equalsIgnoreCase("")){
-                    windowPopUp(this,getString(R.string.pls_select_you_have_speak));
+                if (speak.equalsIgnoreCase("")) {
+                    windowPopUp(this, getString(R.string.pls_select_you_have_speak));
                     return;
                 }
-
-
-                if (categoryId.equalsIgnoreCase("")){
-                    windowPopUp(this,getString(R.string.pls_select_business));
+                if (binding.etContactPerson.getText().toString().equalsIgnoreCase("")) {
+                    binding.etContactPerson.setError(getString(R.string.pls_enter_contact_person));
+                    binding.etContactPerson.requestFocus();
+                    return;
+                }
+                if (categoryId.equalsIgnoreCase("")) {
+                    windowPopUp(this, getString(R.string.pls_select_business));
                     return;
                 }
 
@@ -179,27 +173,33 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
 //                    binding.etPhone.requestFocus();
 //                    return;
 //                }
-                if (cityId.equalsIgnoreCase("")){
-                    windowPopUp(this,getString(R.string.pls_enter_city));
+                if (binding.edtCity.getText().toString().equalsIgnoreCase("")) {
+                    binding.edtCity.setError(getString(R.string.pls_enter_city));
+                    binding.edtCity.requestFocus();
+
                     return;
                 }
-                if (binding.etFirstName.getText().toString().equalsIgnoreCase("")){
+                if (binding.etFirstName.getText().toString().equalsIgnoreCase("")) {
                     binding.etFirstName.setError(getString(R.string.pls_enter_first_name));
                     binding.etFirstName.requestFocus();
                     return;
                 }
-                if (binding.etLastName.getText().toString().equalsIgnoreCase("")){
+                if (binding.etLastName.getText().toString().equalsIgnoreCase("")) {
                     binding.etLastName.setError(getString(R.string.pls_enter_last_name));
                     binding.etLastName.requestFocus();
                     return;
                 }
-                if (binding.etEmail.getText().toString().equalsIgnoreCase("")){
+                if (binding.etEmail.getText().toString().equalsIgnoreCase("")) {
                     binding.etEmail.setError(getString(R.string.pls_enter_email));
                     binding.etEmail.requestFocus();
                     return;
                 }
                 if (NetworkAlertUtility.isConnectingToInternet(RecommendSalonActivity.this)) {
-                    getCommonDataPresenter.getRecommendSalon(RecommendSalonActivity.this,binding.etEmail.getText().toString(),binding.etFirstName.getText().toString(),binding.etLastName.getText().toString(),binding.etPhone.getText().toString(),binding.etSalonName.getText().toString(),binding.etStreet.getText().toString(),cityId,speak,categoryId,binding.etZipCode.getText().toString());
+                    getCommonDataPresenter.getRecommendSalon(RecommendSalonActivity.this, binding.etEmail.getText().toString(),
+                            binding.etFirstName.getText().toString(), binding.etLastName.getText().toString(), binding.etPhone.getText().toString(),
+                            binding.etSalonName.getText().toString(), binding.etStreet.getText().toString(), binding.edtCity.getText().toString(), speak, categoryId,
+                            binding.etZipCode.getText().toString(),
+                            binding.etContactPerson.getText().toString());
                 } else {
                     NetworkAlertUtility.showNetworkFailureAlert(RecommendSalonActivity.this);
                 }
@@ -210,10 +210,11 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
 
 
     private void setSpeak() {
+
         // Spinner Drop down elements
         List<String> userList3 = new ArrayList<>();
 //        EmployeeDatum user3 = new EmployeeDatum(getResources().getString(R.string.did_you_speak),"-1");
-        userList3.add(getResources().getString(R.string.did_you_speak));
+        userList3.add(getResources().getString(R.string.did_you_informed));
         userList3.add("Yes");
         userList3.add("No");
 
@@ -226,7 +227,7 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
     private void setTypeofBusiness() {
         // Spinner Drop down elements
         List<CategoryDatum> userList3 = new ArrayList<>();
-        CategoryDatum user3 = new CategoryDatum("-1",getResources().getString(R.string.type_of_business));
+        CategoryDatum user3 = new CategoryDatum("-1", getResources().getString(R.string.type_of_business));
         userList3.add(user3);
 
         ArrayAdapter<CategoryDatum> dataAdapter3 = new ArrayAdapter<CategoryDatum>(this, android.R.layout.simple_spinner_item, userList3);
@@ -238,40 +239,39 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
     private void setCity() {
         // Spinner Drop down elements
         List<CityDatum> userList3 = new ArrayList<>();
-        CityDatum user3 = new CityDatum("-1",getResources().getString(R.string.city));
+        CityDatum user3 = new CityDatum("-1", getResources().getString(R.string.city));
         userList3.add(user3);
 
         ArrayAdapter<CityDatum> dataAdapter3 = new ArrayAdapter<CityDatum>(this, android.R.layout.simple_spinner_item, userList3);
         dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinerCity.setAdapter(dataAdapter3);
+//        binding.spinerCity.setAdapter(dataAdapter3);
 
 
     }
 
     @Override
     public void onGetCity(Result response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
 
             //For CIty
             ArrayList<CityDatum> customerTypeDatumArrayList = new ArrayList<>();
-            customerTypeDatumArrayList.add(new CityDatum("-1",getResources().getString(R.string.city) ));
+            customerTypeDatumArrayList.add(new CityDatum("-1", getResources().getString(R.string.city)));
 
-            if (response.getCityData().size()>0) {
+            if (response.getCityData().size() > 0) {
                 for (int i = 0; i < response.getCityData().size(); i++) {
                     customerTypeDatumArrayList.add(new CityDatum(response.getCityData().get(i).getCityId(), response.getCityData().get(i).getCityName()));
                 }
             }
             CityAdapter statusAdpter = new CityAdapter(RecommendSalonActivity.this, R.layout.spinner_item_row,
                     customerTypeDatumArrayList);
-            binding.spinerCity.setAdapter(statusAdpter);
-
+//            binding.spinerCity.setAdapter(statusAdpter);
 
 
             //For Category
             ArrayList<CategoryDatum> categoryDatumArrayList = new ArrayList<>();
-            categoryDatumArrayList.add(new CategoryDatum("-1",getResources().getString(R.string.type_of_business) ));
+            categoryDatumArrayList.add(new CategoryDatum("-1", getResources().getString(R.string.type_of_business)));
 
-            if (response.getCategoryData().size()>0) {
+            if (response.getCategoryData().size() > 0) {
                 for (int i = 0; i < response.getCategoryData().size(); i++) {
                     categoryDatumArrayList.add(new CategoryDatum(response.getCategoryData().get(i).getCategoryId(), response.getCategoryData().get(i).getCategoryName()));
                 }
@@ -280,12 +280,12 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
                     categoryDatumArrayList);
             binding.spineerType.setAdapter(businessAdapter);
 
-        }else if (response.getStatus()==400){
+        } else if (response.getStatus() == 400) {
 
 
-        }else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Failure")
@@ -306,7 +306,7 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
 
     @Override
     public void onGetDetail(CommonOffset response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
             final Dialog myDialog = new Dialog(this);
             myDialog.setContentView(R.layout.alert_label_editor);
             //  myDialog.setCanceledOnTouchOutside(false);
@@ -325,12 +325,12 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
             });
             myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             myDialog.show();
-        }else if (response.getStatus()==400){
+        } else if (response.getStatus() == 400) {
 
 
-        }else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Failure")

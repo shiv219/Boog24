@@ -67,24 +67,28 @@ public class SignupActivity extends BaseActivity implements ICommonView {
 
                 binding.etEmail.setError(getResources().getString(R.string.pls_enter_email));
                 binding.etEmail.requestFocus();
+            } else if (binding.etCountry.getText().toString().equalsIgnoreCase("")) {
+
+                binding.etCountry.setError(getResources().getString(R.string.pls_select_country));
+                binding.etCountry.requestFocus();
             } else if (binding.etPhone.getText().toString().equalsIgnoreCase("")) {
 
                 binding.etPhone.setError(getResources().getString(R.string.pls_enter_phone));
                 binding.etPhone.requestFocus();
-            } else if (binding.etPassword.getText().toString().equalsIgnoreCase("")) {
+            }/* else if (binding.etPassword.getText().toString().equalsIgnoreCase("")) {
                 binding.etPassword.setError(getResources().getString(R.string.pls_enter_password));
                 binding.etPassword.requestFocus();
-            } else if (!isValidPassword(binding.etPassword.getText().toString().trim())) {
+            }*/ else if (!isValidPassword(binding.etPassword.getText().toString().trim())) {
                 binding.etPassword.setError(getResources().getString(R.string.pls_enter_validate_password));
                 binding.etPassword.requestFocus();
             } else if (binding.etconfirmPassword.getText().toString().equalsIgnoreCase("")) {
 
                 binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_confrmpass));
                 binding.etconfirmPassword.requestFocus();
-            } else if (!isValidPassword(binding.etconfirmPassword.getText().toString().trim())) {
+            } /*else if (!isValidPassword(binding.etconfirmPassword.getText().toString().trim())) {
                 binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_validate_password));
                 binding.etconfirmPassword.requestFocus();
-            } else if (!binding.etPassword.getText().toString().equalsIgnoreCase(binding.etconfirmPassword.getText().toString())) {
+            }*/ else if (!binding.etPassword.getText().toString().equalsIgnoreCase(binding.etconfirmPassword.getText().toString())) {
                 binding.etconfirmPassword.setError(getResources().getString(R.string.pls_enter_correctpassword));
                 binding.etconfirmPassword.requestFocus();
             } else if (!binding.checkbox.isChecked()) {
@@ -105,7 +109,7 @@ public class SignupActivity extends BaseActivity implements ICommonView {
             }
         });
 
-        binding.tvGender.setOnClickListener(new View.OnClickListener() {
+        binding.etGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
@@ -120,7 +124,7 @@ public class SignupActivity extends BaseActivity implements ICommonView {
                     public void onClick(View v) {
                         gender_value = "M";
                         alertDialog.dismiss();
-                        binding.tvGender.setText(getResources().getString(R.string.male));
+                        binding.etGender.setText(getResources().getString(R.string.male));
                     }
                 });
 
@@ -129,13 +133,13 @@ public class SignupActivity extends BaseActivity implements ICommonView {
                     public void onClick(View v) {
                         gender_value = "F";
                         alertDialog.dismiss();
-                        binding.tvGender.setText(getResources().getString(R.string.female));
+                        binding.etGender.setText(getResources().getString(R.string.female));
                     }
                 });
                 alertDialog.show();
             }
         });
-        binding.tilCountry.setOnClickListener(view -> {
+        binding.etCountry.setOnClickListener(view -> {
             new CountryCodeDialog(countryPosition, (position, countryCode) -> {
                 countryPosition = position;
                 binding.etCountry.setText(countryCode);
@@ -149,7 +153,9 @@ public class SignupActivity extends BaseActivity implements ICommonView {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+//        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+//        final String PASSWORD_PATTERN = "^(?=.{7,})(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+!=<>{}()|;:.,~?-]).*$";
+        final String PASSWORD_PATTERN = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#$%^&+!=<>{}()|;:.,~?-]).{8,}$";
 
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);

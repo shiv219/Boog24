@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.boog24.R;
+import com.boog24.extra.Utils;
 import com.boog24.modals.getSaloonDetail.Service;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class SalonDetailFooterAdapter extends RecyclerView.Adapter<SalonDetailFooterAdapter.ViewHolder> {
 
@@ -46,17 +47,17 @@ public class SalonDetailFooterAdapter extends RecyclerView.Adapter<SalonDetailFo
 
 
         holder.txtTitle.setText(services.get(position).getServiceName());
-        holder.txt_time.setText(services.get(position).getHour()+" "+context.getResources().getString(R.string.hour)+" "+services.get(position).getMinutes()+" "+context.getResources().getString(R.string.minutes));
-        holder.tvPrice.setText("€"+services.get(position).getServicePrice());
+        holder.txt_time.setText(services.get(position).getHour() + " " + context.getResources().getString(R.string.hour) + " & " + services.get(position).getMinutes() + " " + context.getResources().getString(R.string.minutes));
+        holder.tvPrice.setText("€" + Utils.getFormatedDouble(services.get(position).getServicePrice()));
 
 
-        if (services.get(position).getSelected()){
+        if (services.get(position).getSelected()) {
             holder.btnSelect.setText(context.getResources().getString(R.string.remove));
-        }else{
+        } else {
             holder.btnSelect.setText(context.getResources().getString(R.string.select));
         }
 
-        Log.e("TAG", "onBindViewHolder: "+services.get(position).getSelected());
+        Log.e("TAG", "onBindViewHolder: " + services.get(position).getSelected());
 
         holder.btnSelect.setOnClickListener(new View.OnClickListener() {
             @Override

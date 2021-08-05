@@ -254,11 +254,12 @@ public interface ApiService {
                                        @Part("contact_number") String contact_number,
                                        @Part("shopname") String shopname,
                                        @Part("street") String street,
-                                       @Part("city_id") String city_id,
+                                       @Part("city_name") String city_name,
                                        @Part("speak_about_site") String speak_about_site,
                                        @Part("category_id") String category_id,
                                        @Part("user_id") String user_id,
-                                       @Part("zip_code") String zip_code
+                                       @Part("zip_code") String zip_code,
+                                       @Part("name_of_the_contact_person") String contactPerson
 
 
     );

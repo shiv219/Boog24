@@ -5,18 +5,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.boog24.MyApplication;
 import com.boog24.R;
 import com.boog24.adapter.EmployeeServicesAdapter;
 import com.boog24.databinding.ActivityConfirmAppointmentBinding;
 import com.boog24.extra.BaseActivity;
+import com.boog24.extra.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class ConfirmAppointmentActivity extends BaseActivity {
 
@@ -42,7 +43,7 @@ public class ConfirmAppointmentActivity extends BaseActivity {
         binding.tvName.setText(getIntent().getStringExtra("salonName"));
         binding.tvAddress.setText(getIntent().getStringExtra("address"));
         binding.tvDate.setText(getIntent().getStringExtra("date"));
-        binding.tvAmount.setText("€"+getIntent().getStringExtra("amount"));
+        binding.tvAmount.setText("€" + Utils.getFormatedDouble(getIntent().getStringExtra("amount")));
 
         try {
             jsonArray=new JSONArray(MyApplication.getInstance().getSession().getData());

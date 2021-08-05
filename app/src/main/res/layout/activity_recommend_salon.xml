@@ -146,12 +146,13 @@
                     android:drawablePadding="@dimen/dimen_15dp"
                     android:onClick="onClick"
                     android:fontFamily="@font/proxima_nova_bold"
-                    android:hint="@string/did_you_speak"
+                    android:hint="@string/did_you_informed"
                     android:backgroundTint="@color/black"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grayish"
                     android:textSize="@dimen/dimen_14sp" />
+
                 <Spinner
                     android:theme="@style/CustomSpinnerTheme"
                     android:visibility="invisible"
@@ -159,8 +160,31 @@
                     android:textAlignment="center"
                     android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"/>
+                    android:layout_height="0dp" />
 
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:textColorHint="@color/grayish"
+                    android:paddingTop="@dimen/dimen_10dp"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/etContactPerson"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name_of_contact_person"
+                        android:textColorHint="@color/grayish"
+                        android:paddingBottom="@dimen/dimen_14dp"
+                        android:textSize="@dimen/dimen_15sp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/black"
+                        android:fontFamily="@font/proximanova_regular" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <EditText
                     android:id="@+id/edtType"
@@ -271,43 +295,27 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                       >
-
-
-                    <EditText
-                        android:id="@+id/edtCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dimen_45dp"
-                        android:clickable="false"
-                        android:paddingTop="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:layout_weight="1"
-                        android:drawableRight="@drawable/arrow_down"
-                        android:focusable="false"
-                        android:layout_marginRight="@dimen/dimen_10dp"
-                        android:drawablePadding="@dimen/dimen_15dp"
-                        android:onClick="onClick"
-                        android:fontFamily="@font/proxima_nova_bold"
-                        android:hint="@string/city"
-                        android:backgroundTint="@color/black"
-                        android:inputType="text"
-                        android:textColor="@color/black"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:textColorHint="@color/grayish"
-                        android:textSize="@dimen/dimen_14sp" />
-                    <Spinner
-                        android:theme="@style/CustomSpinnerTheme"
-                        android:visibility="invisible"
-                        android:id="@+id/spinerCity"
-                        android:textAlignment="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        app:hintTextAppearance="@style/TextInputLayoutHintText"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"/>
-                    </RelativeLayout>
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edtCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/city"
+                            android:textColorHint="@color/grayish"
+                            android:textSize="@dimen/dimen_15sp"
+                            android:textColor="@color/black"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/proximanova_regular" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </LinearLayout>
 

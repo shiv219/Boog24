@@ -1,7 +1,6 @@
 package com.boog24.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.boog24.MyApplication;
 import com.boog24.R;
 import com.boog24.activity.ContactDetailActivity;
+import com.boog24.extra.Utils;
 import com.boog24.modals.getSaloonDetail.SalonService;
 
 import org.json.JSONArray;
@@ -19,9 +22,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class EmployeeServicesAdapter extends RecyclerView.Adapter<EmployeeServicesAdapter.ViewHolder> {
 
@@ -72,14 +72,14 @@ public class EmployeeServicesAdapter extends RecyclerView.Adapter<EmployeeServic
                 }else{
                     int hour = (jsonArray.getJSONObject(position).getInt("hour"));
                     if(hour > 1){
-                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " "+context.getResources().getString(R.string.hours)+" " + jsonArray.getJSONObject(position).getString("minutes")+" " + context.getResources().getString(R.string.minutes));
+                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " " + context.getResources().getString(R.string.hours) + " & " + jsonArray.getJSONObject(position).getString("minutes") + " " + context.getResources().getString(R.string.minutes));
                     }else{
-                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " "+context.getResources().getString(R.string.hour)+" " + jsonArray.getJSONObject(position).getString("minutes")+" " + context.getResources().getString(R.string.minutes));
+                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " " + context.getResources().getString(R.string.hour) + " & " + jsonArray.getJSONObject(position).getString("minutes") + " " + context.getResources().getString(R.string.minutes));
                     }
                 }
 
                 holder.txtTitle.setText(jsonArray.getJSONObject(position).getString("name"));
-                holder.tvPrice.setText("€" + jsonArray.getJSONObject(position).getString("price"));
+                holder.tvPrice.setText("€" + Utils.getFormatedDouble(jsonArray.getJSONObject(position).getString("price")));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -144,9 +144,9 @@ public class EmployeeServicesAdapter extends RecyclerView.Adapter<EmployeeServic
             else
                 holder.btnSelect.setVisibility(View.GONE);
 
-                holder.txt_time.setText(salonServices.get(position).getHour() + " hour " + salonServices.get(position).getMinutes() + " minutes");
-                holder.txtTitle.setText(salonServices.get(position).getServiceName());
-                holder.tvPrice.setText("€" + salonServices.get(position).getServicePrice());
+            holder.txt_time.setText(salonServices.get(position).getHour() + " " + context.getResources().getString(R.string.hour) + " & " + salonServices.get(position).getMinutes() + " " + context.getResources().getString(R.string.minutes));
+            holder.txtTitle.setText(salonServices.get(position).getServiceName());
+            holder.tvPrice.setText("€" + Utils.getFormatedDouble(salonServices.get(position).getServicePrice()));
 
         }
         }
