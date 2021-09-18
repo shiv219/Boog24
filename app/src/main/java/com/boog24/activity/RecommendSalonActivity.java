@@ -115,10 +115,10 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
 
                 } else if (i == 1) {
                     speak = "yes";
-                    binding.edtSpeak.setText("Yes");
+                    binding.edtSpeak.setText(getString(R.string.yes));
                 } else {
                     speak = "no";
-                    binding.edtSpeak.setText("No");
+                    binding.edtSpeak.setText(getString(R.string.no));
                 }
 
             }
@@ -215,8 +215,8 @@ public class RecommendSalonActivity extends BaseActivity implements IGetCityView
         List<String> userList3 = new ArrayList<>();
 //        EmployeeDatum user3 = new EmployeeDatum(getResources().getString(R.string.did_you_speak),"-1");
         userList3.add(getResources().getString(R.string.did_you_informed));
-        userList3.add("Yes");
-        userList3.add("No");
+        userList3.add(getString(R.string.yes));
+        userList3.add(getString(R.string.no));
 
         ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, userList3);
         dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

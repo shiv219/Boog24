@@ -47,7 +47,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
 
 
-        holder.tvTime.setText(notificationList.get(position).getNotificationTime());
         holder.tvTitle.setText(notificationList.get(position).getNotificationMessage());
         Glide.with(context).load(notificationList.get(position).getNotificationImage()).into(holder.image);
 
@@ -74,11 +73,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTime,tvTitle;
+        TextView tvTitle;
         CircleImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTime = itemView.findViewById(R.id.tvTime);
             image = itemView.findViewById(R.id.image);
             tvTitle = itemView.findViewById(R.id.tvTitle);
         }

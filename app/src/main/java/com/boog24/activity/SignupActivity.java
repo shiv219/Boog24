@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +21,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 
 import com.boog24.R;
+import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivitySignupBinding;
 import com.boog24.extra.BaseActivity;
 import com.boog24.extra.NetworkAlertUtility;
+import com.boog24.extra.Utils;
 import com.boog24.modals.CommonOffset;
 import com.boog24.presenter.GetCommonDataPresenter;
 import com.boog24.util.DialogUtils;
 import com.boog24.util.countryCode.CountryCodeDialog;
 import com.boog24.view.ICommonView;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,14 +52,13 @@ public class SignupActivity extends BaseActivity implements ICommonView {
 
         getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
-
+        setTermsString();
         binding.etPassword.setOnFocusChangeListener((v, hasFocus) -> {
             if (!dialogShown) {
                 DialogUtils.showMszDialog(SignupActivity.this, getResources().getString(R.string.pls_enter_validate_password));
                 dialogShown = true;
             }
         });
-
 
         binding.btnLogin.setOnClickListener(view -> {
             if (binding.etFirstName.getText().toString().equalsIgnoreCase("")) {
@@ -148,13 +154,41 @@ public class SignupActivity extends BaseActivity implements ICommonView {
         });
     }
 
+    private void setTermsString() {
+        SpannableString ss;
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                Intent intent4 = new Intent(SignupActivity.this, AboutUsActivity.class);
+                intent4.putExtra("what", "agb");
+                startActivity(intent4);
+//                startActivity(new Intent(MyActivity.this, NextActivity.class));
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+        if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("gr"))
+            ss = Utils.setHighLightedString(clickableSpan, this, getString(R.string.terms_and_conditions), 23, 26);
+        else {
+            String str = getString(R.string.terms_and_conditions);
+            ss = Utils.setHighLightedString(clickableSpan, this, str, 18, str.length() - 1);
+        }
+        binding.tvTerms.setText(ss);
+        binding.tvTerms.setMovementMethod(LinkMovementMethod.getInstance());
+//        binding.tvTerms.setHighlightColor(Color.TRANSPARENT);
+
+    }
+
     public boolean isValidPassword(final String password) {
 
         Pattern pattern;
         Matcher matcher;
 
-//        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
-//        final String PASSWORD_PATTERN = "^(?=.{7,})(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+!=<>{}()|;:.,~?-]).*$";
         final String PASSWORD_PATTERN = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#$%^&+!=<>{}()|;:.,~?-]).{8,}$";
 
         pattern = Pattern.compile(PASSWORD_PATTERN);

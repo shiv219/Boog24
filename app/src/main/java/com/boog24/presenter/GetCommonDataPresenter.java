@@ -24,6 +24,31 @@ import retrofit2.Response;
 public class GetCommonDataPresenter extends BasePresenter<ICommonView> {
 
 
+    public void changeLanguageApi(final Activity activity) {
+        getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
+        MyApplication.getInstance()
+                .getApiService()
+                .changeLanguage(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey, ""), Prefs.getString(Constants.SharedPreferences_Langauge, ""), Prefs.getString(Constants.SharedPreferences_Langauge, "").equals("en") ? "english" : "german")
+                .enqueue(new Callback<CommonOffset>() {
+                    @Override
+                    public void onResponse(Call<CommonOffset> call, Response<CommonOffset> response) {
+                        getView().enableLoadingBar(activity, false, null);
+                        getView().onGetDetail(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<CommonOffset> call, Throwable t) {
+                        getView().enableLoadingBar(activity, false, null);
+                        try {
+                            t.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        getView().onError(null);
+                    }
+                });
+    }
+
     public void userSignin(final Activity activity, String deviceid, String emailid, String password) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
         MyApplication.getInstance()

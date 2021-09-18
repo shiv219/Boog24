@@ -257,7 +257,7 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
                         NetworkAlertUtility.showNetworkFailureAlert(SalonListingActivity.this);
                     }
                 } else {
-                    Toast.makeText(this, getResources().getString(R.string.pls_enter_something), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getResources().getString(R.string.salon_treatment), Toast.LENGTH_SHORT).show();
                 }
 
                 break;

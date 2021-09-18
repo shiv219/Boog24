@@ -72,9 +72,9 @@ public class EmployeeServicesAdapter extends RecyclerView.Adapter<EmployeeServic
                 }else{
                     int hour = (jsonArray.getJSONObject(position).getInt("hour"));
                     if(hour > 1){
-                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " " + context.getResources().getString(R.string.hours) + " & " + jsonArray.getJSONObject(position).getString("minutes") + " " + context.getResources().getString(R.string.minutes));
+                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " " + context.getResources().getString(R.string.hour) + " " + jsonArray.getJSONObject(position).getString("minutes") + " " + context.getResources().getString(R.string.minutes));
                     }else{
-                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " " + context.getResources().getString(R.string.hour) + " & " + jsonArray.getJSONObject(position).getString("minutes") + " " + context.getResources().getString(R.string.minutes));
+                        holder.txt_time.setText(jsonArray.getJSONObject(position).getString("hour") + " " + context.getResources().getString(R.string.hour) + " " + jsonArray.getJSONObject(position).getString("minutes") + " " + context.getResources().getString(R.string.minutes));
                     }
                 }
 
@@ -144,7 +144,7 @@ public class EmployeeServicesAdapter extends RecyclerView.Adapter<EmployeeServic
             else
                 holder.btnSelect.setVisibility(View.GONE);
 
-            holder.txt_time.setText(salonServices.get(position).getHour() + " " + context.getResources().getString(R.string.hour) + " & " + salonServices.get(position).getMinutes() + " " + context.getResources().getString(R.string.minutes));
+            holder.txt_time.setText(salonServices.get(position).getHour() + " " + context.getResources().getString(R.string.hour) + " " + salonServices.get(position).getMinutes() + " " + context.getResources().getString(R.string.minutes));
             holder.txtTitle.setText(salonServices.get(position).getServiceName());
             holder.tvPrice.setText("€" + Utils.getFormatedDouble(salonServices.get(position).getServicePrice()));
 

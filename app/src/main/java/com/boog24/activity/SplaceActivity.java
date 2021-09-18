@@ -25,16 +25,23 @@ import java.util.Locale;
 
 public class SplaceActivity extends BaseActivity {
 
+    private static final int MY_REQUEST_CODE = 1;
     ActivitySplaceBinding binding;
     private static int SPLASH_TIME_OUT = 3000;
 
     private BiometricPrompt biometricPrompt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         changeStatusBarColor(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splace);
         binding.setActivity(this);
+        init();
+    }
+
+    public void init() {
         biometricPrompt = new BiometricAuth().createBiometricPrompt(this, new AuthSuccess() {
             @Override
             public void onSuccess() {
@@ -82,7 +89,6 @@ public class SplaceActivity extends BaseActivity {
             }
         }, SPLASH_TIME_OUT);
     }
-
     private void CheckUserIsLoginOrNot() {
         if (Prefs.getString(Constants.SharedPreferences_loginKey, "").trim().equals("")) {
             Intent i = new Intent(SplaceActivity.this, SelectLanguageActivity.class);
@@ -128,4 +134,5 @@ public class SplaceActivity extends BaseActivity {
         void onFailure();
         void OnError();
     }
+
 }

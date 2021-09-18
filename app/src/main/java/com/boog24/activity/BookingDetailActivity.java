@@ -96,7 +96,7 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
             binding.tvUpdateBooking.setVisibility(View.GONE);
             binding.tvCancel.setVisibility(View.VISIBLE);
         }
-        if (pre != null) {
+        if (pre != null || type.equalsIgnoreCase("cancelled") || type.equalsIgnoreCase("completed")) {
             binding.tvCancel.setVisibility(View.GONE);
 
         }
@@ -127,9 +127,9 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
             binding.tvDate.setText(Utils.convertDateTime(response.getBookingDetails().getAppointmentDate()));
             binding.tvAddress.setText(response.getBookingDetails().getSalon_address());
             binding.tvAmount.setText("€" + Utils.getFormatedDouble(response.getBookingDetails().getTotalAmount()));
-            binding.tvWorkerName.setText("Worker Name :" + response.getBookingDetails().getWorkerName());
+            binding.tvWorkerName.setText(getString(R.string.served_by) + " " + response.getBookingDetails().getWorkerName());
             if (response.getBookingDetails().isFeedbackAdded()) {
-                binding.tvAdd.setVisibility(View.GONE);
+//                binding.tvAdd.setVisibility(View.GONE);
             }
             EmployeeServicesAdapter headerAdapter = new EmployeeServicesAdapter(this, response.getBookingDetails().getSalonServices(), "booking");
             binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -273,7 +273,7 @@ public class BookingDetailActivity extends BaseActivity implements View.OnClickL
                     intent.putExtra("from", from);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(this, "Please Select at least one Service", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.pls_select_at_least_one_service), Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

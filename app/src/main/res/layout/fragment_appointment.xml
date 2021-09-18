@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:vFont="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="activity"
-            type="com.boog24.fragment.AppointmentFragment"/>
+            type="com.boog24.fragment.AppointmentFragment" />
+
         <variable
             name="userid"
             type="String" />
     </data>
-
 
 
     <RelativeLayout
@@ -111,6 +112,7 @@
                     app:tabIndicatorHeight="2dp"
                     app:tabTextColor="@color/blackish"
                     app:tabSelectedTextColor="@color/colorPrimary"
+                    app:tabTextAppearance="@style/MyCustomTabTextAppearance"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
                 <!-- View pager to swipe views -->

@@ -1,14 +1,14 @@
 package com.boog24.activity;
 
-import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.ViewPager;
 
 import com.boog24.R;
 import com.boog24.adapter.MainViewPagerAdapter;
@@ -18,6 +18,7 @@ import com.boog24.fragment.AppointmentFragment;
 import com.boog24.fragment.HomeFragment;
 import com.boog24.fragment.MoreFragment;
 import com.boog24.fragment.ProfileFragment;
+import com.boog24.presenter.GetCommonDataPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,11 +32,12 @@ public class MainActivity extends BaseActivity {
     ProfileFragment profileFragment;
     MoreFragment moreFragment;
     public ViewPager viewPager;
-
+    GetCommonDataPresenter getCommonDataPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        changeStatusBarColor(this);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setActivity(this);
 //        if (Build.VERSION.SDK_INT >= 21) {
@@ -51,6 +53,7 @@ public class MainActivity extends BaseActivity {
         BottomNavigationItemView itemView = (BottomNavigationItemView) v;
 
         binding.navigation.setSelectedItemId(R.id.navigation_home);
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

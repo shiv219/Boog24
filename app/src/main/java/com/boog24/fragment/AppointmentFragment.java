@@ -1,17 +1,20 @@
 package com.boog24.fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.core.widget.TextViewCompat;
+import androidx.databinding.DataBindingUtil;
 
 import com.boog24.R;
 import com.boog24.adapter.BookingPager;
 import com.boog24.databinding.FragmentAppointmentBinding;
 import com.boog24.extra.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import androidx.databinding.DataBindingUtil;
 
 public class AppointmentFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
@@ -23,10 +26,9 @@ public class AppointmentFragment extends BaseFragment implements TabLayout.OnTab
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 
-            if(getActivity() != null)
-            {
+            if (getActivity() != null) {
                 init();
-            }else {
+            } else {
 
             }
 
@@ -41,21 +43,26 @@ public class AppointmentFragment extends BaseFragment implements TabLayout.OnTab
         View v = binding.getRoot();
 
 
-
-
-
         return v;
     }
 
 
-    private void init()
-    {
-        if(binding.tabLayout.getTabCount() == 0)
-        {
-            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.upcoming)));
-            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.completed)));
-            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.cancelled)));
-            binding.tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+    private TextView createCustomFontTextViewForTab(String title) {
+        TextView customFontTextView = new TextView(getActivity());
+        customFontTextView.setGravity(Gravity.CENTER);
+        customFontTextView.setText(title);
+        TextViewCompat.setTextAppearance(customFontTextView, R.style.MyTitleStyle);
+        return customFontTextView;
+    }
+
+    private void init() {
+        if (binding.tabLayout.getTabCount() == 0) {
+//            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.upcoming)));
+//            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.completed)));
+//            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.cancelled)));
+            binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(createCustomFontTextViewForTab(getString(R.string.upcoming))));
+            binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(createCustomFontTextViewForTab(getString(R.string.completed))));
+            binding.tabLayout.addTab(binding.tabLayout.newTab().setCustomView(createCustomFontTextViewForTab(getString(R.string.cancelled))));
 
             //Creating our pager adapter
             BookingPager adapter = new BookingPager(getActivity().getSupportFragmentManager(), binding.tabLayout.getTabCount());

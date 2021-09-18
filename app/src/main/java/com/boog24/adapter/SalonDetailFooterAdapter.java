@@ -47,7 +47,7 @@ public class SalonDetailFooterAdapter extends RecyclerView.Adapter<SalonDetailFo
 
 
         holder.txtTitle.setText(services.get(position).getServiceName());
-        holder.txt_time.setText(services.get(position).getHour() + " " + context.getResources().getString(R.string.hour) + " & " + services.get(position).getMinutes() + " " + context.getResources().getString(R.string.minutes));
+        holder.txt_time.setText(services.get(position).getHour() + " " + context.getResources().getString(R.string.hour) + " " + services.get(position).getMinutes() + " " + context.getResources().getString(R.string.minutes));
         holder.tvPrice.setText("€" + Utils.getFormatedDouble(services.get(position).getServicePrice()));
 
 

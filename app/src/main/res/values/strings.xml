@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Booq24</string>
+    <string name="app_name">booq24</string>
 
 
     <string name="no_internet">No Internet</string>
@@ -37,8 +37,7 @@
     <string name="first_name">First Name*</string>
     <string name="phone_number">Phone Number</string>
     <string name="phone_number_asstrik">Phone Number*</string>
-    <string name="you_accept_our">Yes, I accept the</string>
-    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="terms_and_conditions">Yes, I accept the Terms and Conditions</string>
     <string name="agree_to_receive_email_for_offer">Agree to receive email for offer</string>
     <string name="do_have_an_account">Do have an account?</string>
     <string name="forgot_password">Forgot Password</string>
@@ -54,7 +53,7 @@
     <string name="completed">Completed</string>
     <string name="cancelled">Cancelled</string>
     <string name="book_appointment">Book Appointment</string>
-    <string name="pls_enter_email">Please Enter Email Address</string>
+    <string name="pls_enter_email">Please enter your email address</string>
     <string name="pls_enter_password">Please Enter Password</string>
     <string name="pls_enter_firstname">Please Enter First Name</string>
     <string name="pls_enter_lastname">Please Enter Last Name</string>
@@ -84,7 +83,7 @@
     <string name="total_amount">Total Amount</string>
     <string name="pls_selectdatetime">Please select Date and Time</string>
     <string name="rate_your_experience">Rate your Experience</string>
-    <string name="write_your_feedbak">Write your feedback</string>
+    <string name="write_your_feedbak">Please share your feedback with us</string>
     <string name="add_feedback">Add feedback</string>
     <string name="emailsemi">Email:</string>
     <string name="phone_number_semi">Phone Number:</string>
@@ -94,7 +93,7 @@
     <string name="start">Start</string>
     <string name="salons">Saloons</string>
     <string name="pls_accept_terms">Please accept terms and conditions</string>
-    <string name="hour">hour</string>
+    <string name="hour">h</string>
     <string name="your_gps">Your GPS seems to be disabled, do you want to enable it?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -104,6 +103,7 @@
     <string name="payment_in_the_salon">Payment in the salon</string>
     <string name="your_appointment">Your appointment</string>
     <string name="search">Search</string>
+    <string name="salon_treatment">Salon or Treatment</string>
     <string name="map">Map</string>
     <string name="current_location">Current Location</string>
     <string name="using_gps">Using GPS</string>
@@ -114,8 +114,8 @@
     <string name="logout">Logout</string>
     <string name="salon_info">Salon Info</string>
     <string name="rating_amp_review"><![CDATA[Rating & Review]]></string>
-    <string name="minutes">minutes</string>
-    <string name="hours">hours</string>
+    <string name="minutes">min</string>
+    <string name="hours">h</string>
     <string name="invalid_time">Booking time should be higher than 1 hour from current time</string>
     <string name="no_employee">No Employee Available</string>
     <string name="recommend_salon">Recommend a Salon</string>
@@ -178,4 +178,5 @@
     <string name="please_give_rating_first">Please select at least one star for your rating</string>
     <string name="salon_may_confirm_your_request"><font color='#616161'>*</font>If you do not receive a booking confirmation immediately, the Salon may need to confirm your request.</string>
     <string name="pls_select_country">Please select country</string>
+    <string name="served_by">Served by:</string>
 </resources>

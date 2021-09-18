@@ -153,6 +153,7 @@
                         android:textColor="@color/black"
                         android:cursorVisible="false"
                         android:focusable="false"
+                        android:text="+49"
                         android:backgroundTint="@color/black"
                         android:fontFamily="@font/proximanova_regular" />
 
@@ -348,25 +349,14 @@
                     android:text=""/>
 
                 <TextView
+                    android:id="@+id/tvTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/proximanova_regular"
                     android:gravity="center"
-                    android:layout_gravity="center"
-                    android:text="@string/you_accept_our"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dimen_12dp" />
-
-                <TextView
-                    android:id="@+id/term"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanova_regular"
-                    android:gravity="center"
-                    android:layout_marginLeft="2dp"
                     android:layout_gravity="center"
                     android:text="@string/terms_and_conditions"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/dimen_12dp" />
 
 

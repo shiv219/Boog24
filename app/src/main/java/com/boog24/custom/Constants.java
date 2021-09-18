@@ -10,9 +10,11 @@ import androidx.core.app.ActivityCompat;
 
 public class Constants {
     public static final String MEDIA_PREF = "Boog24";
-    public static final long SPLASH_TIME=2500;
-    public static final String DEVICE_TYPE="0";
-    public static final String BASE_URL = "http://142.4.6.224/~cp/boog24/Userapi/";
+    public static final long SPLASH_TIME = 2500;
+    public static final String DEVICE_TYPE = "0";
+    //    public static final String BASE_URL = "http://142.4.6.224/~cp/boog24/Userapi/";
+    public static final String BASE_URL = "https://booq24.com/Userapi/";
+    public static final String BASE_WEB_URL = "https://booq24.com/";
     public static final String ACCESS_TOKEN = "boog2412g549";
     public static String SharedPreferences_UserToken = "user_tokens";
     public static final String PROFILE_DATA = "profile_data";
@@ -21,8 +23,8 @@ public class Constants {
     public static final String SharedPreferences_Id = "id";
     public static final String SharedPreferences_country_code = "country_code";
     public static final String SharedPreferences_FirstName = "firstName";
-    public static final String SharedPreferences_Gender= "gender";
-    public static final String SharedPreferences_LastName= "lastName";
+    public static final String SharedPreferences_Gender = "gender";
+    public static final String SharedPreferences_LastName = "lastName";
     public static final String SharedPreferences_Langauge= "langaugae";
     public static final String SharedPreferences_Email = "emailid";
     public static final String SharedPreferences_Mobile = "mobileno";

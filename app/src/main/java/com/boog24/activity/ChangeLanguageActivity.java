@@ -1,6 +1,7 @@
 package com.boog24.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,26 +14,31 @@ import com.boog24.R;
 import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivityChangeLanguageBinding;
 import com.boog24.extra.BaseActivity;
+import com.boog24.modals.CommonOffset;
+import com.boog24.presenter.GetCommonDataPresenter;
+import com.boog24.view.ICommonView;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.Locale;
 
-public class ChangeLanguageActivity  extends BaseActivity {
+public class ChangeLanguageActivity extends BaseActivity implements ICommonView {
 
     ActivityChangeLanguageBinding binding;
     String selected = "de";
+    GetCommonDataPresenter getCommonDataPresenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_change_language);
         binding.setActivity(this);
 
-        selected= Prefs.getString(Constants.SharedPreferences_Langauge,"");
+        selected = Prefs.getString(Constants.SharedPreferences_Langauge, "");
 
-        if (selected.equalsIgnoreCase("en")){
+        if (selected.equalsIgnoreCase("en")) {
             binding.rltGerman.setBackgroundColor(getResources().getColor(R.color.white));
             binding.rltEng.setBackground(getResources().getDrawable(R.drawable.rounded_border_green));
-        }else{
+        } else {
             binding.rltEng.setBackgroundColor(getResources().getColor(R.color.white));
             binding.rltGerman.setBackground(getResources().getDrawable(R.drawable.rounded_border_green));
         }
@@ -42,6 +48,10 @@ public class ChangeLanguageActivity  extends BaseActivity {
                 finish();
             }
         });
+        getCommonDataPresenter = new GetCommonDataPresenter();
+        getCommonDataPresenter.setView(this);
+
+
     }
 
 
@@ -51,19 +61,17 @@ public class ChangeLanguageActivity  extends BaseActivity {
             case R.id.btnNext:
 
                 if (selected.equalsIgnoreCase("en"))
-                Prefs.putString(Constants.SharedPreferences_Langauge,"en");
+                    Prefs.putString(Constants.SharedPreferences_Langauge, "en");
                 else
-                Prefs.putString(Constants.SharedPreferences_Langauge,"gr");
-
-                setLocale(selected.equals("en") ? selected : "de");
-//                Intent i = new Intent(SelectLanguageActivity.this, Splas.class);
-//                startActivity(i);
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                finish();
+                    Prefs.putString(Constants.SharedPreferences_Langauge, "gr");
+                if (!Prefs.getString(Constants.SharedPreferences_loginKey, "").equals(""))
+                    getCommonDataPresenter.changeLanguageApi(this);
+                else
+                    setLocale(selected.equals("en") ? selected : "de");
                 break;
 
             case R.id.rltEng:
-                selected="en";
+                selected = "en";
 //                setLocale("en");
                 binding.rltGerman.setBackgroundColor(getResources().getColor(R.color.white));
                 binding.rltEng.setBackground(getResources().getDrawable(R.drawable.rounded_border_green));
@@ -91,7 +99,21 @@ public class ChangeLanguageActivity  extends BaseActivity {
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
 
-        startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
+    }
+
+    @Override
+    public void onGetDetail(CommonOffset response) {
+        if (response.getStatus() == 200) {
+            setLocale(selected.equals("en") ? selected : "de");
+        } else {
+            windowPopUp(this, response.getMessage());
+        }
+    }
+
+    @Override
+    public Context getContext() {
+        return null;
     }
 }

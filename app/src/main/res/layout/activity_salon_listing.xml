@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/proximanova_regular"
-                    android:hint="@string/search"
+                    android:hint="@string/salon_treatment"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"

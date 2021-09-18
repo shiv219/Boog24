@@ -42,7 +42,7 @@ public class ConfirmAppointmentActivity extends BaseActivity {
         binding.tvId.setText(getIntent().getStringExtra("bookingId"));
         binding.tvName.setText(getIntent().getStringExtra("salonName"));
         binding.tvAddress.setText(getIntent().getStringExtra("address"));
-        binding.tvDate.setText(getIntent().getStringExtra("date"));
+        binding.tvDate.setText(Utils.convertDateTime(getIntent().getStringExtra("date")));
         binding.tvAmount.setText("€" + Utils.getFormatedDouble(getIntent().getStringExtra("amount")));
 
         try {

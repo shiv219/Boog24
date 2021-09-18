@@ -54,7 +54,7 @@ public class UpcomingAdapter extends RecyclerView.Adapter<UpcomingAdapter.ViewHo
         Glide.with(context).load(dataList.get(position).getSalonImage()).into(holder.ivSubCatItem);
         holder.tvTitle.setText(dataList.get(position).getSalonName());
         holder.tvAddress.setText(Utils.convertDate(dataList.get(position).getAppointmentDate()));
-        holder.tvRating.setText("Worker Name :" + dataList.get(position).getWorkerName());
+        holder.tvRating.setText(context.getString(R.string.served_by) + dataList.get(position).getWorkerName());
 //        holder.tvTotalRating.setText("("+saloonData.get(position).getSaloonRatingsUsers()+")");
 //        holder.ratingBar.setRating((int) Float.parseFloat(saloonData.get(position).getSaloonRatings()));
 

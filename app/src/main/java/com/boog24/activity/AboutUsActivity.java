@@ -6,14 +6,14 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+
 import com.boog24.R;
 import com.boog24.custom.Constants;
 import com.boog24.databinding.ActivityAboutusBinding;
 import com.boog24.extra.BaseActivity;
 import com.pixplicity.easyprefs.library.Prefs;
-
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 
 public class AboutUsActivity extends BaseActivity {
 
@@ -55,33 +55,33 @@ public class AboutUsActivity extends BaseActivity {
         if (getIntent().getStringExtra("what").equalsIgnoreCase("about")) {
 
             if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("en"))
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/about-us-view/en"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "about-us-view/en"); // http://dev.w3ondemand.com/rydon/
             else
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/about-us-view/gr"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "about-us-view/gr"); // http://dev.w3ondemand.com/rydon/
         }else if (getIntent().getStringExtra("what").equalsIgnoreCase("impessum")) {
 
             if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("en"))
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/impessum-view/en"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "impessum-view/en"); // http://dev.w3ondemand.com/rydon/
             else
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/impessum-view/gr"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "impessum-view/gr"); // http://dev.w3ondemand.com/rydon/
         }else if (getIntent().getStringExtra("what").equalsIgnoreCase("agb")) {
 
             if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("en"))
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/agb-view/en"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "agb-view/en"); // http://dev.w3ondemand.com/rydon/
             else
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/agb-view/gr"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "agb-view/gr"); // http://dev.w3ondemand.com/rydon/
         }else if (getIntent().getStringExtra("what").equalsIgnoreCase("date")) {
 
             if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("en"))
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/datenschutz-view/en"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "datenschutz-view/en"); // http://dev.w3ondemand.com/rydon/
             else
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/datenschutz-view/gr"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "datenschutz-view/gr"); // http://dev.w3ondemand.com/rydon/
         }else if (getIntent().getStringExtra("what").equalsIgnoreCase("user")) {
 
             if (Prefs.getString(Constants.SharedPreferences_Langauge, "").equalsIgnoreCase("en"))
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/user-policy/en"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "user-policy/en"); // http://dev.w3ondemand.com/rydon/
             else
-                webView.loadUrl("http://142.4.6.224/~cp/boog24/user-policy/gr"); // http://dev.w3ondemand.com/rydon/
+                webView.loadUrl(Constants.BASE_WEB_URL + "user-policy/gr"); // http://dev.w3ondemand.com/rydon/
         }
 
     }

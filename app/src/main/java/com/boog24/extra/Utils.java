@@ -15,13 +15,18 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.StrictMode;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.boog24.R;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
@@ -42,6 +47,13 @@ public class Utils {
         return new DecimalFormat("#.00").format(Double.parseDouble(amount));
     }
 
+    public static SpannableString setHighLightedString(ClickableSpan clickableSpan, Context context, String msz, int start, int end) {
+
+        SpannableString str = new SpannableString(msz);
+        str.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary)), start, end, 0);
+        str.setSpan(clickableSpan, start, end, 0);
+        return str;
+    }
 
     public static String convertDateTime(String paramString) {
         try {
@@ -53,6 +65,7 @@ public class Utils {
         }
         return "";
     }
+
 
     public static String convertDate(String paramString) {
         try {

@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:494255599532:android:bda3b0c5c79c8d4164d409",
+        "mobilesdk_app_id": "1:494255599532:android:e8251b779ad1151564d409",
         "android_client_info": {
-          "package_name": "com.boog24"
+          "package_name": "com.booq24"
         }
       },
       "oauth_client": [

@@ -287,6 +287,16 @@ public interface ApiService {
 
     );
 
+    @Multipart
+    @POST("change-language")
+    Call<CommonOffset> changeLanguage(@Header("Access-Token") String access_token,
+                                      @Header("Login-Key") String Login_Key,
+                                      @Header("Lang") String Lang,
+                                      @Part("language") String language
+
+
+    );
+
     @POST("getNotificationList")
     Call<com.boog24.modals.getNotification.Result> getNotificationList(@Header("Access-Token") String access_token,
                                                                        @Header("Login-Key") String Login_Key,
@@ -295,7 +305,7 @@ public interface ApiService {
 
     @POST("delete_account")
     Call<CommonOffset> deleteAccount(@Header("Access-Token") String access_token,
-                               @Header("Login-Key") String Login_Key,
+                                     @Header("Login-Key") String Login_Key,
                                @Header("Lang") String Lang
     );
 }

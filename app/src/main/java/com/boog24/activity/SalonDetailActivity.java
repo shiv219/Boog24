@@ -166,7 +166,7 @@ public class SalonDetailActivity extends BaseActivity implements IGetSaloonDetai
                         intent.putExtra("from", "");
                         startActivity(intent);
                     } else {
-                        Toast.makeText(SalonDetailActivity.this, "Please Select at least one Service", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SalonDetailActivity.this, getString(R.string.pls_select_at_least_one_service), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
