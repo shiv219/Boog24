@@ -308,18 +308,18 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_44dp"
                     android:layout_below="@id/recyclerView"
                     android:layout_marginTop="@dimen/dimen_12dp"
-                    app:tabMode="fixed"
-                    app:tabIndicatorFullWidth="true"
-                    app:tabTextColor="@color/black"
-                    app:tabSelectedTextColor="@color/colorAccent"
-                    app:tabRippleColor="@color/transparent"
                     app:tabIndicatorColor="@color/colorAccent"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabMode="fixed"
+                    app:tabRippleColor="@color/transparent"
+                    app:tabSelectedTextColor="@color/colorAccent"
                     app:tabTextAppearance="@style/MyCustomTextAppearance"
-                    app:tabUnboundedRipple="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_44dp">
+                    app:tabTextColor="@color/black"
+                    app:tabUnboundedRipple="false">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"

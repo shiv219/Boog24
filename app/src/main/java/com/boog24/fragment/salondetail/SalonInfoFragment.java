@@ -1,6 +1,7 @@
 package com.boog24.fragment.salondetail;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class SalonInfoFragment extends BaseFragment {
         View v = binding.getRoot();
 
         binding.tvname.setText(name);
-        binding.tvdetail.setText(about);
+        binding.tvdetail.setText(Html.fromHtml(about));
         setTimeSlots();
         return v;
     }
