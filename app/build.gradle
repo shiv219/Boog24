@@ -10,8 +10,8 @@ android {
         applicationId "com.booq24"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.0.3"
+        versionCode 7
+        versionName "1.0.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Boog24")
         multiDexEnabled true

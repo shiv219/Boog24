@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.boog24.R;
+import com.boog24.extra.Utils;
 import com.boog24.modals.getSaloonDetail.Review;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
 
@@ -40,7 +41,7 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
         holder.ratingBar.setRating(Float.parseFloat(reviews.get(position).getStar()));
         holder.tvComment.setText(reviews.get(position).getDescription());
         holder.tvName.setText(reviews.get(position).getUserName());
-        holder.tvtime.setText(reviews.get(position).getCreatedOn().substring(0,11));
+        holder.tvtime.setText(Utils.convertDate(reviews.get(position).getCreatedOn().substring(0, 11)));
 
     }
 

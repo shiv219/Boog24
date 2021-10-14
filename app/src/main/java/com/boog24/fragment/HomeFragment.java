@@ -18,12 +18,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.PagerAdapter;
+
 import com.boog24.R;
 import com.boog24.activity.AllCategoryActivity;
 import com.boog24.activity.LoginActivity;
 import com.boog24.activity.SalonListingActivity;
 import com.boog24.activity.SearchLocationActivity;
-import com.boog24.activity.SplaceActivity;
 import com.boog24.adapter.HomeCategoriesAdapter;
 import com.boog24.adapter.HomeTopRatedAdapter;
 import com.boog24.adapter.ImgePagerAdapter;
@@ -47,15 +54,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.PagerAdapter;
-
-public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View.OnClickListener{
+public class HomeFragment extends BaseFragment implements IGetHomeDataView, View.OnClickListener {
     LocationManager locationManager;
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
@@ -80,6 +79,7 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
         HomeFragment f = new HomeFragment();
         return f;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,12 +92,12 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
         binding.tvSeeAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), AllCategoryActivity.class);
+                Intent intent = new Intent(getActivity(), AllCategoryActivity.class);
                 startActivity(intent);
             }
         });
 
-        getHomeDataPresenter=new GetHomeDataPresenter();
+        getHomeDataPresenter = new GetHomeDataPresenter();
         getHomeDataPresenter.setView(this);
 
         if (NetworkAlertUtility.isConnectingToInternet(getActivity())) {
@@ -106,8 +106,10 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
             NetworkAlertUtility.showNetworkFailureAlert(getActivity());
         }
 
-
-        binding.tvName.setText(Prefs.getString(Constants.SharedPreferences_FirstName,""));
+        if (Prefs.getString(Constants.SharedPreferences_FirstName, "").equals(""))
+            binding.tvName.setText(getString(R.string.guest));
+        else
+            binding.tvName.setText(Prefs.getString(Constants.SharedPreferences_FirstName, ""));
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
@@ -133,13 +135,13 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_search:
-                Intent intent=new Intent(getActivity(), SalonListingActivity.class);
-                intent.putExtra("id","");
+                Intent intent = new Intent(getActivity(), SalonListingActivity.class);
+                intent.putExtra("id", "");
                 startActivity(intent);
                 break;
 
             case R.id.arrowdown:
-                Intent intent1=new Intent(getActivity(), SearchLocationActivity.class);
+                Intent intent1 = new Intent(getActivity(), SearchLocationActivity.class);
                 startActivity(intent1);
                 break;
         }
@@ -147,7 +149,7 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
 
 
     @SuppressLint("MissingPermission")
-    private void getLastLocation(){
+    private void getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
                 mFusedLocationClient.getLastLocation().addOnCompleteListener(
@@ -173,14 +175,14 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
                                         String country = addresses.get(0).getCountryName();
                                         String postalCode = addresses.get(0).getPostalCode();
                                         String knownName = addresses.get(0).getFeatureName();
-                                        Prefs.putString(Constants.SharedPreferences_Address,address);
-                                        binding.tvAddress.setText(Prefs.getString(Constants.SharedPreferences_Address,""));
-                                        Log.e("TAG", "onComplete: CURRENT ADDRESS"+address );
+                                        Prefs.putString(Constants.SharedPreferences_Address, address);
+                                        binding.tvAddress.setText(Prefs.getString(Constants.SharedPreferences_Address, ""));
+                                        Log.e("TAG", "onComplete: CURRENT ADDRESS" + address);
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
 
-                                    Log.e("TAG", "onComplete: "+location.getLatitude() );
+                                    Log.e("TAG", "onComplete: " + location.getLatitude());
 //                                    latTextView.setText(location.getLatitude()+"");
 //                                    lonTextView.setText(location.getLongitude()+"");
                                 }
@@ -199,12 +201,12 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
     @Override
     public void onResume() {
         super.onResume();
-        if (!Prefs.getString(Constants.SharedPreferences_Address,"").equalsIgnoreCase(""))
-        binding.tvAddress.setText(Prefs.getString(Constants.SharedPreferences_Address,""));
+        if (!Prefs.getString(Constants.SharedPreferences_Address, "").equalsIgnoreCase(""))
+            binding.tvAddress.setText(Prefs.getString(Constants.SharedPreferences_Address, ""));
     }
 
     @SuppressLint("MissingPermission")
-    private void requestNewLocationData(){
+    private void requestNewLocationData() {
 
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -240,13 +242,14 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            Log.e("TAG", "onLocationResult: "+mLastLocation.getLatitude() );
+            Log.e("TAG", "onLocationResult: " + mLastLocation.getLatitude());
 //            latTextView.setText(mLastLocation.getLatitude()+"");
 //            lonTextView.setText(mLastLocation.getLongitude()+"");
         }
     };
+
     private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager)getActivity(). getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
                 LocationManager.NETWORK_PROVIDER
         );
@@ -262,7 +265,6 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
             }
         }
     }
-
 
 
     private void buildAlertMessageNoGps() {
@@ -289,31 +291,31 @@ public class HomeFragment extends BaseFragment implements IGetHomeDataView ,View
 
     @Override
     public void onGetDetail(Result response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
 
-            PagerAdapter pagerAdapter = new ImgePagerAdapter(getActivity(),response.getBannerData());
+            PagerAdapter pagerAdapter = new ImgePagerAdapter(getActivity(), response.getBannerData());
             binding.viewPager.setAdapter(pagerAdapter);
             binding.viewPager.setClipToPadding(false);
             // set padding manually, the more you set the padding the more you see of prev & next page
-            binding. viewPager.setPadding(30, 0, 30, 0);
+            binding.viewPager.setPadding(30, 0, 30, 0);
             // sets a margin b/w individual pages to ensure that there is a gap b/w them
-            binding. viewPager.setPageMargin(20);
+            binding.viewPager.setPageMargin(20);
             binding.indicr.setupWithViewPager(binding.viewPager, true);
 
-            HomeCategoriesAdapter homeCategoriesAdapter = new HomeCategoriesAdapter(getActivity(),response.getCategoryData());
+            HomeCategoriesAdapter homeCategoriesAdapter = new HomeCategoriesAdapter(getActivity(), response.getCategoryData());
             binding.rcvCategories.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             binding.rcvCategories.setAdapter(homeCategoriesAdapter);
 
 
-            HomeTopRatedAdapter homeTopRatedAdapter = new HomeTopRatedAdapter(getActivity(),response.getSaloonData());
-            binding.rcvTopRated.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false));
+            HomeTopRatedAdapter homeTopRatedAdapter = new HomeTopRatedAdapter(getActivity(), response.getSaloonData());
+            binding.rcvTopRated.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             binding.rcvTopRated.setAdapter(homeTopRatedAdapter);
 
 
-        }else if (response.getStatus()==406){
+        } else if (response.getStatus() == 406) {
 
             Prefs.clear();
-            startActivity(new Intent(getActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(getActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             getActivity().finish();
         }
     }

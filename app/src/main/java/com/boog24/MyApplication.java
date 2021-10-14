@@ -13,6 +13,11 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.boog24.api.ApiService;
 import com.boog24.api.CustomInterceptor;
 import com.boog24.custom.Constants;
@@ -26,10 +31,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.app.AppCompatDialog;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 import okhttp3.Cache;
 import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
@@ -197,7 +198,10 @@ public class MyApplication extends MultiDexApplication {
 
     public void progressOFF() {
         if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
+            try {
+                progressDialog.dismiss();
+            } catch (Exception ex) {
+            }
         }
     }
 

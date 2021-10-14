@@ -199,19 +199,20 @@ public class SalonListingActivity extends BaseActivity implements IGetSaloonsVie
                 switch (item.getItemId()) {
                     case R.id.mostRated:
                         getSortedList("mostrated");
+                        binding.tvSort.setText(getText(R.string.most_rated));
                         break;
                     case R.id.mostViewed:
                         getSortedList("mostviewed");
-
+                        binding.tvSort.setText(getText(R.string.most_viewed));
                         break;
 
                     case R.id.newListings:
                         getSortedList("newlistings");
-
+                        binding.tvSort.setText(getText(R.string.new_listings));
                         break;
                     case R.id.highRated:
                         getSortedList("highrated");
-
+                        binding.tvSort.setText(getText(R.string.high_rated));
                         break;
 
                 }

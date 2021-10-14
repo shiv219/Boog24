@@ -13,7 +13,7 @@ public class Constants {
     public static final long SPLASH_TIME = 2500;
     public static final String DEVICE_TYPE = "0";
     //    public static final String BASE_URL = "http://142.4.6.224/~cp/boog24/Userapi/";
-    public static final String BASE_URL = "https://booq24.com/Userapi/";
+    public static final String BASE_URL = "https://booq24.com/";
     public static final String BASE_WEB_URL = "https://booq24.com/";
     public static final String ACCESS_TOKEN = "boog2412g549";
     public static String SharedPreferences_UserToken = "user_tokens";

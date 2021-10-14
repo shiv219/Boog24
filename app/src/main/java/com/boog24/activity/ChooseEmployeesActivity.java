@@ -384,7 +384,6 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
 
             more_id = response.getData().getMost_free_employee_id().toString();
             ArrayList<EmployeeDatum> customerTypeDatumArrayList = new ArrayList<>();
-//            customerTypeDatumArrayList.add(new EmployeeDatum(getResources().getString(R.string.select_employee), "-1"));
 
             if (response.getData().getEmployees().size()>0) {
                 for (int i = 0; i < response.getData().getEmployees().size(); i++) {

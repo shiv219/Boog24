@@ -49,6 +49,7 @@
     <string name="appointment">Termin </string>
     <string name="user">Nutzer </string>
     <string name="hello">Hallo,</string>
+    <string name="guest">Guest</string>
     <string name="skip">Überspringen </string>
     <string name="popular_categories">Beliebte Kategorien </string>
     <string name="upcoming">Bevorstehende</string>
@@ -140,7 +141,7 @@
     <string name="pls_enter_first_name">Bitte deinen Vornamen eingeben</string>
     <string name="pls_enter_last_name">Bitte deinen Nachnamen eingeben</string>
     <string name="pls_select_time">Bitte eine Uhrzeit wählen.</string>
-    <string name="next_available_employee">Next Available Employee</string>
+    <string name="next_available_employee">Nächster freier Mitarbeiter</string>
     <string name="zipcode">Postleitzahl</string>
     <string name="book">Verbindlich buchen</string>
     <string name="more">Informieren</string>
@@ -166,7 +167,7 @@
     <string name="authentication">Authentifizierung</string>
 
     <string name="sort_by">Sortieren</string>
-    <string name="high_rated">Hoch bewertet</string>
+    <string name="high_rated">Am besten bewertet</string>
     <string name="new_listings">Neue Einträge</string>
     <string name="most_viewed">Am häufigsten gesehen</string>
     <string name="most_rated">Am meisten bewertet</string>

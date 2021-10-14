@@ -66,7 +66,7 @@ public class ChangeLanguageActivity extends BaseActivity implements ICommonView 
                     Prefs.putString(Constants.SharedPreferences_Langauge, "gr");
                 if (!Prefs.getString(Constants.SharedPreferences_loginKey, "").equals(""))
                     getCommonDataPresenter.changeLanguageApi(this);
-                else
+
                     setLocale(selected.equals("en") ? selected : "de");
                 break;
 
@@ -105,11 +105,11 @@ public class ChangeLanguageActivity extends BaseActivity implements ICommonView 
 
     @Override
     public void onGetDetail(CommonOffset response) {
-        if (response.getStatus() == 200) {
-            setLocale(selected.equals("en") ? selected : "de");
-        } else {
-            windowPopUp(this, response.getMessage());
-        }
+        if (response != null)
+            if (response.getStatus() == 200) {
+            } else {
+                windowPopUp(this, response.getMessage());
+            }
     }
 
     @Override

@@ -58,7 +58,7 @@ public class Utils {
     public static String convertDateTime(String paramString) {
         try {
             Date localDate = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(paramString);
-            String str = new SimpleDateFormat("dd-MM-yyyy   hh:mm").format(localDate);
+            String str = new SimpleDateFormat("dd MMM yyyy   hh:mm").format(localDate);
             return str;
         } catch (Exception localException) {
             localException.printStackTrace();
@@ -70,7 +70,7 @@ public class Utils {
     public static String convertDate(String paramString) {
         try {
             Date localDate = new SimpleDateFormat("yyyy-MM-dd").parse(paramString);
-            String str = new SimpleDateFormat("dd-MM-yyyy").format(localDate);
+            String str = new SimpleDateFormat("dd MMM yyyy").format(localDate);
             return str;
         } catch (Exception localException) {
             localException.printStackTrace();

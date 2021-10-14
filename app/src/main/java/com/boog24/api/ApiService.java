@@ -15,7 +15,7 @@ import retrofit2.http.Part;
 public interface ApiService {
 
     @Multipart
-    @POST("userSignin")
+    @POST("Userapi/userSignin")
     Call<CommonOffset> userSignin(@Header("Access-Token") String access_token,
                                   @Header("Lang") String Lang,
                                   @Part("emailid") String emailid,
@@ -26,7 +26,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("userSignup")
+    @POST("Userapi/userSignup")
     Call<CommonOffset> userSignup(@Header("Access-Token") String access_token,
                                   @Header("Lang") String Lang,
                                   @Part("emailid") String emailid,
@@ -40,34 +40,34 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("forgotPassword")
+    @POST("Userapi/forgotPassword")
     Call<CommonOffset> forgotPassword(@Header("Access-Token") String access_token,
                                       @Header("Lang") String Lang,
                                       @Part("email_id") String emailid
     );
 
-    @POST("getCategories")
+    @POST("Userapi/getCategories")
     Call<CommonOffset> getCategories(@Header("Access-Token") String access_token,
                                      @Header("Login-Key") String Login_Key,
                                      @Header("Lang") String Lang
 
     );
 
-    @POST("logout")
+    @POST("Userapi/logout")
     Call<CommonOffset> logout(@Header("Access-Token") String access_token,
                               @Header("Login-Key") String Login_Key,
                               @Header("Lang") String Lang
 
     );
 
-    @POST("getContactUsDetails")
+    @POST("Userapi/getContactUsDetails")
     Call<CommonOffset> getContactUsDetails(@Header("Access-Token") String access_token,
                                            @Header("Login-Key") String Login_Key,
                                            @Header("Lang") String Lang
 
     );
 
-    @POST("homeScreen")
+    @POST("Userapi/homeScreen")
     Call<Result> homeScreen(@Header("Access-Token") String access_token,
                             @Header("Login-Key") String Login_Key,
                             @Header("Lang") String Lang
@@ -75,7 +75,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("getSaloons")
+    @POST("Userapi/getSaloons")
     Call<com.boog24.modals.getSaloons.Result> getSaloons(@Header("Access-Token") String access_token,
                                                          @Header("Login-Key") String Login_Key,
                                                          @Header("Lang") String Lang,
@@ -90,7 +90,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("getSaloonDetails")
+    @POST("Userapi/getSaloonDetails")
     Call<com.boog24.modals.getSaloonDetail.Result> getSaloonDetails(@Header("Access-Token") String access_token,
                                                                     @Header("Login-Key") String Login_Key,
                                                                     @Header("Lang") String Lang,
@@ -100,14 +100,14 @@ public interface ApiService {
 
 
     @Multipart
-    @POST("getEmployeesList")
+    @POST("Userapi/getEmployeesList")
     Call<com.boog24.modals.employeeList.Result> getEmployeesList(@Header("Access-Token") String access_token,
                                                                  @Header("Lang") String Lang,
                                                                  @Part("salon_id") String salon_id
     );
 
     @Multipart
-    @POST("addToWishlist")
+    @POST("Userapi/addToWishlist")
     Call<com.boog24.modals.addWishlist.Result> addToWishlist(@Header("Access-Token") String access_token,
                                                              @Header("Login-Key") String Login_Key,
                                                              @Header("Lang") String Lang,
@@ -115,7 +115,7 @@ public interface ApiService {
 
     );
 
-    @POST("getWishlist")
+    @POST("Userapi/getWishlist")
     Call<com.boog24.modals.getWishlist.Result> getWishlist(@Header("Access-Token") String access_token,
                                                            @Header("Login-Key") String Login_Key,
                                                            @Header("Lang") String Lang
@@ -123,7 +123,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("updateProfileImage")
+    @POST("Userapi/updateProfileImage")
     Call<CommonOffset> updateProfileImage(
             @Header("Access-Token") String access_token,
             @Header("Login-Key") String Login_Key,
@@ -132,7 +132,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("updateProfile")
+    @POST("Userapi/updateProfile")
     Call<com.boog24.modals.updateProfile.Result> updateProfile(@Header("Access-Token") String access_token,
                                                                @Header("Login-Key") String Login_Key,
                                                                @Header("Lang") String Lang,
@@ -146,7 +146,7 @@ public interface ApiService {
 
 
     @Multipart
-    @POST("bookingAppointment")
+    @POST("Userapi/bookingAppointment")
     Call<com.boog24.modals.bookingAppointment.Result> bookingAppointment(@Header("Access-Token") String access_token,
                                                                          @Header("Login-Key") String Login_Key,
                                                                          @Header("Lang") String Lang,
@@ -165,7 +165,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("updateBookingAppointment")
+    @POST("Userapi/updateBookingAppointment")
     Call<com.boog24.modals.bookingAppointment.Result> updateBookingAppointment(@Header("Access-Token") String access_token,
                                                                                @Header("Login-Key") String Login_Key,
                                                                                @Header("Lang") String Lang,
@@ -187,7 +187,7 @@ public interface ApiService {
 
 
     @Multipart
-    @POST("myBookings")
+    @POST("Userapi/myBookings")
     Call<com.boog24.modals.myBookings.Result> myBookings(@Header("Access-Token") String access_token,
                                                          @Header("Login-Key") String Login_Key,
                                                          @Header("Lang") String Lang,
@@ -196,7 +196,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("addFeedBack")
+    @POST("Userapi/addFeedBack")
     Call<CommonOffset> addFeedBack(@Header("Access-Token") String access_token,
                                    @Header("Login-Key") String Login_Key,
                                    @Header("Lang") String Lang,
@@ -208,7 +208,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("cancelBooking")
+    @POST("Userapi/cancelBooking")
     Call<CommonOffset> cancelBooking(@Header("Access-Token") String access_token,
                                      @Header("Login-Key") String Login_Key,
                                      @Header("Lang") String Lang,
@@ -218,7 +218,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("gatBookingDetails")
+    @POST("Userapi/gatBookingDetails")
     Call<com.boog24.modals.getBookingDetail.Result> gatBookingDetails(@Header("Access-Token") String access_token,
                                                                       @Header("Login-Key") String Login_Key,
                                                                       @Header("Lang") String Lang,
@@ -228,7 +228,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("checkSalonAvailability")
+    @POST("Userapi/checkSalonAvailability")
     Call<CommonOffset> checkSalonAvailability(@Header("Access-Token") String access_token,
                                               @Header("Login-Key") String Login_Key,
                                               @Header("Lang") String Lang,
@@ -239,13 +239,13 @@ public interface ApiService {
 
     );
 
-    @GET("getCitiesList")
+    @GET("Userapi/getCitiesList")
     Call<com.boog24.modals.getCitiesList.Result> getCitiesList(@Header("Access-Token") String access_token,
                                                                @Header("Lang") String Lang
     );
 
     @Multipart
-    @POST("recommend_salon")
+    @POST("Userapi/recommend_salon")
     Call<CommonOffset> recommend_salon(@Header("Access-Token") String access_token,
                                        @Header("Lang") String Lang,
                                        @Part("user_email") String user_email,
@@ -266,7 +266,7 @@ public interface ApiService {
 
 
     @Multipart
-    @POST("getServiceTimeSlots")
+    @POST("Userapi/getServiceTimeSlots")
     Call<com.boog24.modals.getServiceTimeSlots.Result> getServiceTimeSlots(@Header("Access-Token") String access_token,
                                                                            @Header("Login-Key") String Login_Key,
                                                                            @Header("Lang") String Lang,
@@ -278,7 +278,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("changeNotificationStatus")
+    @POST("Userapi/changeNotificationStatus")
     Call<CommonOffset> updateNotificationStatus(@Header("Access-Token") String access_token,
                                                 @Header("Login-Key") String Login_Key,
                                                 @Header("Lang") String Lang,
@@ -288,7 +288,7 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("change-language")
+    @POST("api/profile/change-language")
     Call<CommonOffset> changeLanguage(@Header("Access-Token") String access_token,
                                       @Header("Login-Key") String Login_Key,
                                       @Header("Lang") String Lang,
@@ -297,13 +297,13 @@ public interface ApiService {
 
     );
 
-    @POST("getNotificationList")
+    @POST("Userapi/getNotificationList")
     Call<com.boog24.modals.getNotification.Result> getNotificationList(@Header("Access-Token") String access_token,
                                                                        @Header("Login-Key") String Login_Key,
                                                                        @Header("Lang") String Lang
     );
 
-    @POST("delete_account")
+    @POST("Userapi/delete_account")
     Call<CommonOffset> deleteAccount(@Header("Access-Token") String access_token,
                                      @Header("Login-Key") String Login_Key,
                                @Header("Lang") String Lang
