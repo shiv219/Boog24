@@ -48,8 +48,8 @@
     <string name="home">Startseite </string>
     <string name="appointment">Termin </string>
     <string name="user">Nutzer </string>
-    <string name="hello">Hallo,</string>
-    <string name="guest">Guest</string>
+    <string name="hello">Hallo </string>
+    <string name="guest">Gast</string>
     <string name="skip">Überspringen </string>
     <string name="popular_categories">Beliebte Kategorien </string>
     <string name="upcoming">Bevorstehende</string>
