@@ -184,6 +184,8 @@
     <string name="pls_select_country">Bitte Land auswählen</string>
     <string name="served_by">Bedient von:</string>
     <string name="salon_treatment">Salon oder Behandlung</string>
+    <string name="no_time_slots">Kein Termin verfügbar, bitte wähle ein anderes Datum</string>
+    <string name="prices_may_vary">* Der Preis kann in Abhängigkeit von der tatsächlichen Dauer, dem Materialaufwand oder Sonderwünschen abweichen.</string>
 
 
 </resources>

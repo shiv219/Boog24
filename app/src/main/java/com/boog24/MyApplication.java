@@ -114,7 +114,7 @@ public class MyApplication extends MultiDexApplication {
 
         //init retrofit
         Retrofit retrofit = new Retrofit.Builder().client(okHttpClient)
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();

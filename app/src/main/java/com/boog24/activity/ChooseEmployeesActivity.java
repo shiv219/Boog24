@@ -46,16 +46,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ChooseEmployeesActivity extends BaseActivity implements IGetEmployeeView, ICommonView , IGetTimeSlotsView {
+public class ChooseEmployeesActivity extends BaseActivity implements IGetEmployeeView, ICommonView, IGetTimeSlotsView {
     String salonId;
     String from;
     ActivityChooseEmployessBinding binding;
     SalonDetailActivity salonDetailActivity;
-//    GetEmployeesListPresenter getEmployeesListPresenter;
-    String employeeId="";
+    //    GetEmployeesListPresenter getEmployeesListPresenter;
+    String employeeId = "";
     GetCommonDataPresenter getCommonDataPresenter;
     GetTimeSlotsPresenter getTimeSlotsPresenter;
-    JSONArray serviceIds =new JSONArray();
+    JSONArray serviceIds = new JSONArray();
     String currentDateandTime;
     private Boolean spinnerTouched = false;
     private String more_id;
@@ -77,13 +77,13 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
 //        getEmployeesListPresenter=new GetEmployeesListPresenter();
 //        getEmployeesListPresenter.setView(this);
 
-        getCommonDataPresenter=new GetCommonDataPresenter();
+        getCommonDataPresenter = new GetCommonDataPresenter();
         getCommonDataPresenter.setView(this);
 
         getTimeSlotsPresenter = new GetTimeSlotsPresenter();
         getTimeSlotsPresenter.setView(this);
 
-        setUserType();
+//        setUserType();
         salonId = getIntent().getStringExtra("salonId");
         from = getIntent().getStringExtra("from");
 
@@ -96,25 +96,23 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
         try {
             JSONArray selectedArray = new JSONArray(MyApplication.getInstance().getSession().getData());
 
-            for (int i=0;i<selectedArray.length();i++){
+            for (int i = 0; i < selectedArray.length(); i++) {
                 serviceIds.put(Integer.parseInt(selectedArray.getJSONObject(i).getString("service_id")));
             }
-
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Log.e("TAG", "onCreate:SERVICE IDS "+serviceIds.toString() );
+        Log.e("TAG", "onCreate:SERVICE IDS " + serviceIds.toString());
 
         if (NetworkAlertUtility.isConnectingToInternet(ChooseEmployeesActivity.this)) {
 //            getEmployeesListPresenter.getEmployee(ChooseEmployeesActivity.this,salonId);
-            getTimeSlotsPresenter.getTimeSlots(ChooseEmployeesActivity.this,employeeId,currentDateandTime,salonId,serviceIds.toString());
+            getTimeSlotsPresenter.getTimeSlots(ChooseEmployeesActivity.this, employeeId, currentDateandTime, salonId, serviceIds.toString());
         } else {
             NetworkAlertUtility.showNetworkFailureAlert(ChooseEmployeesActivity.this);
         }
-
 
 
         binding.ProSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -131,7 +129,7 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
                             NetworkAlertUtility.showNetworkFailureAlert(ChooseEmployeesActivity.this);
                         }
                         spinnerTouched = false;
-                    }else{
+                    } else {
                         employeeId = mSelected.getId();
                         binding.etEmployee.setText(mSelected.getEmployeename());
                     }
@@ -175,16 +173,16 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
     @Override
     protected void onResume() {
         super.onResume();
-        JSONArray jsonArray =new JSONArray();
+        JSONArray jsonArray = new JSONArray();
         try {
             if (!MyApplication.getInstance().getSession().getData().isEmpty()) {
                 jsonArray = new JSONArray(MyApplication.getInstance().getSession().getData());
 
                 serviceIds = new JSONArray();
-                float amount=0;
-                for (int i=0;i<jsonArray.length();i++){
+                float amount = 0;
+                for (int i = 0; i < jsonArray.length(); i++) {
                     serviceIds.put(Integer.parseInt(jsonArray.getJSONObject(i).getString("service_id")));
-                    amount= amount+Float.parseFloat(jsonArray.getJSONObject(i).getString("price"));
+                    amount = amount + Float.parseFloat(jsonArray.getJSONObject(i).getString("price"));
                 }
 
                 binding.tvTotalAmount.setText("€" + Utils.getFormatedDouble(String.valueOf(amount)));
@@ -193,7 +191,7 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
                 binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                 binding.recyclerview.setAdapter(headerAdapter);
                 binding.recyclerview.setNestedScrollingEnabled(true);
-            }else{
+            } else {
                 EmployeeServicesAdapter headerAdapter = new EmployeeServicesAdapter(this, jsonArray, "employee");
                 binding.recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                 binding.recyclerview.setAdapter(headerAdapter);
@@ -209,7 +207,7 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
     private void setUserType() {
         // Spinner Drop down elements
         List<EmployeeDatum> userList3 = new ArrayList<>();
-        EmployeeDatum user3 = new EmployeeDatum(getResources().getString(R.string.select_employee),"-1");
+        EmployeeDatum user3 = new EmployeeDatum(getResources().getString(R.string.select_employee), "-1");
         userList3.add(user3);
 
         ArrayAdapter<EmployeeDatum> dataAdapter3 = new ArrayAdapter<EmployeeDatum>(this, android.R.layout.simple_spinner_item, userList3);
@@ -234,16 +232,13 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
                 break;
 
             case R.id.tvContinue:
-                if (binding.etDate.getText().toString().equalsIgnoreCase("")){
+                if (binding.etDate.getText().toString().equalsIgnoreCase("")) {
                     Toast.makeText(ChooseEmployeesActivity.this, R.string.pls_selectdatetime, Toast.LENGTH_SHORT).show();
-                }else if (fromTime.equalsIgnoreCase("")){
+                } else if (fromTime.equalsIgnoreCase("")) {
                     Toast.makeText(ChooseEmployeesActivity.this, R.string.pls_select_time, Toast.LENGTH_SHORT).show();
-                }
-                else if (MyApplication.getInstance().getSession().getData().isEmpty()){
+                } else if (MyApplication.getInstance().getSession().getData().isEmpty()) {
                     Toast.makeText(ChooseEmployeesActivity.this, R.string.pls_select_at_least_one_service, Toast.LENGTH_SHORT).show();
-                }
-
-                    else {
+                } else {
 
                     Intent intent = new Intent(this, ContactDetailActivity.class);
                     intent.putExtra("employeeId", employeeId);
@@ -268,24 +263,25 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
         }
 
     }
+
     Calendar date;
 
     public void showDateTimePicker() {
         final Calendar currentDate = Calendar.getInstance();
         date = Calendar.getInstance();
-        DatePickerDialog dialog=   new DatePickerDialog(this, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dialog = new DatePickerDialog(this, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 date.set(year, monthOfYear, dayOfMonth);
 
-                binding.etDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" +year );
-                currentDateandTime = dayOfMonth+"-"+(monthOfYear+1)+"-"+year;
+                binding.etDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                currentDateandTime = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
 
                 if (NetworkAlertUtility.isConnectingToInternet(ChooseEmployeesActivity.this)) {
-                                getTimeSlotsPresenter.getTimeSlots(ChooseEmployeesActivity.this,employeeId,currentDateandTime,salonId,serviceIds.toString());
-                            } else {
-                                NetworkAlertUtility.showNetworkFailureAlert(ChooseEmployeesActivity.this);
-                            }
+                    getTimeSlotsPresenter.getTimeSlots(ChooseEmployeesActivity.this, employeeId, currentDateandTime, salonId, serviceIds.toString());
+                } else {
+                    NetworkAlertUtility.showNetworkFailureAlert(ChooseEmployeesActivity.this);
+                }
 //             TimePickerDialog timePickerDialog=   new TimePickerDialog(ChooseEmployeesActivity.this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
 //                    @Override
 //                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -308,12 +304,12 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
 //                            Toast.makeText(ChooseEmployeesActivity.this, getResources().getString(R.string.invalid_time), Toast.LENGTH_LONG).show();
 //
 //                        }
-                    }
+            }
 //                }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false);
 //             timePickerDialog.show();
 
 //            }
-        },currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE));
+        }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE));
         dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         dialog.show();
     }
@@ -321,22 +317,22 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
 
     @Override
     public void onGetDetail(Result response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
 
 
 //        FOR API
 
 
-        }else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-        }else{
+        } else {
             binding.etEmployee.setText(getResources().getString(R.string.next_available_employee));
             ArrayList<EmployeeDatum> customerTypeDatumArrayList = new ArrayList<>();
             customerTypeDatumArrayList.add(new EmployeeDatum(getResources().getString(R.string.next_available_employee), "-1"));
 
-            if (response.getData().size()>0) {
+            if (response.getData().size() > 0) {
                 for (int i = 0; i < response.getData().size(); i++) {
                     customerTypeDatumArrayList.add(new EmployeeDatum(response.getData().get(i).getEmployeename(), response.getData().get(i).getId()));
                 }
@@ -358,69 +354,70 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
     @Override
     public void onGetDetail(CommonOffset response) {
 
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
             Intent intent = new Intent(this, ContactDetailActivity.class);
-                    intent.putExtra("employeeId", employeeId);
-                    intent.putExtra("date", binding.etDate.getText().toString());
-                    intent.putExtra("salonId", salonId);
-                    intent.putExtra("array", getIntent().getStringExtra("array"));
-                    startActivity(intent);
-        }else if (response.getStatus()==400){
-            windowPopUp(this,response.getMessage());
-        }else if (response.getStatus() == 406) {
+            intent.putExtra("employeeId", employeeId);
+            intent.putExtra("date", binding.etDate.getText().toString());
+            intent.putExtra("salonId", salonId);
+            intent.putExtra("array", getIntent().getStringExtra("array"));
+            startActivity(intent);
+        } else if (response.getStatus() == 400) {
+            windowPopUp(this, response.getMessage());
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
     }
 
-    String fromTime="",toTime="";
+    String fromTime = "", toTime = "";
 
     @Override
     public void ongetTimeSLots(com.boog24.modals.getServiceTimeSlots.Result response) {
-        if (response.getStatus()==200){
+        if (response.getStatus() == 200) {
+            if (response.getData() != null && response.getData().getTimeSlots() != null) {
+                System.out.println("more   xhxhxhxh  " + response.getData().getMost_free_employee_id().toString());
+                setUserType();
+                more_id = response.getData().getMost_free_employee_id().toString();
+                ArrayList<EmployeeDatum> customerTypeDatumArrayList = new ArrayList<>();
 
-            System.out.println("more   xhxhxhxh  "+response.getData().getMost_free_employee_id().toString());
-
-            more_id = response.getData().getMost_free_employee_id().toString();
-            ArrayList<EmployeeDatum> customerTypeDatumArrayList = new ArrayList<>();
-
-            if (response.getData().getEmployees().size()>0) {
-                for (int i = 0; i < response.getData().getEmployees().size(); i++) {
-                    customerTypeDatumArrayList.add(new EmployeeDatum(response.getData().getEmployees().get(i).getEmployeName(), response.getData().getEmployees().get(i).getEmployeId()));
+                if (response.getData() != null && response.getData().getEmployees() != null && response.getData().getEmployees().size() > 0) {
+                    for (int i = 0; i < response.getData().getEmployees().size(); i++) {
+                        customerTypeDatumArrayList.add(new EmployeeDatum(response.getData().getEmployees().get(i).getEmployeName(), response.getData().getEmployees().get(i).getEmployeId()));
+                    }
                 }
-            }
-            CustomerTypeAdapter statusAdpter = new CustomerTypeAdapter(ChooseEmployeesActivity.this, R.layout.spinner_item_row,
-                    customerTypeDatumArrayList, ChooseEmployeesActivity.this);
+                CustomerTypeAdapter statusAdpter = new CustomerTypeAdapter(ChooseEmployeesActivity.this, R.layout.spinner_item_row,
+                        customerTypeDatumArrayList, ChooseEmployeesActivity.this);
 
 //        CUSTOMER_TYPE_ID = response.getResult().getCustomerTypeData().get(0).getCustomerTypeId();
-            binding.ProSpinner.setAdapter(statusAdpter);
-            binding.ProSpinner.setSelected(false);
-            int pos = 0;
+                binding.ProSpinner.setAdapter(statusAdpter);
+                binding.ProSpinner.setSelected(false);
+                int pos = 0;
 
-            for (int i = 0; i < response.getData().getEmployees().size(); i++) {
-                if (response.getData().getEmployees().get(i).getIs_selected().equalsIgnoreCase("1")){
-                    pos = i;
+                for (int i = 0; i < response.getData().getEmployees().size(); i++) {
+                    if (response.getData().getEmployees().get(i).getIs_selected().equalsIgnoreCase("1")) {
+                        pos = i;
+                    }
                 }
-            }
-                binding.ProSpinner.setSelection(pos,false);
-            binding.recyclerviewTimeSLot.setVisibility(View.VISIBLE);
-            //For Time SLots
-            TimeSlotAdapter headerAdapter = new TimeSlotAdapter(ChooseEmployeesActivity.this,response.getData().getTimeSlots(), new TimeSlotAdapter.ItemsClick() {
-                @Override
-                public void click(int postion) {
+                binding.ProSpinner.setSelection(pos, false);
+                binding.recyclerviewTimeSLot.setVisibility(View.VISIBLE);
+                //For Time SLots
+                TimeSlotAdapter headerAdapter = new TimeSlotAdapter(ChooseEmployeesActivity.this, response.getData().getTimeSlots(), new TimeSlotAdapter.ItemsClick() {
+                    @Override
+                    public void click(int postion) {
 //                    timeSLotid = response.getData().getTimeSlots().get(postion).getEmployeeTimingId();
-                    fromTime=response.getData().getTimeSlots().get(postion).getFromTime();
-                    toTime=response.getData().getTimeSlots().get(postion).getToTime();
-                }
-            });
-            binding.recyclerviewTimeSLot.setLayoutManager(new GridLayoutManager(ChooseEmployeesActivity.this, 3));
-            binding.recyclerviewTimeSLot.setAdapter(headerAdapter);
-            binding.recyclerviewTimeSLot.setNestedScrollingEnabled(true);
-
-
-
-        }else if (response.getStatus()==400){
+                        fromTime = response.getData().getTimeSlots().get(postion).getFromTime();
+                        toTime = response.getData().getTimeSlots().get(postion).getToTime();
+                    }
+                });
+                binding.recyclerviewTimeSLot.setLayoutManager(new GridLayoutManager(ChooseEmployeesActivity.this, 3));
+                binding.recyclerviewTimeSLot.setAdapter(headerAdapter);
+                binding.recyclerviewTimeSLot.setNestedScrollingEnabled(true);
+                binding.tvNoTimeSlots.setVisibility(View.GONE);
+            } else {
+                binding.tvNoTimeSlots.setVisibility(View.VISIBLE);
+            }
+        } else if (response.getStatus() == 400) {
 
             binding.recyclerviewTimeSLot.setVisibility(View.GONE);
             binding.etEmployee.setText(getResources().getString(R.string.next_available_employee));
@@ -428,7 +425,7 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
             ArrayList<EmployeeDatum> customerTypeDatumArrayList = new ArrayList<>();
             customerTypeDatumArrayList.add(new EmployeeDatum(getResources().getString(R.string.next_available_employee), "-1"));
 
-            if (response.getData().getEmployees().size()>0) {
+            if (response.getData() != null && response.getData().getEmployees() != null && response.getData().getEmployees().size() > 0) {
                 for (int i = 0; i < response.getData().getEmployees().size(); i++) {
                     customerTypeDatumArrayList.add(new EmployeeDatum(response.getData().getEmployees().get(i).getEmployeName(), response.getData().getEmployees().get(i).getEmployeId()));
                 }
@@ -436,12 +433,14 @@ public class ChooseEmployeesActivity extends BaseActivity implements IGetEmploye
             CustomerTypeAdapter statusAdpter = new CustomerTypeAdapter(ChooseEmployeesActivity.this, R.layout.spinner_item_row,
                     customerTypeDatumArrayList, ChooseEmployeesActivity.this);
 
+            binding.tvNoTimeSlots.setVisibility(View.VISIBLE);
+
 //        CUSTOMER_TYPE_ID = response.getResult().getCustomerTypeData().get(0).getCustomerTypeId();
             binding.ProSpinner.setAdapter(statusAdpter);
 //            windowPopUp(this,response.getMessage());
-        }else if (response.getStatus() == 406) {
+        } else if (response.getStatus() == 406) {
             Prefs.clear();
-            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
 

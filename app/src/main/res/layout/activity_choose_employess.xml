@@ -209,11 +209,42 @@
                     android:layout_gravity="right"
                     android:gravity="right"
                     android:text="€ 180"
-                    android:textSize="@dimen/dimen_14dp"/>
+                    android:textSize="@dimen/dimen_14dp" />
 
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:background="@color/gray_c9"
+                android:alpha="0.5"
+                android:layout_below="@+id/rlRating"
+                android:layout_marginBottom="@dimen/dimen_8dp" />
+
+            <TextView
+                android:id="@+id/tvPricesMayVary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:onClick="onClick"
+                android:textColor="@color/grayish"
+                android:text="@string/prices_may_vary"
+                android:textSize="@dimen/dimen_10sp" />
+
+            <TextView
+                android:id="@+id/tvNoTimeSlots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:onClick="onClick"
+                android:visibility="gone"
+                android:textColor="@color/grayish"
+                android:text="@string/no_time_slots"
+                android:textSize="@dimen/dimen_14sp" />
 
             <TextView
                 android:id="@+id/tvContinue"

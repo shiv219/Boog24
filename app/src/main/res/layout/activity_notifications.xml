@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:vFont="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="activity"
-            type="com.boog24.activity.NotificationActivity"/>
+            type="com.boog24.activity.NotificationActivity" />
+
         <variable
             name="userid"
             type="String" />
@@ -75,18 +77,15 @@
             </androidx.appcompat.widget.Toolbar>
 
 
-
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_below="@+id/headerLayoutALA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/headerLayoutALA"
                 android:layout_marginLeft="@dimen/dimen_12dp"
                 android:layout_marginRight="@dimen/dimen_12dp"
                 android:orientation="vertical"
-                android:scrollbarStyle="insideInset"/>
+                android:scrollbarStyle="insideInset" />
 
 
         </RelativeLayout>
