@@ -1,16 +1,15 @@
 package com.boog24.fragment.booking;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.boog24.R;
-import com.boog24.activity.EditProfileActivity;
-import com.boog24.activity.SplaceActivity;
 import com.boog24.adapter.booking.UpcomingAdapter;
 import com.boog24.custom.Constants;
 import com.boog24.databinding.FragmentUpcomingBinding;
@@ -20,9 +19,6 @@ import com.boog24.modals.myBookings.Result;
 import com.boog24.presenter.GetMyBookingsPresenter;
 import com.boog24.view.IMyBookingsView;
 import com.pixplicity.easyprefs.library.Prefs;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class UpcomingFragment extends BaseFragment implements IMyBookingsView {
 
@@ -76,15 +72,15 @@ public class UpcomingFragment extends BaseFragment implements IMyBookingsView {
     @Override
     public void onResume() {
         super.onResume();
-//        if (Prefs.getString(Constants.SharedPreferences_loginKey,"").equalsIgnoreCase("")){
-////            windowPopUpForLogin(getActivity(),getResources().getString(R.string.pls_login_first));
-//        }else {
-//            if (NetworkAlertUtility.isConnectingToInternet(getActivity())) {
-//                getMyBookingsPresenter.userSignin(getActivity(), "upcoming");
-//            } else {
-//                NetworkAlertUtility.showNetworkFailureAlert(getActivity());
-//            }
-//        }
+        if (Prefs.getString(Constants.SharedPreferences_loginKey, "").equalsIgnoreCase("")) {
+            windowPopUpForLogin(getActivity(), getResources().getString(R.string.pls_login_first));
+        } else {
+            if (NetworkAlertUtility.isConnectingToInternet(getActivity())) {
+                getMyBookingsPresenter.userSignin(getActivity(), "upcoming");
+            } else {
+                NetworkAlertUtility.showNetworkFailureAlert(getActivity());
+            }
+        }
     }
 
     @Override

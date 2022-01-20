@@ -10,8 +10,8 @@ android {
         applicationId "com.booq24"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 11
-        versionName "1.0.8"
+        versionCode 12
+        versionName "1.0.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Boog24")
         multiDexEnabled true
@@ -30,6 +30,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL",  "\"https://booq24.com/\""
 
+        }
+    }
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
         }
     }
 //    buildFeatures{
