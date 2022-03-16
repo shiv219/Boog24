@@ -18,11 +18,10 @@ public class GetBookingDetailPresenter extends BasePresenter<IBookingDetailView>
     public void getBooking(final Activity activity,String fName,String lName,String email, String phone,String serviceId,String empId,String date,String salonId,String amount ,String fromTime,String toTime, String moreId) {
         getView().enableLoadingBar(activity, true, activity.getResources().getString(R.string.loading));
 
-        if(empId.equals("")){
+        if (empId.equals("") || empId.equals("0")) {
             empId = moreId;
-        }else{
-            empId = "0";
         }
+
         MyApplication.getInstance()
                 .getApiService()
                 .bookingAppointment(Constants.ACCESS_TOKEN, Prefs.getString(Constants.SharedPreferences_loginKey,""),Prefs.getString(Constants.SharedPreferences_Langauge,""),fName,lName,email,phone,serviceId,empId,date,salonId,amount,fromTime,toTime)
