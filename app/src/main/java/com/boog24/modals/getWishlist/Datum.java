@@ -20,9 +20,22 @@ private String salonAddress;
 @SerializedName("wishlist_status")
 @Expose
 private String wishlistStatus;
+
+@SerializedName("saloon_ratings")
+@Expose
+private String saloonRatings;
+
+@SerializedName("total_reviews")
+@Expose
+private int totalReviews;
+
 @SerializedName("salon_image")
 @Expose
 private String salonImage;
+
+public int getTotalReviews(){
+    return totalReviews;
+}
 
 public String getSalonId() {
 return salonId;
@@ -71,5 +84,13 @@ return salonImage;
 public void setSalonImage(String salonImage) {
 this.salonImage = salonImage;
 }
+
+    public String getSaloonRatings() {
+        return saloonRatings;
+    }
+
+    public void setSaloonRatings(String saloonRatings) {
+        this.saloonRatings = saloonRatings;
+    }
 
 }

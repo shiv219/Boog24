@@ -54,7 +54,7 @@ public class EditProfileActivity extends BaseActivity implements IUpdateProfileV
             @Override
             public void onClick(View view) {
                 String gender = "";
-                if(binding.tvGender.getText().toString().equals("Female")){
+                if(binding.tvGender.getText().toString().equals(getString(R.string.female))){
                     gender = "F";
                 }else {
                     gender = "M";

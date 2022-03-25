@@ -52,9 +52,9 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         holder.tvTitle.setText(data.get(position).getSalonName());
         holder.tvAddress.setText(data.get(position).getSalonAddress());
         holder.ivHeart.setImageDrawable(context.getResources().getDrawable(R.drawable.heart_active));
-//        holder.tvRating.setText(saloonData.get(position).getSaloonRatings());
-//        holder.tvTotalRating.setText("("+saloonData.get(position).getSaloonRatingsUsers()+")");
-//        holder.ratingBar.setRating((int) Float.parseFloat(saloonData.get(position).getSaloonRatings()));
+        holder.tvRating.setText(data.get(position).getSaloonRatings());
+        holder.tvTotalRating.setText("("+data.get(position).getTotalReviews()+")");
+        holder.ratingBar.setRating((int) Float.parseFloat(data.get(position).getSaloonRatings()));
 
 
         holder.ivHeart.setOnClickListener(new View.OnClickListener() {

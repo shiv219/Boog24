@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:vFont="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -123,7 +124,7 @@
                     android:numStars="5"
                     android:clickable="false"
                     android:isIndicator="true"
-                    android:rating="2"
+                    tools:rating="2"
                     android:stepSize="0.1" />
 
 
@@ -133,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#1C1C1C"
-                    android:text="3.4"
+                    tools:text="3.4"
                     android:fontFamily="@font/proximanova_regular"
                     android:textSize="@dimen/dimen_12dp"
                     android:layout_marginLeft="@dimen/dimen_4dp"
@@ -146,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary"
-                    android:text="(122)"
+                    tools:text="(122)"
                     android:layout_marginLeft="@dimen/dimen_4dp"
                     android:fontFamily="@font/proximanova_regular"
                     android:textSize="@dimen/dimen_12dp"

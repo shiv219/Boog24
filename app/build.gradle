@@ -11,15 +11,15 @@ android {
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 13
-        versionName "1.0.10"
+        versionName "1.0.10-T1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Boog24")
         multiDexEnabled true
     }
     buildTypes {
         debug{
-//            buildConfigField "String", "BASE_URL",  "\"https://staging.booq24.com/\""
-            buildConfigField "String", "BASE_URL",  "\"https://booq24.com/\""
+            buildConfigField "String", "BASE_URL",  "\"https://staging.booq24.com/\""
+//            buildConfigField "String", "BASE_URL",  "\"https://booq24.com/\""
 
         }
         staging{
